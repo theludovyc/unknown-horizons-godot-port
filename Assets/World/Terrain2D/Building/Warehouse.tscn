@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://rw2lkwx0ovwe"]
+
+[ext_resource type="Texture2D" uid="uid://ddkc6v880dqfj" path="res://Assets/World/Buildings/Warehouse/Sprites/Warehouse_idle.png" id="1_871kb"]
+
+[node name="Warehouse" type="Sprite2D"]
+texture = ExtResource("1_871kb")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 128, 192, 128)
