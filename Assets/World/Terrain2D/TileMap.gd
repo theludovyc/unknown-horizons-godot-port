@@ -4,9 +4,14 @@ extends TileMap
 func _ready():
 	var file = FileAccess.open("res://Assets/World/Terrain2D/mp_dev.json", FileAccess.READ)
 	
+	if file == null:
+		push_error("Error: can't open file")
+		return
+	
 	var json = JSON.new()
 	
 	if json.parse(file.get_as_text()) != OK:
+		push_error("Error: can't parse json")
 		return
 	
 	for island in json.data["islands"]:
