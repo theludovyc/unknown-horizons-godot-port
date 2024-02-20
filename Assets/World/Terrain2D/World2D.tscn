@@ -490,6 +490,7 @@ texture_region_size = Vector2i(64, 32)
 7:6/0/terrains_peering_bit/top_left_side = 3
 7:6/0/terrains_peering_bit/top_corner = 3
 7:6/0/terrains_peering_bit/top_right_side = 3
+7:6/0/custom_data_0 = true
 8:6/size_in_atlas = Vector2i(1, 2)
 8:6/0 = 0
 8:6/0/texture_origin = Vector2i(0, 18)
@@ -543,6 +544,8 @@ terrain_set_0/terrain_2/name = "Sand"
 terrain_set_0/terrain_2/color = Color(1, 0.909804, 0.231373, 1)
 terrain_set_0/terrain_3/name = "Grass"
 terrain_set_0/terrain_3/color = Color(0, 0.858824, 0.113725, 1)
+custom_data_layer_0/name = "Constructible"
+custom_data_layer_0/type = 1
 sources/1 = SubResource("TileSetAtlasSource_h1cbt")
 
 [node name="World2D" type="Node"]

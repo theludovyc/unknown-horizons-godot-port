@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bptwun2x2nva3"]
+
+[ext_resource type="Texture2D" uid="uid://b4c5sk4s76jqb" path="res://Assets/World/Terrain2D/Resources/Clay/clay.png" id="1_6qt0j"]
+[ext_resource type="Script" path="res://Assets/World/Terrain2D/Resources/Clay/Clay.gd" id="2_c5uw2"]
+
+[node name="Clay" type="Sprite2D"]
+texture = ExtResource("1_6qt0j")
+hframes = 4
+script = ExtResource("2_c5uw2")
+width = 3
+height = 3

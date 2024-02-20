@@ -1,5 +1,13 @@
 extends TileMap
 
+@onready var world = get_parent()
+
+func is_constructible_from_tile_data(tile_data:TileData) -> bool:
+	return tile_data.get_custom_data("Constructible")
+	
+func is_constructible(tile_pos:Vector2i) -> bool:
+	return get_cell_tile_data(0, tile_pos).get_custom_data("Constructible")
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var file = FileAccess.open("res://Assets/World/Terrain2D/mp_dev.json", FileAccess.READ)
@@ -14,18 +22,18 @@ func _ready():
 		push_error("Error: can't parse json")
 		return
 	
+	var set_cells = func(array_in, atlas_pos, array_out):
+		for i in range(0, array_in.size(), 2):
+			var tile_vec = Vector2i(array_in[i], array_in[i + 1])
+			array_out.push_back(tile_vec)
+			set_cell(0, tile_vec, 1, atlas_pos)
+	
 	for island in json.data["islands"]:
 		var deep_cells:PackedVector2Array
 		var shallow_cells:PackedVector2Array
 		var sand_cells:PackedVector2Array
 		var ground_cells:PackedVector2Array
-			
-		var set_cells = func(array_in, atlas_pos, array_out):
-			for i in range(0, array_in.size(), 2):
-				var tile_vec = Vector2i(array_in[i], array_in[i + 1])
-				array_out.push_back(tile_vec)
-				set_cell(0, tile_vec, 1, atlas_pos)
-				
+		
 		set_cells.call(island["deep_tiles"], Vector2i(1, 2), deep_cells)
 		set_cells.call(island["shallow_tiles"], Vector2i(4, 2), shallow_cells)
 		set_cells.call(island["sand_tiles"], Vector2i(7, 2), sand_cells)
