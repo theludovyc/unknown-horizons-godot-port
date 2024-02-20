@@ -1,26 +1,35 @@
 extends TileMap
 
-@onready var world = get_parent()
+@onready var game:Game2D = get_parent()
 
 func is_constructible_from_tile_data(tile_data:TileData) -> bool:
 	return tile_data.get_custom_data("Constructible")
 	
 func is_constructible(tile_pos:Vector2i) -> bool:
 	return get_cell_tile_data(0, tile_pos).get_custom_data("Constructible")
+	
+func is_entityStatic_constructible(entity:EntityStatic, tile_center:Vector2i) -> bool:
+	var top_left_tile = tile_center - Vector2i(entity.width / 2, entity.height / 2)
+	
+	for x in entity.width:
+		for y in entity.height:
+			if not is_constructible(top_left_tile + Vector2i(x, y)):
+				return false
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	var file = FileAccess.open("res://Assets/World/Terrain2D/mp_dev.json", FileAccess.READ)
+	return true
+
+func create_island(map_file:String) -> int:
+	var file = FileAccess.open(map_file, FileAccess.READ)
 	
 	if file == null:
 		push_error("Error: can't open file")
-		return
+		return FAILED
 	
 	var json = JSON.new()
 	
 	if json.parse(file.get_as_text()) != OK:
 		push_error("Error: can't parse json")
-		return
+		return FAILED
 	
 	var set_cells = func(array_in, atlas_pos, array_out):
 		for i in range(0, array_in.size(), 2):
@@ -42,7 +51,14 @@ func _ready():
 		set_cells_terrain_connect(0, ground_cells, 0, 3)
 		set_cells_terrain_connect(0, sand_cells, 0, 2)
 		set_cells_terrain_connect(0, shallow_cells, 0, 1)
-	pass # Replace with function body.
+		
+		var entity = game.instantiate_EntityStatic(game.EntityStatics.ClayDeposit)
+		
+		prints(is_entityStatic_constructible(entity, ground_cells[5]))
+		
+		entity.position = map_to_local(ground_cells[5])
+	
+	return OK
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

@@ -1,13 +1,13 @@
 [gd_scene load_steps=8 format=3 uid="uid://bbbuj3ne5rupv"]
 
-[ext_resource type="Script" path="res://Assets/World/Terrain2D/World2D.gd" id="1_3v25p"]
-[ext_resource type="Texture2D" uid="uid://l4x4isdfp25s" path="res://Assets/World/Terrain2D/deep.png" id="2_63eum"]
-[ext_resource type="Texture2D" uid="uid://gvgjo5gsqh0t" path="res://Assets/World/Terrain2D/terrain0.png" id="3_dyyg3"]
-[ext_resource type="Script" path="res://Assets/World/Terrain2D/Camera2D.gd" id="4_n4i0d"]
-[ext_resource type="Script" path="res://Assets/World/Terrain2D/TileMap.gd" id="4_prfvo"]
+[ext_resource type="Script" path="res://Assets/World/Terrain2D/Game2D.gd" id="1_i3wk0"]
+[ext_resource type="Texture2D" uid="uid://l4x4isdfp25s" path="res://Assets/World/Terrain2D/deep.png" id="2_ymyts"]
+[ext_resource type="Texture2D" uid="uid://gvgjo5gsqh0t" path="res://Assets/World/Terrain2D/terrain0.png" id="3_vkdwm"]
+[ext_resource type="Script" path="res://Assets/World/Terrain2D/TileMap.gd" id="4_lfw1e"]
+[ext_resource type="Script" path="res://Assets/World/Terrain2D/Camera2D.gd" id="5_7hgfn"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_h1cbt"]
-texture = ExtResource("3_dyyg3")
+texture = ExtResource("3_vkdwm")
 texture_region_size = Vector2i(64, 32)
 3:6/size_in_atlas = Vector2i(1, 2)
 3:6/0 = 0
@@ -548,26 +548,28 @@ custom_data_layer_0/name = "Constructible"
 custom_data_layer_0/type = 1
 sources/1 = SubResource("TileSetAtlasSource_h1cbt")
 
-[node name="World2D" type="Node"]
-script = ExtResource("1_3v25p")
+[node name="Game2D" type="Node"]
+script = ExtResource("1_i3wk0")
 
 [node name="Deep" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(768, 448)
-texture = ExtResource("2_63eum")
+texture = ExtResource("2_ymyts")
 
 [node name="TileMap" type="TileMap" parent="."]
 y_sort_enabled = true
 tile_set = SubResource("TileSet_n6fbt")
 format = 2
 layer_0/y_sort_enabled = true
-script = ExtResource("4_prfvo")
+script = ExtResource("4_lfw1e")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0
 position_smoothing_enabled = true
-script = ExtResource("4_n4i0d")
+script = ExtResource("5_7hgfn")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
-offset_right = 256.0
-offset_bottom = 352.0
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer"]
+offset_right = 128.0
+offset_bottom = 128.0
