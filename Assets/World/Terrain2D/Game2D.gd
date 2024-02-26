@@ -17,7 +17,7 @@ const EntityStatics_Datas = {
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	tm.create_island("res://Assets/World/Terrain2D/mp_dev.json")
+	tm.create_island("res://Assets/World/Terrain2D/singularity_40.json")
 	pass # Replace with function body.
 
 

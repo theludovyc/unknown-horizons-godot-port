@@ -37,26 +37,25 @@ func create_island(map_file:String) -> int:
 			array_out.push_back(tile_vec)
 			set_cell(0, tile_vec, 1, atlas_pos)
 	
-	for island in json.data["islands"]:
-		var deep_cells:PackedVector2Array
-		var shallow_cells:PackedVector2Array
-		var sand_cells:PackedVector2Array
-		var ground_cells:PackedVector2Array
-		
-		set_cells.call(island["deep_tiles"], Vector2i(1, 2), deep_cells)
-		set_cells.call(island["shallow_tiles"], Vector2i(4, 2), shallow_cells)
-		set_cells.call(island["sand_tiles"], Vector2i(7, 2), sand_cells)
-		set_cells.call(island["ground_tiles"], Vector2i(7, 6), ground_cells)
+	var deep_cells:PackedVector2Array
+	var shallow_cells:PackedVector2Array
+	var sand_cells:PackedVector2Array
+	var ground_cells:PackedVector2Array
 	
-		set_cells_terrain_connect(0, ground_cells, 0, 3)
-		set_cells_terrain_connect(0, sand_cells, 0, 2)
-		set_cells_terrain_connect(0, shallow_cells, 0, 1)
-		
-		var entity = game.instantiate_EntityStatic(game.EntityStatics.ClayDeposit)
-		
-		prints(is_entityStatic_constructible(entity, ground_cells[5]))
-		
-		entity.position = map_to_local(ground_cells[5])
+	set_cells.call(json.data["deep_tiles"], Vector2i(1, 2), deep_cells)
+	set_cells.call(json.data["shallow_tiles"], Vector2i(4, 2), shallow_cells)
+	set_cells.call(json.data["sand_tiles"], Vector2i(7, 2), sand_cells)
+	set_cells.call(json.data["ground_tiles"], Vector2i(7, 6), ground_cells)
+
+	set_cells_terrain_connect(0, ground_cells, 0, 3)
+	set_cells_terrain_connect(0, sand_cells, 0, 2)
+	set_cells_terrain_connect(0, shallow_cells, 0, 1)
+	
+	var entity = game.instantiate_EntityStatic(game.EntityStatics.ClayDeposit)
+	
+	prints(is_entityStatic_constructible(entity, ground_cells[5]))
+	
+	entity.position = map_to_local(ground_cells[5])
 	
 	return OK
 
