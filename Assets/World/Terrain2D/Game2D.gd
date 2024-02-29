@@ -7,12 +7,14 @@ class_name Game2D
 
 @onready var cam = $Camera2D
 
-enum EntityStatics {
-	ClayDeposit
+enum Entities {
+	Warehouse,
+	Spruce
 }
 
-const EntityStatics_Datas = {
-	EntityStatics.ClayDeposit:preload("res://Assets/World/Terrain2D/Resources/Clay/Clay.tscn")
+const Entities_Scene = {
+	Entities.Warehouse:preload("res://Assets/World/Terrain2D/Building/Warehouse.tscn"),
+	Entities.Spruce:preload("res://Assets/World/Terrain2D/Trees/Spruce.tscn")
 }
 
 # Called when the node enters the scene tree for the first time.
@@ -40,8 +42,8 @@ func _process(delta):
 		
 		rtl.text += str(tm.get_cell_atlas_coords(0, tile_pos))
 
-func instantiate_EntityStatic(entity:EntityStatics) -> EntityStatic:
-	var entity_instance = EntityStatics_Datas[entity].instantiate()
+func instantiate_Entity(entity:Entities) -> Node2D:
+	var entity_instance = Entities_Scene[entity].instantiate()
 	
 	add_child(entity_instance)
 	

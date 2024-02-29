@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://jkcdymkwkhjr"]
+
+[ext_resource type="Texture2D" uid="uid://d0kcu0afi70as" path="res://Assets/World/Terrain2D/Trees/Spruce.png" id="1_aa4ps"]
+
+[node name="Spruce" type="Sprite2D"]
+texture = ExtResource("1_aa4ps")
+offset = Vector2(0, -48)

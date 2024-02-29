@@ -51,11 +51,22 @@ func create_island(map_file:String) -> int:
 	set_cells_terrain_connect(0, sand_cells, 0, 2)
 	set_cells_terrain_connect(0, shallow_cells, 0, 1)
 	
-	var entity = game.instantiate_EntityStatic(game.EntityStatics.ClayDeposit)
+	var entity := game.instantiate_Entity(game.Entities.Warehouse)
 	
-	prints(is_entityStatic_constructible(entity, ground_cells[5]))
+	entity.position = map_to_local(Vector2i(20, 37))
 	
-	entity.position = map_to_local(ground_cells[5])
+	entity = game.instantiate_Entity(game.Entities.Spruce)
+	
+	entity.position = map_to_local(Vector2i(25, 36))
+	
+	#spawn trees
+	#get all ground tiles constructible
+	#create array of index with same size
+	#shuffle it
+	#create a vector2i dico to save trees pos
+	#unstack the array of index and get ground tile pos
+	#10% chance of spawn + 10% for each tile arround if is a tree (max 90%)
+	#add tree pos in the dico
 	
 	return OK
 
