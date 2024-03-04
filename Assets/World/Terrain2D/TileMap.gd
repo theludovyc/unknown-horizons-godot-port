@@ -37,36 +37,73 @@ func create_island(map_file:String) -> int:
 			array_out.push_back(tile_vec)
 			set_cell(0, tile_vec, 1, atlas_pos)
 	
-	var deep_cells:PackedVector2Array
-	var shallow_cells:PackedVector2Array
-	var sand_cells:PackedVector2Array
-	var ground_cells:PackedVector2Array
+	var deep_tiles:PackedVector2Array
+	var shallow_tiles:PackedVector2Array
+	var sand_tiles:PackedVector2Array
+	var ground_tiles:PackedVector2Array
 	
-	set_cells.call(json.data["deep_tiles"], Vector2i(1, 2), deep_cells)
-	set_cells.call(json.data["shallow_tiles"], Vector2i(4, 2), shallow_cells)
-	set_cells.call(json.data["sand_tiles"], Vector2i(7, 2), sand_cells)
-	set_cells.call(json.data["ground_tiles"], Vector2i(7, 6), ground_cells)
+	set_cells.call(json.data["deep_tiles"], Vector2i(1, 2), deep_tiles)
+	set_cells.call(json.data["shallow_tiles"], Vector2i(4, 2), shallow_tiles)
+	set_cells.call(json.data["sand_tiles"], Vector2i(7, 2), sand_tiles)
+	set_cells.call(json.data["ground_tiles"], Vector2i(7, 6), ground_tiles)
 
-	set_cells_terrain_connect(0, ground_cells, 0, 3)
-	set_cells_terrain_connect(0, sand_cells, 0, 2)
-	set_cells_terrain_connect(0, shallow_cells, 0, 1)
+	set_cells_terrain_connect(0, ground_tiles, 0, 3)
+	set_cells_terrain_connect(0, sand_tiles, 0, 2)
+	set_cells_terrain_connect(0, shallow_tiles, 0, 1)
 	
+	var ground_tiles_constructible := ground_tiles.duplicate()
+	
+	# spawn the warehouse
 	var entity := game.instantiate_Entity(game.Entities.Warehouse)
+	entity.position = map_to_local(Vector2i(1, 20))
 	
-	entity.position = map_to_local(Vector2i(20, 37))
+	for pos in [Vector2i(3, 21), Vector2i(3, 22)]:
+		var find_pos := ground_tiles_constructible.find(pos)
+		
+		if find_pos != -1:
+			ground_tiles_constructible.remove_at(find_pos)
 	
-	entity = game.instantiate_Entity(game.Entities.Spruce)
+	prints(name, ground_tiles.size(), ground_tiles_constructible.size())
 	
-	entity.position = map_to_local(Vector2i(25, 36))
+	# spawn trees
+	# create array of index with size of tiles constructible
+	# and shuffle it
+	var indexes = range(ground_tiles_constructible.size())
+	indexes.shuffle()
+
+	var tree_pos:PackedVector2Array
 	
-	#spawn trees
-	#get all ground tiles constructible
-	#create array of index with same size
-	#shuffle it
-	#create a vector2i dico to save trees pos
-	#unstack the array of index and get ground tile pos
-	#10% chance of spawn + 10% for each tile arround if is a tree (max 90%)
-	#add tree pos in the dico
+	var surrounded_pos:PackedVector2Array = [
+		Vector2i(-1, 0),
+		Vector2i(-1, 1),
+		Vector2i(0, 1),
+		Vector2i(1, 1),
+		Vector2i(1, 0),
+		Vector2i(1, -1),
+		Vector2i(0, -1),
+		Vector2i(-1, -1)
+	]
+	
+	var get_surrounded_trees = func(vec:Vector2i):
+		var sum := 0
+		for pos:Vector2i in surrounded_pos:
+			if tree_pos.has(vec + pos):
+				sum += 1
+		return sum
+	
+	# unstack the array of index and get ground tile pos
+	for index in indexes:
+		var tile_pos := ground_tiles_constructible[index]
+		
+		# 20% chance of spawn + 10% for each tile arround if is a tree (max 100%)
+		var spawn_chance:float = (2. + get_surrounded_trees.call(tile_pos)) / 10.
+	
+		if spawn_chance == 1. or randf() < spawn_chance:
+			entity = game.instantiate_Entity(game.Entities.Spruce)
+	
+			entity.position = map_to_local(tile_pos)
+	
+			tree_pos.push_back(tile_pos)
 	
 	return OK
 

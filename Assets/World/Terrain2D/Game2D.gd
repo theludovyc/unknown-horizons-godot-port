@@ -7,6 +7,8 @@ class_name Game2D
 
 @onready var cam = $Camera2D
 
+@onready var node_entities = $Entities
+
 enum Entities {
 	Warehouse,
 	Spruce
@@ -45,6 +47,6 @@ func _process(delta):
 func instantiate_Entity(entity:Entities) -> Node2D:
 	var entity_instance = Entities_Scene[entity].instantiate()
 	
-	add_child(entity_instance)
+	node_entities.add_child(entity_instance)
 	
 	return entity_instance

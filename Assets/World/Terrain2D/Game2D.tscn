@@ -551,6 +551,11 @@ sources/1 = SubResource("TileSetAtlasSource_h1cbt")
 [node name="Game2D" type="Node"]
 script = ExtResource("1_i3wk0")
 
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+position_smoothing_enabled = true
+script = ExtResource("5_7hgfn")
+
 [node name="Deep" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(768, 448)
@@ -563,10 +568,8 @@ format = 2
 layer_0/y_sort_enabled = true
 script = ExtResource("4_lfw1e")
 
-[node name="Camera2D" type="Camera2D" parent="."]
-anchor_mode = 0
-position_smoothing_enabled = true
-script = ExtResource("5_7hgfn")
+[node name="Entities" type="Node2D" parent="."]
+y_sort_enabled = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
