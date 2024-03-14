@@ -9,14 +9,9 @@ class_name Game2D
 
 @onready var node_entities = $Entities
 
-enum Entities {
-	Warehouse,
-	Spruce
-}
-
 const Entities_Scene = {
-	Entities.Warehouse:preload("res://Assets/World/Terrain2D/Building/Warehouse.tscn"),
-	Entities.Spruce:preload("res://Assets/World/Terrain2D/Trees/Spruce.tscn")
+	Entities.types.Warehouse:preload("res://Assets/World/Terrain2D/Building/Warehouse.tscn"),
+	Entities.types.Spruce:preload("res://Assets/World/Terrain2D/Trees/Spruce.tscn")
 }
 
 # Called when the node enters the scene tree for the first time.
@@ -44,9 +39,16 @@ func _process(delta):
 		
 		rtl.text += str(tm.get_cell_atlas_coords(0, tile_pos))
 
-func instantiate_Entity(entity:Entities) -> Node2D:
-	var entity_instance = Entities_Scene[entity].instantiate()
+func instantiate_Entity(entity_type:Entities.types) -> Node2D:
+	var entity_instance = Entities_Scene[entity_type].instantiate()
 	
 	node_entities.add_child(entity_instance)
 	
+	if entity_instance is Building2D:
+		entity_instance.selected.connect(_on_building_selected)
+	
 	return entity_instance
+
+func _on_building_selected(entity_type:Entities.types):
+	prints(name, entity_type)
+	pass

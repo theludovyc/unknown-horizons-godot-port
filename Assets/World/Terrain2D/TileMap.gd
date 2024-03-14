@@ -54,19 +54,18 @@ func create_island(map_file:String) -> int:
 	var ground_tiles_constructible := ground_tiles.duplicate()
 	
 	# spawn the warehouse
-	var entity := game.instantiate_Entity(game.Entities.Warehouse)
+	var entity := game.instantiate_Entity(Entities.types.Warehouse)
 	entity.position = map_to_local(Vector2i(1, 20))
 	
+	# remove the constructible tiles of the warehouse
 	for pos in [Vector2i(3, 21), Vector2i(3, 22)]:
 		var find_pos := ground_tiles_constructible.find(pos)
 		
 		if find_pos != -1:
 			ground_tiles_constructible.remove_at(find_pos)
 	
-	prints(name, ground_tiles.size(), ground_tiles_constructible.size())
-	
 	# spawn trees
-	# create array of index with size of tiles constructible
+	# create array of index with size of constructible tiles
 	# and shuffle it
 	var indexes = range(ground_tiles_constructible.size())
 	indexes.shuffle()
@@ -99,7 +98,7 @@ func create_island(map_file:String) -> int:
 		var spawn_chance:float = (2. + get_surrounded_trees.call(tile_pos)) / 10.
 	
 		if spawn_chance == 1. or randf() < spawn_chance:
-			entity = game.instantiate_Entity(game.Entities.Spruce)
+			entity = game.instantiate_Entity(Entities.types.Spruce)
 	
 			entity.position = map_to_local(tile_pos)
 	
