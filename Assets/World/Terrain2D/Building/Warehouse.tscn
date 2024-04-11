@@ -8,12 +8,14 @@ size = Vector2(170, 88)
 
 [node name="Warehouse" type="Sprite2D"]
 texture = ExtResource("1_8w56y")
+centered = false
+offset = Vector2(-96, -64)
 hframes = 4
 frame = 1
 region_rect = Rect2(0, 128, 192, 128)
 script = ExtResource("2_0x2ov")
-width = null
-height = null
+width = 3
+height = 3
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_mask = 0

@@ -1,3 +1,5 @@
+@tool
+
 extends EntityStatic
 class_name Building2D
 
