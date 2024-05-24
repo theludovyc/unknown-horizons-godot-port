@@ -98,11 +98,12 @@ func create_island(map_file:String) -> int:
 		var spawn_chance:float = (2. + get_surrounded_trees.call(tile_pos)) / 10.
 	
 		if spawn_chance == 1. or randf() < spawn_chance:
-			entity = game.instantiate_Entity(Entities.types.Spruce)
-	
-			entity.position = map_to_local(tile_pos)
-	
-			tree_pos.push_back(tile_pos)
+			#entity = game.instantiate_Entity(Entities.types.Spruce)
+	#
+			#entity.position = map_to_local(tile_pos)
+	#
+			#tree_pos.push_back(tile_pos)
+			set_cell(1, tile_pos, 2, Vector2.ZERO)
 	
 	return OK
 
