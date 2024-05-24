@@ -106,6 +106,8 @@ func create_island(map_file:String) -> int:
 	
 	return OK
 
+func local_to_map_to_local(position:Vector2) -> Vector2:
+	return map_to_local(local_to_map(position))
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://b3s7eqy0blp6g"]
+[gd_scene load_steps=14 format=3 uid="uid://b3s7eqy0blp6g"]
 
 [ext_resource type="Texture2D" uid="uid://5gbvga1bqpxa" path="res://Assets/UI/Images/Background/Widgets/map_bg.png" id="1_lis5v"]
 [ext_resource type="Texture2D" uid="uid://i3jf27r6a5xg" path="res://Assets/UI/Icons/Widgets/MiniMap/build.png" id="2_4512r"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bl4w2owswjhc8" path="res://Assets/UI/Images/Buttons/glass_big.png" id="5_a4xs7"]
 [ext_resource type="Texture2D" uid="uid://3203obnnsej3" path="res://Assets/UI/Images/TabWidget/main_bg_top.png" id="6_gmmb2"]
 [ext_resource type="Texture2D" uid="uid://budf74yum8w6e" path="res://Assets/UI/Images/TabWidget/main_bg_fill.png" id="7_srsy4"]
+[ext_resource type="Script" path="res://Assets/World/Terrain2D/GUI/BuildResidential.gd" id="7_xb5v6"]
 [ext_resource type="Texture2D" uid="uid://c7f5k0k27nsh1" path="res://Assets/UI/Images/TabWidget/main_bg_bottom.png" id="8_2h6rg"]
 [ext_resource type="Texture2D" uid="uid://ddlgbu2x5p4tg" path="res://Assets/UI/Icons/BuildMenu/003.png" id="8_04hx7"]
 [ext_resource type="Texture2D" uid="uid://cwbtvjpicrocv" path="res://Assets/UI/Icons/BuildMenu/003_d.png" id="9_7d646"]
@@ -69,11 +70,12 @@ theme_override_styles/panel = SubResource("StyleBoxTexture_q0br5")
 [node name="GridContainer" type="GridContainer" parent="Widget/BotMenu/PanelContainer"]
 layout_mode = 2
 
-[node name="TextureButton" type="TextureButton" parent="Widget/BotMenu/PanelContainer/GridContainer"]
+[node name="BuildResidential" type="TextureButton" parent="Widget/BotMenu/PanelContainer/GridContainer"]
 layout_mode = 2
 texture_normal = ExtResource("8_04hx7")
 texture_pressed = ExtResource("9_7d646")
 texture_hover = ExtResource("10_na55f")
+script = ExtResource("7_xb5v6")
 
 [node name="Bot" type="TextureRect" parent="Widget/BotMenu"]
 layout_mode = 2
@@ -109,3 +111,5 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 texture = ExtResource("5_a4xs7")
+
+[connection signal="button_down" from="Widget/BotMenu/PanelContainer/GridContainer/BuildResidential" to="Widget/BotMenu/PanelContainer/GridContainer/BuildResidential" method="_on_button_down"]

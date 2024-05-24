@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://bbbuj3ne5rupv"]
+[gd_scene load_steps=10 format=3 uid="uid://bbbuj3ne5rupv"]
 
 [ext_resource type="Script" path="res://Assets/World/Terrain2D/Game2D.gd" id="1_i3wk0"]
+[ext_resource type="Script" path="res://Assets/World/Terrain2D/EventBus.gd" id="2_jbfdl"]
 [ext_resource type="Texture2D" uid="uid://qwmj7wmlnv8d" path="res://Assets/World/Terrain2D/deep.png" id="2_ymyts"]
 [ext_resource type="Texture2D" uid="uid://7c4ox3ucr5vn" path="res://Assets/World/Terrain2D/terrain0.png" id="3_vkdwm"]
 [ext_resource type="Script" path="res://Assets/World/Terrain2D/TileMap.gd" id="4_lfw1e"]
@@ -552,6 +553,9 @@ sources/1 = SubResource("TileSetAtlasSource_h1cbt")
 [node name="Game2D" type="Node"]
 script = ExtResource("1_i3wk0")
 
+[node name="EventBus" type="Node" parent="."]
+script = ExtResource("2_jbfdl")
+
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0
 position_smoothing_enabled = true
@@ -580,3 +584,5 @@ offset_bottom = 128.0
 theme_override_colors/default_color = Color(1, 1, 1, 1)
 
 [node name="GUI" parent="." instance=ExtResource("6_lovin")]
+
+[connection signal="create_building" from="EventBus" to="." method="_on_EventBus_create_building"]

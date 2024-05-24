@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://rw2lkwx0ovwe"]
 
-[ext_resource type="Texture2D" uid="uid://642b17aathmd" path="res://Assets/World/Terrain2D/Building/warehouse.png" id="1_8w56y"]
+[ext_resource type="Texture2D" uid="uid://hw78qig7tpv5" path="res://Assets/World/Terrain2D/Building/warehouse.png" id="1_8w56y"]
 [ext_resource type="Script" path="res://Assets/World/Terrain2D/Building/Building.gd" id="2_0x2ov"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d0aee"]
