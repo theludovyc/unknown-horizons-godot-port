@@ -3,11 +3,11 @@ class_name Game2D
 
 @onready var rtl = $CanvasLayer/RichTextLabel
 
-@onready var tm = $TileMap
+@onready var tm = %TileMap
 
 @onready var cam = $Camera2D
 
-@onready var node_entities = $Entities
+@onready var node_entities = %Entities
 
 @onready var event_bus = $EventBus
 

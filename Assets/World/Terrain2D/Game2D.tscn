@@ -24,7 +24,11 @@ visible = false
 position = Vector2(768, 448)
 texture = ExtResource("2_ymyts")
 
-[node name="TileMap" type="TileMap" parent="."]
+[node name="ZSorter" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="TileMap" type="TileMap" parent="ZSorter"]
+unique_name_in_owner = true
 y_sort_enabled = true
 tile_set = ExtResource("5_6up2t")
 format = 2
@@ -32,10 +36,13 @@ layer_0/name = "Ground"
 layer_0/y_sort_enabled = true
 layer_1/name = "Trees"
 layer_1/y_sort_enabled = true
+layer_1/z_index = 1
 layer_1/tile_data = PackedInt32Array()
 script = ExtResource("4_lfw1e")
 
-[node name="Entities" type="Node2D" parent="."]
+[node name="Entities" type="Node2D" parent="ZSorter"]
+unique_name_in_owner = true
+z_index = 1
 y_sort_enabled = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]

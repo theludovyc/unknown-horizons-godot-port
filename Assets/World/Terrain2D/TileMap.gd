@@ -1,6 +1,6 @@
 extends TileMap
 
-@onready var game:Game2D = get_parent()
+@onready var game:Game2D = get_tree().current_scene
 
 func is_constructible_from_tile_data(tile_data:TileData) -> bool:
 	return tile_data.get_custom_data("Constructible")
