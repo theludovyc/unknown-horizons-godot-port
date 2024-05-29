@@ -15,7 +15,7 @@ func _ready():
 
 func _on_button_down():
 	if (event_bus):
-		event_bus.create_building.emit(Entities.types.Warehouse)
+		event_bus.create_building.emit(Entities.types.Residential)
 	disabled = true
 
 func _on_building_event():

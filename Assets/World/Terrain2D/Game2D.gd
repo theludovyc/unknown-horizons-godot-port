@@ -18,6 +18,7 @@ var cursor_entity_wait_release : bool = false
 
 const Entities_Scene = {
 	Entities.types.Warehouse:preload("res://Assets/World/Terrain2D/Building/Warehouse.tscn"),
+	Entities.types.Residential:preload("res://Assets/World/Terrain2D/Building/Residential.tscn"),
 	Entities.types.Spruce:preload("res://Assets/World/Terrain2D/Trees/Spruce.tscn")
 }
 
@@ -78,7 +79,7 @@ func _on_building_selected(entity_type:Entities.types):
 
 
 func _on_EventBus_create_building(building_type):
-	var entity := instantiate_Entity(Entities.types.Warehouse)
+	var entity := instantiate_Entity(building_type)
 	cursor_entity = entity
 	cursor_entity_wait_release = true
 	pass # Replace with function body.
