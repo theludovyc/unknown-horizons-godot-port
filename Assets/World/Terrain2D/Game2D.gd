@@ -16,6 +16,11 @@ var cursor_entity : Building2D
 # avoid create building on first clic
 var cursor_entity_wait_release : bool = false
 
+var population := 0 :
+	set(value):
+		population = value
+		event_bus.population_updated.emit(value)
+
 const Entities_Scene = {
 	Entities.types.Warehouse:preload("res://Assets/World/Terrain2D/Building/Warehouse.tscn"),
 	Entities.types.Residential:preload("res://Assets/World/Terrain2D/Building/Residential.tscn"),
@@ -55,6 +60,10 @@ func _process(delta):
 			cursor_entity_wait_release = false
 		
 		if not cursor_entity_wait_release and Input.is_action_just_pressed("alt_command"):
+			match(cursor_entity.entity_type):
+				Entities.types.Residential:
+					population += 5
+			
 			event_bus.building_created.emit(cursor_entity.entity_type)
 			cursor_entity = null
 		

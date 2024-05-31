@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://b3s7eqy0blp6g"]
+[gd_scene load_steps=22 format=3 uid="uid://b3s7eqy0blp6g"]
 
 [ext_resource type="Texture2D" uid="uid://5gbvga1bqpxa" path="res://Assets/UI/Images/Background/Widgets/map_bg.png" id="1_lis5v"]
 [ext_resource type="Texture2D" uid="uid://i3jf27r6a5xg" path="res://Assets/UI/Icons/Widgets/MiniMap/build.png" id="2_4512r"]
@@ -12,12 +12,24 @@
 [ext_resource type="Texture2D" uid="uid://ddlgbu2x5p4tg" path="res://Assets/UI/Icons/BuildMenu/003.png" id="8_04hx7"]
 [ext_resource type="Texture2D" uid="uid://cwbtvjpicrocv" path="res://Assets/UI/Icons/BuildMenu/003_d.png" id="9_7d646"]
 [ext_resource type="Texture2D" uid="uid://bnrw8bxew25wd" path="res://Assets/UI/Icons/BuildMenu/003_h.png" id="10_na55f"]
+[ext_resource type="Texture2D" uid="uid://b0gi4vdahasx6" path="res://Assets/UI/Images/Background/Widgets/cityinfo_left.png" id="13_s75r0"]
+[ext_resource type="Texture2D" uid="uid://dja8u81e6ge3k" path="res://Assets/UI/Images/Background/Widgets/cityinfo_right.png" id="14_flxif"]
+[ext_resource type="Texture2D" uid="uid://3hepoko6w1v" path="res://Assets/UI/Icons/Widgets/CityInfo/settlement.png" id="14_h5vqk"]
+[ext_resource type="Texture2D" uid="uid://cnh4q3rem71rn" path="res://Assets/UI/Images/Background/Widgets/cityinfo_fill.png" id="14_msg0t"]
+[ext_resource type="Texture2D" uid="uid://dry1ceb3p6yk1" path="res://Assets/UI/Icons/Widgets/CityInfo/inhabitants.png" id="15_p3ujw"]
+[ext_resource type="Script" path="res://Assets/World/Terrain2D/GUI/LabelPopulation.gd" id="17_v0ai2"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_q0br5"]
 content_margin_left = 20.0
 content_margin_right = 20.0
 texture = ExtResource("7_srsy4")
 axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3krfx"]
+texture = ExtResource("14_msg0t")
+axis_stretch_horizontal = 2
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_orjbh"]
 
 [node name="GUI" type="CanvasLayer"]
 
@@ -111,5 +123,59 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 texture = ExtResource("5_a4xs7")
+
+[node name="CityInfo" type="HBoxContainer" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -138.5
+offset_top = 20.0
+offset_right = 138.5
+offset_bottom = 60.0
+grow_horizontal = 2
+theme_override_constants/separation = 0
+
+[node name="TextureRect" type="TextureRect" parent="CityInfo"]
+layout_mode = 2
+texture = ExtResource("13_s75r0")
+
+[node name="PanelContainer" type="PanelContainer" parent="CityInfo"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_3krfx")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CityInfo/PanelContainer"]
+layout_mode = 2
+
+[node name="VSeparator" type="VSeparator" parent="CityInfo/PanelContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_orjbh")
+
+[node name="TextureRect" type="TextureRect" parent="CityInfo/PanelContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("14_h5vqk")
+
+[node name="Label" type="Label" parent="CityInfo/PanelContainer/HBoxContainer"]
+layout_mode = 2
+text = "Unknow City Name
+"
+
+[node name="TextureRect2" type="TextureRect" parent="CityInfo/PanelContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("15_p3ujw")
+
+[node name="LabelPopulation" type="Label" parent="CityInfo/PanelContainer/HBoxContainer"]
+layout_mode = 2
+text = "0"
+script = ExtResource("17_v0ai2")
+
+[node name="VSeparator2" type="VSeparator" parent="CityInfo/PanelContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_orjbh")
+
+[node name="TextureRect2" type="TextureRect" parent="CityInfo"]
+layout_mode = 2
+texture = ExtResource("14_flxif")
 
 [connection signal="button_down" from="Widget/BotMenu/PanelContainer/GridContainer/BuildResidential" to="Widget/BotMenu/PanelContainer/GridContainer/BuildResidential" method="_on_button_down"]
