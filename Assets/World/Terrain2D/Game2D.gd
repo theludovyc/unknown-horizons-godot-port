@@ -1,6 +1,10 @@
 extends Node
 class_name Game2D
 
+enum Resources_Types{
+	Wood
+}
+
 @onready var rtl = $CanvasLayer/RichTextLabel
 
 @onready var tm = %TileMap
