@@ -20,6 +20,11 @@ var population := 0 :
 	set(value):
 		population = value
 		event_bus.population_updated.emit(value)
+		
+var workers := 0 :
+	set(value):
+		workers = value
+		event_bus.workers_updated.emit(value)
 
 const Entities_Scene = {
 	Entities.types.Warehouse:preload("res://Assets/World/Terrain2D/Building/Warehouse.tscn"),
@@ -63,6 +68,7 @@ func _process(delta):
 			match(cursor_entity.entity_type):
 				Entities.types.Residential:
 					population += 5
+					workers += 5
 			
 			event_bus.building_created.emit(cursor_entity.entity_type)
 			cursor_entity = null

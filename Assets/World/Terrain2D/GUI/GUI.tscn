@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://b3s7eqy0blp6g"]
+[gd_scene load_steps=23 format=3 uid="uid://b3s7eqy0blp6g"]
 
 [ext_resource type="Texture2D" uid="uid://5gbvga1bqpxa" path="res://Assets/UI/Images/Background/Widgets/map_bg.png" id="1_lis5v"]
 [ext_resource type="Texture2D" uid="uid://i3jf27r6a5xg" path="res://Assets/UI/Icons/Widgets/MiniMap/build.png" id="2_4512r"]
@@ -18,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://cnh4q3rem71rn" path="res://Assets/UI/Images/Background/Widgets/cityinfo_fill.png" id="14_msg0t"]
 [ext_resource type="Texture2D" uid="uid://dry1ceb3p6yk1" path="res://Assets/UI/Icons/Widgets/CityInfo/inhabitants.png" id="15_p3ujw"]
 [ext_resource type="Script" path="res://Assets/World/Terrain2D/GUI/LabelPopulation.gd" id="17_v0ai2"]
+[ext_resource type="Script" path="res://Assets/World/Terrain2D/GUI/LabelWorkers.gd" id="18_xklsp"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_q0br5"]
 content_margin_left = 20.0
@@ -164,10 +165,19 @@ text = "Unknow City Name
 layout_mode = 2
 texture = ExtResource("15_p3ujw")
 
-[node name="LabelPopulation" type="Label" parent="CityInfo/PanelContainer/HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CityInfo/PanelContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="LabelPopulation" type="Label" parent="CityInfo/PanelContainer/HBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = "0"
 script = ExtResource("17_v0ai2")
+
+[node name="LabelWorkers" type="Label" parent="CityInfo/PanelContainer/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "(0)"
+script = ExtResource("18_xklsp")
 
 [node name="VSeparator2" type="VSeparator" parent="CityInfo/PanelContainer/HBoxContainer"]
 layout_mode = 2
