@@ -309,7 +309,6 @@ visible = false
 layout_mode = 1
 
 [node name="BuildMenuByCategoryTabWidget" parent="MarginContainer/HBoxContainer/Widgets" instance=ExtResource("46")]
-visible = false
 layout_mode = 1
 
 [editable path="MarginContainer/HBoxContainer/Widgets/LumberjackTabWidget"]

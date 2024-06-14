@@ -15,20 +15,17 @@
 [ext_resource type="Texture2D" uid="uid://b0gi4vdahasx6" path="res://Assets/UI/Images/Background/Widgets/cityinfo_left.png" id="13_s75r0"]
 [ext_resource type="Texture2D" uid="uid://dja8u81e6ge3k" path="res://Assets/UI/Images/Background/Widgets/cityinfo_right.png" id="14_flxif"]
 [ext_resource type="Texture2D" uid="uid://3hepoko6w1v" path="res://Assets/UI/Icons/Widgets/CityInfo/settlement.png" id="14_h5vqk"]
-[ext_resource type="Texture2D" uid="uid://cnh4q3rem71rn" path="res://Assets/UI/Images/Background/Widgets/cityinfo_fill.png" id="14_msg0t"]
+[ext_resource type="StyleBox" uid="uid://c337qd1xlk4yw" path="res://Assets/World/Terrain2D/GUI/PanelCityInfo.tres" id="14_p6h2t"]
 [ext_resource type="Texture2D" uid="uid://dry1ceb3p6yk1" path="res://Assets/UI/Icons/Widgets/CityInfo/inhabitants.png" id="15_p3ujw"]
 [ext_resource type="Script" path="res://Assets/World/Terrain2D/GUI/LabelPopulation.gd" id="17_v0ai2"]
 [ext_resource type="Script" path="res://Assets/World/Terrain2D/GUI/LabelWorkers.gd" id="18_xklsp"]
+[ext_resource type="PackedScene" uid="uid://dm2nc5paqgg5i" path="res://Assets/World/Terrain2D/GUI/ControlResource.tscn" id="20_60o0i"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_q0br5"]
 content_margin_left = 20.0
 content_margin_right = 20.0
 texture = ExtResource("7_srsy4")
 axis_stretch_vertical = 1
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3krfx"]
-texture = ExtResource("14_msg0t")
-axis_stretch_horizontal = 2
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_orjbh"]
 
@@ -142,7 +139,7 @@ texture = ExtResource("13_s75r0")
 
 [node name="PanelContainer" type="PanelContainer" parent="CityInfo"]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_3krfx")
+theme_override_styles/panel = ExtResource("14_p6h2t")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CityInfo/PanelContainer"]
 layout_mode = 2
@@ -187,5 +184,14 @@ theme_override_styles/separator = SubResource("StyleBoxEmpty_orjbh")
 [node name="TextureRect2" type="TextureRect" parent="CityInfo"]
 layout_mode = 2
 texture = ExtResource("14_flxif")
+
+[node name="Resources" type="HBoxContainer" parent="."]
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 100.0
+offset_bottom = 90.0
+
+[node name="Control" parent="Resources" instance=ExtResource("20_60o0i")]
+layout_mode = 2
 
 [connection signal="button_down" from="Widget/BotMenu/PanelContainer/GridContainer/BuildResidential" to="Widget/BotMenu/PanelContainer/GridContainer/BuildResidential" method="_on_button_down"]

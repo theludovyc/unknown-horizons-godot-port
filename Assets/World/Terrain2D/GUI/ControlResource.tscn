@@ -1,0 +1,79 @@
+[gd_scene load_steps=11 format=3 uid="uid://dm2nc5paqgg5i"]
+
+[ext_resource type="Texture2D" uid="uid://b0gi4vdahasx6" path="res://Assets/UI/Images/Background/Widgets/cityinfo_left.png" id="1_1s7hn"]
+[ext_resource type="StyleBox" uid="uid://do8ges2uukki2" path="res://Assets/UI/Theme/ThemeStyles/PanelEmpty.tres" id="1_w62v5"]
+[ext_resource type="Script" path="res://Assets/World/Terrain2D/GUI/ControlResource.gd" id="2_qloah"]
+[ext_resource type="StyleBox" uid="uid://c337qd1xlk4yw" path="res://Assets/World/Terrain2D/GUI/PanelCityInfo.tres" id="2_ves37"]
+[ext_resource type="Texture2D" uid="uid://dja8u81e6ge3k" path="res://Assets/UI/Images/Background/Widgets/cityinfo_right.png" id="3_8sxfq"]
+[ext_resource type="Texture2D" uid="uid://csypaf1jctw3i" path="res://Assets/UI/Images/Buttons/msg_button.png" id="4_ic12i"]
+[ext_resource type="Texture2D" uid="uid://dr8v8bg7cawsv" path="res://Assets/UI/Images/Buttons/msg_button_d.png" id="5_s8o15"]
+[ext_resource type="Texture2D" uid="uid://dtavw6r7yd3d8" path="res://Assets/UI/Images/Buttons/msg_button_h.png" id="6_e4xb1"]
+[ext_resource type="BitMap" uid="uid://jjft0jty5esx" path="res://Assets/UI/Images/Buttons/msg_button_mask.png" id="7_lgns8"]
+[ext_resource type="Texture2D" uid="uid://dof6fekq0by1d" path="res://Assets/UI/Icons/Resources/32/008.png" id="8_tvx5o"]
+
+[node name="ControlResource" type="PanelContainer"]
+custom_minimum_size = Vector2(0, 70)
+offset_right = 80.0
+offset_bottom = 70.0
+size_flags_vertical = 4
+theme_override_styles/panel = ExtResource("1_w62v5")
+script = ExtResource("2_qloah")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_1s7hn")
+
+[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = ExtResource("2_ves37")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="LabelAmount" type="Label" parent="HBoxContainer/PanelContainer/HBoxContainer"]
+layout_mode = 2
+text = "0"
+
+[node name="LabelProductionRate" type="Label" parent="HBoxContainer/PanelContainer/HBoxContainer"]
+layout_mode = 2
+text = "(+0)"
+
+[node name="TextureRect2" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("3_8sxfq")
+
+[node name="TextureButton" type="TextureButton" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+texture_normal = ExtResource("4_ic12i")
+texture_pressed = ExtResource("5_s8o15")
+texture_hover = ExtResource("6_e4xb1")
+texture_click_mask = ExtResource("7_lgns8")
+
+[node name="TextureRect" type="TextureRect" parent="TextureButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -14.0
+offset_top = -14.0
+offset_right = 14.0
+offset_bottom = 14.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("8_tvx5o")
+expand_mode = 1

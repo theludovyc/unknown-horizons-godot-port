@@ -19,6 +19,8 @@ script = ExtResource("2_jbfdl")
 script = ExtResource("3_6uk0m")
 
 [node name="TheTicker" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0
@@ -54,10 +56,15 @@ y_sort_enabled = true
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -128.0
 offset_right = 128.0
-offset_bottom = 128.0
+grow_vertical = 0
 theme_override_colors/default_color = Color(1, 1, 1, 1)
 
 [node name="GUI" parent="." instance=ExtResource("6_lovin")]
 
 [connection signal="create_building" from="EventBus" to="." method="_on_EventBus_create_building"]
+[connection signal="timeout" from="TheTicker" to="TheFactory" method="_on_TheTicker_timeout"]
