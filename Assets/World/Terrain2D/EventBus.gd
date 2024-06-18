@@ -9,3 +9,4 @@ signal population_updated(population_count)
 signal workers_updated(workers_amount)
 
 signal resource_updated(resource_type, resource_amount)
+signal resource_prodution_rate_updated(resource_type, production_rate)

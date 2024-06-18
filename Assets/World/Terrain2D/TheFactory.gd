@@ -4,27 +4,43 @@ var storage = {}
 
 @onready var event_bus = $"../EventBus"
 
-# Type, NeedTicks, CurrentTicks, ProductionRate
-var production_lines = [
-	[Game2D.Resources_Types.Wood, 1, 0, 1]
-]
+# produced type, [needed ticks, needed workers]
+enum Recipes{needed_ticks, needed_workers}
+var recipes = {
+	Game2D.Resources_Types.Wood : [1, 2]
+}
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
+enum Production_Line{resource_type, current_workers, production_rate, current_ticks}
+var production_lines = []
+
+func add_workers(resource_type:Game2D.Resources_Types, workers_amount:int):
+	var needed_workers = recipes[resource_type][Recipes.needed_workers]
+	
+	var production_rate:int = 0
+	
+	if (workers_amount >= needed_workers):
+		production_rate = workers_amount / recipes[resource_type][Recipes.needed_workers]
+	
+	production_lines.append([resource_type, workers_amount, production_rate, 0])
+	
+	event_bus.resource_prodution_rate_updated.emit(resource_type, production_rate)
 
 func _on_TheTicker_timeout():
 	for line in production_lines:
-		line[2] += 1
+		line[Production_Line.current_ticks] += 1
 		
-		if line[2] >= line[1]:
-			line[2] = 0
+		var resource_type = line[Production_Line.resource_type]
+		
+		if line[Production_Line.current_ticks] >= \
+			recipes[resource_type][Recipes.needed_ticks]:
 			
-			if storage.has(line[0]):
-				storage[line[0]] += line[3]
+			line[Production_Line.current_ticks] = 0
+			
+			if storage.has(resource_type):
+				storage[resource_type] += line[Production_Line.production_rate]
 			else:
-				storage[line[0]] = line[3]
+				storage[resource_type] = line[Production_Line.production_rate]
 			
-			event_bus.resource_updated.emit(line[0], storage[line[0]])
+			event_bus.resource_updated.emit(resource_type, storage[resource_type])
 		
 	pass # Replace with function body.
