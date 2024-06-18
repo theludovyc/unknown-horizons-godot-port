@@ -78,7 +78,7 @@ func _process(delta):
 					workers += 5
 					
 				Entities.types.Lumberjack:
-					the_factory.add_workers(Resources_Types.Wood, 2)
+					the_factory.add_workers(Resources_Types.Wood, 4)
 			
 			event_bus.building_created.emit(cursor_entity.entity_type)
 			cursor_entity = null

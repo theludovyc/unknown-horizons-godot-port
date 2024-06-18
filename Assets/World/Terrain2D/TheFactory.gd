@@ -10,26 +10,35 @@ var recipes = {
 	Game2D.Resources_Types.Wood : [1, 2]
 }
 
-enum Production_Line{resource_type, current_workers, production_rate, current_ticks}
-var production_lines = []
+enum Production_Line{current_workers, production_rate, current_ticks}
+var production_lines = {}
 
 func add_workers(resource_type:Game2D.Resources_Types, workers_amount:int):
-	var needed_workers = recipes[resource_type][Recipes.needed_workers]
-	
-	var production_rate:int = 0
-	
-	if (workers_amount >= needed_workers):
-		production_rate = workers_amount / recipes[resource_type][Recipes.needed_workers]
-	
-	production_lines.append([resource_type, workers_amount, production_rate, 0])
-	
-	event_bus.resource_prodution_rate_updated.emit(resource_type, production_rate)
+	if production_lines.has(resource_type):
+		var line = production_lines[resource_type]
+		
+		line[Production_Line.current_workers] += workers_amount
+		
+		line[Production_Line.production_rate] = int(line[Production_Line.current_workers] / recipes[resource_type][Recipes.needed_workers])
+		
+		event_bus.resource_prodution_rate_updated.emit(resource_type, line[Production_Line.production_rate])
+	else:
+		var needed_workers = recipes[resource_type][Recipes.needed_workers]
+		
+		var production_rate:int = 0
+		
+		if (workers_amount >= needed_workers):
+			production_rate = workers_amount / recipes[resource_type][Recipes.needed_workers]
+		
+		production_lines[resource_type] = [workers_amount, production_rate, 0]
+		
+		event_bus.resource_prodution_rate_updated.emit(resource_type, production_rate)
 
 func _on_TheTicker_timeout():
-	for line in production_lines:
-		line[Production_Line.current_ticks] += 1
+	for resource_type in production_lines:
+		var line = production_lines[resource_type]
 		
-		var resource_type = line[Production_Line.resource_type]
+		line[Production_Line.current_ticks] += 1
 		
 		if line[Production_Line.current_ticks] >= \
 			recipes[resource_type][Recipes.needed_ticks]:
