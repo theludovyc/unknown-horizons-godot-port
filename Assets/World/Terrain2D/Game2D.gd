@@ -5,15 +5,17 @@ enum Resources_Types{
 	Wood
 }
 
-@onready var rtl = $CanvasLayer/RichTextLabel
+@onready var rtl := $CanvasLayer/RichTextLabel
 
-@onready var tm = %TileMap
+@onready var tm := %TileMap
 
-@onready var cam = $Camera2D
+@onready var cam := $Camera2D
 
-@onready var node_entities = %Entities
+@onready var node_entities := %Entities
 
-@onready var event_bus = $EventBus
+@onready var event_bus := $EventBus
+
+@onready var the_factory := $TheFactory
 
 # if not null follow the cursor
 var cursor_entity : Building2D
@@ -33,6 +35,7 @@ var workers := 0 :
 const Entities_Scene = {
 	Entities.types.Warehouse:preload("res://Assets/World/Terrain2D/Building/Warehouse.tscn"),
 	Entities.types.Residential:preload("res://Assets/World/Terrain2D/Building/Residential.tscn"),
+	Entities.types.Lumberjack:preload("res://Assets/World/Terrain2D/Building/Lumberjack.tscn"),
 	Entities.types.Spruce:preload("res://Assets/World/Terrain2D/Trees/Spruce.tscn")
 }
 
@@ -73,6 +76,9 @@ func _process(delta):
 				Entities.types.Residential:
 					population += 5
 					workers += 5
+					
+				Entities.types.Lumberjack:
+					pass
 			
 			event_bus.building_created.emit(cursor_entity.entity_type)
 			cursor_entity = null

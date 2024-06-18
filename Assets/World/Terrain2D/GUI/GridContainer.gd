@@ -1,6 +1,8 @@
-extends TextureButton
+extends GridContainer
 
-var event_bus : EventBus
+var event_bus:EventBus
+
+@onready var bot_menu := $"../.."
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -8,16 +10,18 @@ func _ready():
 	
 	if (root_node.has_node("EventBus")):
 		event_bus = root_node.get_node("EventBus")
+		
 		event_bus.building_created.connect(_on_building_event.unbind(1))
 		event_bus.building_creation_aborted.connect(_on_building_event.unbind(1))
-	
-	pass # Replace with function body.
+		
+		for child in get_children():
+			child.pressed.connect(_on_building_button_pressed.bind(child.building_type))
+			
 
-func _on_button_down():
+func _on_building_button_pressed(building_type:Entities.types):
 	if (event_bus):
-		event_bus.create_building.emit(Entities.types.Residential)
-	disabled = true
+		event_bus.create_building.emit(building_type)
+	bot_menu.visible = false
 
 func _on_building_event():
-	if disabled:
-		disabled = false
+	bot_menu.visible = true
