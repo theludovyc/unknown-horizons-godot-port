@@ -9,7 +9,7 @@ size = Vector2(117, 67)
 [node name="Lumberjack" type="Sprite2D"]
 texture = ExtResource("1_mu1ns")
 centered = false
-offset = Vector2(-64, -96)
+offset = Vector2(-64, -112)
 hframes = 4
 script = ExtResource("1_0osrv")
 entity_type = 2

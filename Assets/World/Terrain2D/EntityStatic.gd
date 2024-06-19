@@ -26,7 +26,12 @@ func update_offset():
 	if centered:
 		centered = false
 	
-	offset = Vector2(0, -texture.get_height()) + Vector2(-width * 32, height * 16)
+	var final_height = height
+	
+	if (final_height%2 == 0):
+		final_height -= 1
+		
+	offset = Vector2(0, -texture.get_height()) + Vector2(-width * 32, final_height * 16)
 	
 func _on_texture_changed():
 	update_offset()

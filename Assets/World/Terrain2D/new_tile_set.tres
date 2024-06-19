@@ -487,6 +487,7 @@ texture_region_size = Vector2i(64, 32)
 7:6/0/terrains_peering_bit/top_left_side = 3
 7:6/0/terrains_peering_bit/top_corner = 3
 7:6/0/terrains_peering_bit/top_right_side = 3
+7:6/0/custom_data_0 = true
 8:6/size_in_atlas = Vector2i(1, 2)
 8:6/0 = 0
 8:6/0/texture_origin = Vector2i(0, 18)

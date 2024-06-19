@@ -62,16 +62,27 @@ func _process(delta):
 	if tile_data != null:
 		rtl.text += str(tile_data.terrain_set) + " / " + str(tile_data.terrain) + "\n"
 		
+		rtl.text += str(tile_data.get_custom_data("Constructible")) + "\n"
+		
 		rtl.text += str(tm.get_cell_atlas_coords(0, tile_pos))
 	
 	#spawn entity
 	if (cursor_entity):
 		cursor_entity.position = tm.map_to_local(tile_pos)
 		
+		var is_constructible = tm.is_entityStatic_constructible(cursor_entity, tile_pos)
+		
+		if is_constructible:
+			cursor_entity.modulate = Color(Color.GREEN, 0.6)
+		else:
+			cursor_entity.modulate = Color(Color.RED, 0.6)
+		
 		if cursor_entity_wait_release and Input.is_action_just_released("alt_command"):
 			cursor_entity_wait_release = false
 		
-		if not cursor_entity_wait_release and Input.is_action_just_pressed("alt_command"):
+		if not cursor_entity_wait_release \
+		and is_constructible \
+		and Input.is_action_just_pressed("alt_command"):
 			match(cursor_entity.entity_type):
 				Entities.types.Residential:
 					population += 5
@@ -81,6 +92,10 @@ func _process(delta):
 					the_factory.add_workers(Resources_Types.Wood, 4)
 			
 			event_bus.building_created.emit(cursor_entity.entity_type)
+			
+			tm.build_entityStatic(cursor_entity, tile_pos)
+			
+			cursor_entity.modulate = Color.WHITE
 			cursor_entity = null
 		
 		if cursor_entity and Input.is_action_just_pressed("main_command"):
@@ -107,4 +122,4 @@ func _on_EventBus_create_building(building_type):
 	var entity := instantiate_Entity(building_type)
 	cursor_entity = entity
 	cursor_entity_wait_release = true
-	pass # Replace with function body.
+	cursor_entity.modulate = Color(Color.GREEN, 0.6)

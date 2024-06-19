@@ -9,7 +9,7 @@ size = Vector2(107, 69)
 [node name="Residential" type="Sprite2D"]
 texture = ExtResource("1_oww8k")
 centered = false
-offset = Vector2(-64, -96)
+offset = Vector2(-64, -112)
 hframes = 4
 script = ExtResource("1_qy1nw")
 entity_type = 1

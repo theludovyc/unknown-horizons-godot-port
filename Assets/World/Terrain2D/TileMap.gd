@@ -6,7 +6,12 @@ func is_constructible_from_tile_data(tile_data:TileData) -> bool:
 	return tile_data.get_custom_data("Constructible")
 	
 func is_constructible(tile_pos:Vector2i) -> bool:
-	return get_cell_tile_data(0, tile_pos).get_custom_data("Constructible")
+	var tile_data = get_cell_tile_data(0, tile_pos)
+	
+	if tile_data == null:
+		return false
+	
+	return tile_data.get_custom_data("Constructible")
 	
 func is_entityStatic_constructible(entity:EntityStatic, tile_center:Vector2i) -> bool:
 	var top_left_tile = tile_center - Vector2i(entity.width / 2, entity.height / 2)
@@ -17,6 +22,17 @@ func is_entityStatic_constructible(entity:EntityStatic, tile_center:Vector2i) ->
 				return false
 
 	return true
+
+func build_entityStatic(entity:EntityStatic, tile_center:Vector2i):
+	var top_left_tile = tile_center - Vector2i(entity.width / 2, entity.height / 2)
+	
+	for x in entity.width:
+		for y in entity.height:
+			var tile_data = get_cell_tile_data(0, top_left_tile + Vector2i(x, y))
+			
+			if tile_data != null:
+				tile_data.set_custom_data("Constructible", false)
+
 
 func create_island(map_file:String) -> int:
 	var file = FileAccess.open(map_file, FileAccess.READ)
@@ -67,43 +83,43 @@ func create_island(map_file:String) -> int:
 	# spawn trees
 	# create array of index with size of constructible tiles
 	# and shuffle it
-	var indexes = range(ground_tiles_constructible.size())
-	indexes.shuffle()
-
-	var tree_pos:PackedVector2Array
-	
-	var surrounded_pos:PackedVector2Array = [
-		Vector2i(-1, 0),
-		Vector2i(-1, 1),
-		Vector2i(0, 1),
-		Vector2i(1, 1),
-		Vector2i(1, 0),
-		Vector2i(1, -1),
-		Vector2i(0, -1),
-		Vector2i(-1, -1)
-	]
-	
-	var get_surrounded_trees = func(vec:Vector2i):
-		var sum := 0
-		for pos:Vector2i in surrounded_pos:
-			if tree_pos.has(vec + pos):
-				sum += 1
-		return sum
-	
-	# unstack the array of index and get ground tile pos
-	for index in indexes:
-		var tile_pos := ground_tiles_constructible[index]
-		
-		# 20% chance of spawn + 10% for each tile arround if is a tree (max 100%)
-		var spawn_chance:float = (2. + get_surrounded_trees.call(tile_pos)) / 10.
-	
-		if spawn_chance == 1. or randf() < spawn_chance:
-			#entity = game.instantiate_Entity(Entities.types.Spruce)
+	#var indexes = range(ground_tiles_constructible.size())
+	#indexes.shuffle()
+#
+	#var tree_pos:PackedVector2Array
 	#
-			#entity.position = map_to_local(tile_pos)
+	#var surrounded_pos:PackedVector2Array = [
+		#Vector2i(-1, 0),
+		#Vector2i(-1, 1),
+		#Vector2i(0, 1),
+		#Vector2i(1, 1),
+		#Vector2i(1, 0),
+		#Vector2i(1, -1),
+		#Vector2i(0, -1),
+		#Vector2i(-1, -1)
+	#]
 	#
-			#tree_pos.push_back(tile_pos)
-			set_cell(1, tile_pos, 2, Vector2.ZERO)
+	#var get_surrounded_trees = func(vec:Vector2i):
+		#var sum := 0
+		#for pos:Vector2i in surrounded_pos:
+			#if tree_pos.has(vec + pos):
+				#sum += 1
+		#return sum
+	#
+	## unstack the array of index and get ground tile pos
+	#for index in indexes:
+		#var tile_pos := ground_tiles_constructible[index]
+		#
+		## 20% chance of spawn + 10% for each tile arround if is a tree (max 100%)
+		#var spawn_chance:float = (2. + get_surrounded_trees.call(tile_pos)) / 10.
+	#
+		#if spawn_chance == 1. or randf() < spawn_chance:
+			##entity = game.instantiate_Entity(Entities.types.Spruce)
+	##
+			##entity.position = map_to_local(tile_pos)
+	##
+			##tree_pos.push_back(tile_pos)
+			#set_cell(1, tile_pos, 2, Vector2.ZERO)
 	
 	return OK
 
