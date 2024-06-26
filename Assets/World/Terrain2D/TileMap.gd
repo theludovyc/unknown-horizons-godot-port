@@ -2,16 +2,23 @@ extends TileMap
 
 @onready var game:Game2D = get_tree().current_scene
 
-func is_constructible_from_tile_data(tile_data:TileData) -> bool:
-	return tile_data.get_custom_data("Constructible")
+var map_size:Vector2i
+
+var minimap:PackedByteArray
+
+enum Minimap_Cell_Type{Deep, Shallow, Sand, Ground, Tree, Building}
+
+func minimap_set_cell(x:int, y:int, type:Minimap_Cell_Type):
+	minimap[y * map_size.x + x] = type
+
+func minimap_set_cell_vec(vec:Vector2i, type:Minimap_Cell_Type):
+	minimap_set_cell(vec.x, vec.y, type)
+
+func minimap_get_cell(vec:Vector2i) -> Minimap_Cell_Type:
+	return minimap[vec.y * map_size.x + vec.x]
 	
 func is_constructible(tile_pos:Vector2i) -> bool:
-	var tile_data = get_cell_tile_data(0, tile_pos)
-	
-	if tile_data == null:
-		return false
-	
-	return tile_data.get_custom_data("Constructible")
+	return minimap_get_cell(tile_pos) == Minimap_Cell_Type.Ground
 	
 func is_entityStatic_constructible(entity:EntityStatic, tile_center:Vector2i) -> bool:
 	var top_left_tile = tile_center - Vector2i(entity.width / 2, entity.height / 2)
@@ -28,11 +35,7 @@ func build_entityStatic(entity:EntityStatic, tile_center:Vector2i):
 	
 	for x in entity.width:
 		for y in entity.height:
-			var tile_data = get_cell_tile_data(0, top_left_tile + Vector2i(x, y))
-			
-			if tile_data != null:
-				tile_data.set_custom_data("Constructible", false)
-
+			minimap_set_cell(top_left_tile.x + x, top_left_tile.y + y, Minimap_Cell_Type.Building)
 
 func create_island(map_file:String) -> int:
 	var file = FileAccess.open(map_file, FileAccess.READ)
@@ -47,10 +50,14 @@ func create_island(map_file:String) -> int:
 		push_error("Error: can't parse json")
 		return FAILED
 	
-	var set_cells = func(array_in, atlas_pos, array_out):
+	var set_cells = func(array_in, atlas_pos, array_out, type:Minimap_Cell_Type):
 		for i in range(0, array_in.size(), 2):
 			var tile_vec = Vector2i(array_in[i], array_in[i + 1])
+			
+			minimap_set_cell_vec(tile_vec, type)
+			
 			array_out.push_back(tile_vec)
+			
 			set_cell(0, tile_vec, 1, atlas_pos)
 	
 	var deep_tiles:PackedVector2Array
@@ -58,10 +65,20 @@ func create_island(map_file:String) -> int:
 	var sand_tiles:PackedVector2Array
 	var ground_tiles:PackedVector2Array
 	
-	set_cells.call(json.data["deep_tiles"], Vector2i(1, 2), deep_tiles)
-	set_cells.call(json.data["shallow_tiles"], Vector2i(4, 2), shallow_tiles)
-	set_cells.call(json.data["sand_tiles"], Vector2i(7, 2), sand_tiles)
-	set_cells.call(json.data["ground_tiles"], Vector2i(7, 6), ground_tiles)
+	var json_map_size = json.data["size"]
+	
+	map_size = Vector2i(json_map_size[0], json_map_size[1])
+	
+	minimap.resize(map_size.x * map_size.y)
+	
+	set_cells.call(json.data["deep_tiles"], Vector2i(1, 2),
+		deep_tiles, Minimap_Cell_Type.Deep)
+	set_cells.call(json.data["shallow_tiles"], Vector2i(4, 2),
+		shallow_tiles, Minimap_Cell_Type.Shallow)
+	set_cells.call(json.data["sand_tiles"], Vector2i(7, 2),
+		sand_tiles, Minimap_Cell_Type.Sand)
+	set_cells.call(json.data["ground_tiles"], Vector2i(7, 6),
+		ground_tiles, Minimap_Cell_Type.Ground)
 
 	set_cells_terrain_connect(0, ground_tiles, 0, 3)
 	set_cells_terrain_connect(0, sand_tiles, 0, 2)

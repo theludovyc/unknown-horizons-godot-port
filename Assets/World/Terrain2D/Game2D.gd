@@ -62,7 +62,7 @@ func _process(delta):
 	if tile_data != null:
 		rtl.text += str(tile_data.terrain_set) + " / " + str(tile_data.terrain) + "\n"
 		
-		rtl.text += str(tile_data.get_custom_data("Constructible")) + "\n"
+		rtl.text += str(tm.is_constructible(tile_pos)) + "\n"
 		
 		rtl.text += str(tm.get_cell_atlas_coords(0, tile_pos))
 	
