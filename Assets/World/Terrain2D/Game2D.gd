@@ -26,11 +26,7 @@ var population := 0 :
 	set(value):
 		population = value
 		event_bus.population_updated.emit(value)
-		
-var workers := 0 :
-	set(value):
-		workers = value
-		event_bus.workers_updated.emit(value)
+		event_bus.available_workers_updated.emit(population - the_factory.workers)
 
 const Entities_Scene = {
 	Entities.types.Warehouse:preload("res://Assets/World/Terrain2D/Building/Warehouse.tscn"),
@@ -43,7 +39,6 @@ const Entities_Scene = {
 func _ready():
 	tm.create_island("res://Assets/World/Terrain2D/singularity_40.json")
 	pass # Replace with function body.
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -85,8 +80,7 @@ func _process(delta):
 		and Input.is_action_just_pressed("alt_command"):
 			match(cursor_entity.entity_type):
 				Entities.types.Residential:
-					population += 5
-					workers += 5
+					population += 4
 					
 				Entities.types.Lumberjack:
 					the_factory.add_workers(Resources_Types.Wood, 4)

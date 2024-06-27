@@ -93,6 +93,7 @@ texture_normal = ExtResource("8_04hx7")
 texture_pressed = ExtResource("9_7d646")
 texture_hover = ExtResource("10_na55f")
 script = ExtResource("8_i5i22")
+building_type = 1
 
 [node name="BuildLumberjack" type="TextureButton" parent="Widget/BotMenu/PanelContainer/GridContainer"]
 layout_mode = 2
