@@ -10,7 +10,12 @@ func set_building_info(building_type:Buildings.Types):
 		
 		var building_costs = Buildings.Costs[building_type]
 		
-		for cost in building_costs:
+		for i in range(building_costs.size()):
+			var cost = building_costs[i]
+			
+			if i > 0:
+				rtl.add_text(" / ")
+			
 			rtl.add_text(str(cost[1]) + " ")
 			rtl.add_image(Resources.Icons[cost[0]], 20)
 	pass

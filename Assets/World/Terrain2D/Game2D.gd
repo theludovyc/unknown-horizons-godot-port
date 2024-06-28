@@ -33,7 +33,23 @@ var population := 0 :
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	tm.create_island("res://Assets/World/Terrain2D/singularity_40.json")
+	
+	the_factory.add_resource_to_storage(Resources.Types.Wood, 2)
+	the_factory.add_resource_to_storage(Resources.Types.Textile, 16)
+	
 	pass # Replace with function body.
+
+func has_resources_to_construct_building(building_type:Buildings.Types) -> bool:
+	if not Buildings.Costs.has(building_type):
+		return true
+		
+	var resources_costs = Buildings.Costs[building_type]
+		
+	for cost in resources_costs:
+		if cost[1] > the_factory.storage.get(cost[0], 0):
+			return false
+			
+	return true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -60,7 +76,10 @@ func _process(delta):
 	if (cursor_entity):
 		cursor_entity.position = tm.map_to_local(tile_pos)
 		
-		var is_constructible = tm.is_entityStatic_constructible(cursor_entity, tile_pos)
+		var building_type = cursor_entity.building_type
+		
+		var is_constructible = tm.is_entityStatic_constructible(cursor_entity, tile_pos) \
+			and has_resources_to_construct_building(building_type)
 		
 		if is_constructible:
 			cursor_entity.modulate = Color(Color.GREEN, 0.6)
@@ -73,14 +92,20 @@ func _process(delta):
 		if not cursor_entity_wait_release \
 		and is_constructible \
 		and Input.is_action_just_pressed("alt_command"):
-			match(cursor_entity.building_type):
+			match(building_type):
 				Buildings.Types.Residential:
 					population += 4
 					
 				Buildings.Types.Lumberjack:
 					the_factory.add_workers(Resources.Types.Wood, 4)
 			
-			event_bus.building_created.emit(cursor_entity.building_type)
+			if Buildings.Costs.has(building_type):
+				var resources_costs = Buildings.Costs[building_type]
+		
+				for cost in resources_costs:
+					the_factory.add_resource_to_storage(cost[0], - cost[1])
+			
+			event_bus.building_created.emit(building_type)
 			
 			tm.build_entityStatic(cursor_entity, tile_pos)
 			
@@ -88,7 +113,7 @@ func _process(delta):
 			cursor_entity = null
 		
 		if cursor_entity and Input.is_action_just_pressed("main_command"):
-			event_bus.building_creation_aborted.emit(cursor_entity.building_type)
+			event_bus.building_creation_aborted.emit(building_type)
 			cursor_entity.call_deferred("queue_free")
 			cursor_entity = null
 
@@ -111,4 +136,4 @@ func _on_EventBus_create_building(building_type:Buildings.Types):
 	var entity := instantiate_building(building_type)
 	cursor_entity = entity
 	cursor_entity_wait_release = true
-	cursor_entity.modulate = Color(Color.GREEN, 0.6)
+	cursor_entity.modulate = Color(Color.RED, 0.6)

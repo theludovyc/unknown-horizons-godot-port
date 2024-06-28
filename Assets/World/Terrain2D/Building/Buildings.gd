@@ -8,5 +8,6 @@ enum Types{
 }
 
 const Costs = {
-	Types.Residential:[[Resources.Types.Wood, 1], [Resources.Types.Textile, 1]]
+	Types.Residential:[[Resources.Types.Wood, 1], [Resources.Types.Textile, 1]],
+	Types.Lumberjack:[[Resources.Types.Wood, 1], [Resources.Types.Textile, 1]]
 }
