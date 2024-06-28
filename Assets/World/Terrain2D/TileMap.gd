@@ -87,7 +87,7 @@ func create_island(map_file:String) -> int:
 	var ground_tiles_constructible := ground_tiles.duplicate()
 	
 	# spawn the warehouse
-	var entity := game.instantiate_Entity(Entities.types.Warehouse)
+	var entity := game.instantiate_building(Buildings.Types.Warehouse)
 	entity.position = map_to_local(Vector2i(1, 20))
 	
 	# remove the constructible tiles of the warehouse

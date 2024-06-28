@@ -1,3 +1,3 @@
 extends TextureButton
 
-@export var building_type:Entities.types
+@export var building_type:Buildings.Types

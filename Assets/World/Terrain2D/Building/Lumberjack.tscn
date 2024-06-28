@@ -1,25 +1,23 @@
-[gd_scene load_steps=4 format=3 uid="uid://d2ngje6ulogiw"]
+[gd_scene load_steps=4 format=3 uid="uid://dep03gd6hn5pc"]
 
-[ext_resource type="Script" path="res://Assets/World/Terrain2D/Building/Building.gd" id="1_0osrv"]
-[ext_resource type="Texture2D" uid="uid://bndkti6aifavu" path="res://Assets/World/Terrain2D/Building/lumberjack.png" id="1_mu1ns"]
+[ext_resource type="Texture2D" uid="uid://bndkti6aifavu" path="res://Assets/World/Terrain2D/Building/lumberjack.png" id="1_kd81c"]
+[ext_resource type="Script" path="res://Assets/World/Terrain2D/Building/Building.gd" id="2_tlcd8"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ivi31"]
-size = Vector2(117, 67)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mo1hb"]
 
 [node name="Lumberjack" type="Sprite2D"]
-texture = ExtResource("1_mu1ns")
+texture = ExtResource("1_kd81c")
 centered = false
 offset = Vector2(-64, -112)
 hframes = 4
-script = ExtResource("1_0osrv")
-entity_type = 2
+script = ExtResource("2_tlcd8")
+building_type = 2
 width = 2
 height = 2
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-0.5, -2.5)
-shape = SubResource("RectangleShape2D_ivi31")
+shape = SubResource("RectangleShape2D_mo1hb")
 
 [connection signal="input_event" from="Area2D" to="." method="_on_Area2d_input_event"]

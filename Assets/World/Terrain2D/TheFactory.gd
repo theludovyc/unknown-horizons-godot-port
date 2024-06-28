@@ -8,7 +8,7 @@ var storage = {}
 # produced type, [needed ticks, needed workers]
 enum Recipes{needed_ticks, needed_workers}
 var recipes = {
-	Game2D.Resources_Types.Wood : [1, 4]
+	Resources.Types.Wood : [1, 4]
 }
 
 enum Production_Line{current_workers, production_rate, current_ticks}
@@ -25,7 +25,7 @@ var waiting_lines = []
 func _ready():
 	event_bus.population_updated.connect(_on_EventBus_population_updated)
 
-func create_or_update_line(resource_type:Game2D.Resources_Types, workers_amount:int):
+func create_or_update_line(resource_type:Resources.Types, workers_amount:int):
 	if production_lines.has(resource_type):
 		var line = production_lines[resource_type]
 	
@@ -46,7 +46,7 @@ func create_or_update_line(resource_type:Game2D.Resources_Types, workers_amount:
 	
 		event_bus.resource_prodution_rate_updated.emit(resource_type, production_rate)
 
-func add_workers(resource_type:Game2D.Resources_Types, workers_amount:int):
+func add_workers(resource_type:Resources.Types, workers_amount:int):
 	workers += workers_amount
 	
 	if (game.population - workers) < 0:

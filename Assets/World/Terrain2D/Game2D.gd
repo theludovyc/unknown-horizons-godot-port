@@ -1,10 +1,6 @@
 extends Node
 class_name Game2D
 
-enum Resources_Types{
-	Wood
-}
-
 @onready var rtl := $CanvasLayer/RichTextLabel
 
 @onready var tm := %TileMap
@@ -17,6 +13,12 @@ enum Resources_Types{
 
 @onready var the_factory := $TheFactory
 
+const Buildings_Scenes = {
+	Buildings.Types.Warehouse:preload("res://Assets/World/Terrain2D/Building/Warehouse.tscn"),
+	Buildings.Types.Residential:preload("res://Assets/World/Terrain2D/Building/Residential.tscn"),
+	Buildings.Types.Lumberjack:preload("res://Assets/World/Terrain2D/Building/Lumberjack.tscn")
+}
+
 # if not null follow the cursor
 var cursor_entity : Building2D
 # avoid create building on first clic
@@ -27,13 +29,6 @@ var population := 0 :
 		population = value
 		event_bus.population_updated.emit(value)
 		event_bus.available_workers_updated.emit(population - the_factory.workers)
-
-const Entities_Scene = {
-	Entities.types.Warehouse:preload("res://Assets/World/Terrain2D/Building/Warehouse.tscn"),
-	Entities.types.Residential:preload("res://Assets/World/Terrain2D/Building/Residential.tscn"),
-	Entities.types.Lumberjack:preload("res://Assets/World/Terrain2D/Building/Lumberjack.tscn"),
-	Entities.types.Spruce:preload("res://Assets/World/Terrain2D/Trees/Spruce.tscn")
-}
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -78,14 +73,14 @@ func _process(delta):
 		if not cursor_entity_wait_release \
 		and is_constructible \
 		and Input.is_action_just_pressed("alt_command"):
-			match(cursor_entity.entity_type):
-				Entities.types.Residential:
+			match(cursor_entity.building_type):
+				Buildings.Types.Residential:
 					population += 4
 					
-				Entities.types.Lumberjack:
-					the_factory.add_workers(Resources_Types.Wood, 4)
+				Buildings.Types.Lumberjack:
+					the_factory.add_workers(Resources.Types.Wood, 4)
 			
-			event_bus.building_created.emit(cursor_entity.entity_type)
+			event_bus.building_created.emit(cursor_entity.building_type)
 			
 			tm.build_entityStatic(cursor_entity, tile_pos)
 			
@@ -93,27 +88,27 @@ func _process(delta):
 			cursor_entity = null
 		
 		if cursor_entity and Input.is_action_just_pressed("main_command"):
-			event_bus.building_creation_aborted.emit(cursor_entity.entity_type)
+			event_bus.building_creation_aborted.emit(cursor_entity.building_type)
 			cursor_entity.call_deferred("queue_free")
 			cursor_entity = null
 
-func instantiate_Entity(entity_type:Entities.types) -> Node2D:
-	var entity_instance = Entities_Scene[entity_type].instantiate()
+func instantiate_building(building_type:Buildings.Types) -> Building2D:
+	var instance = Buildings_Scenes[building_type].instantiate() as Building2D
 	
-	node_entities.add_child(entity_instance)
+	prints(name, instance)
 	
-	if entity_instance is Building2D:
-		entity_instance.selected.connect(_on_building_selected)
+	node_entities.add_child(instance)
 	
-	return entity_instance
+	#instance.selected.connect(_on_building_selected)
+	
+	return instance
 
-func _on_building_selected(entity_type:Entities.types):
-	prints(name, entity_type)
+func _on_building_selected(building_type:Buildings.Types):
+	prints(name, building_type)
 	pass
 
-
-func _on_EventBus_create_building(building_type):
-	var entity := instantiate_Entity(building_type)
+func _on_EventBus_create_building(building_type:Buildings.Types):
+	var entity := instantiate_building(building_type)
 	cursor_entity = entity
 	cursor_entity_wait_release = true
 	cursor_entity.modulate = Color(Color.GREEN, 0.6)

@@ -1,6 +1,6 @@
 extends PanelContainer
 
-@export var resource_type : Game2D.Resources_Types
+@export var resource_type : Resources.Types
 
 @onready var label_amount := $HBoxContainer/PanelContainer/HBoxContainer/LabelAmount
 @onready var label_production_rate := $HBoxContainer/PanelContainer/HBoxContainer/LabelProductionRate
