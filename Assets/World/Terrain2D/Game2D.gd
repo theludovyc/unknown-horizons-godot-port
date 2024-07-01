@@ -80,9 +80,9 @@ func _process(delta):
 		
 		var trees = tm.is_entityStatic_constructible(cursor_entity, tile_pos)
 		
-		var is_constructible := false
+		var is_constructible = trees >= 0
 		
-		if has_resources_to_construct_building(building_type):
+		if is_constructible and has_resources_to_construct_building(building_type):
 			if trees > 0:
 				cursor_entity.modulate = Color(Color.ORANGE, 0.6)
 			else:
@@ -91,6 +91,8 @@ func _process(delta):
 			is_constructible = true
 		else:
 			cursor_entity.modulate = Color(Color.RED, 0.6)
+			
+			is_constructible = false
 		
 		if cursor_entity_wait_release and Input.is_action_just_released("alt_command"):
 			cursor_entity_wait_release = false
