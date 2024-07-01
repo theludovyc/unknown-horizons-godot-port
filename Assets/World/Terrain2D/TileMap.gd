@@ -22,9 +22,12 @@ func minimap_get_pos(index:int) -> Vector2i:
 	
 func is_constructible(tile_pos:Vector2i) -> bool:
 	return minimap_get_cell(tile_pos) == Minimap_Cell_Type.Ground
-	
+
+func entityStatic_get_top_left_tile(entity:EntityStatic, tile_center:Vector2i) -> Vector2i:
+	return Vector2i(tile_center.x, tile_center.y - entity.height / 2)
+
 func is_entityStatic_constructible(entity:EntityStatic, tile_center:Vector2i) -> bool:
-	var top_left_tile = tile_center - Vector2i(entity.width / 2, entity.height / 2)
+	var top_left_tile = entityStatic_get_top_left_tile(entity, tile_center)
 	
 	for x in entity.width:
 		for y in entity.height:
@@ -34,7 +37,7 @@ func is_entityStatic_constructible(entity:EntityStatic, tile_center:Vector2i) ->
 	return true
 
 func build_entityStatic(entity:EntityStatic, tile_center:Vector2i):
-	var top_left_tile = tile_center - Vector2i(entity.width / 2, entity.height / 2)
+	var top_left_tile = entityStatic_get_top_left_tile(entity, tile_center)
 	
 	for x in entity.width:
 		for y in entity.height:
