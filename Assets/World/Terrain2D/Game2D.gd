@@ -78,11 +78,17 @@ func _process(delta):
 		
 		var building_type = cursor_entity.building_type
 		
-		var is_constructible = tm.is_entityStatic_constructible(cursor_entity, tile_pos) \
-			and has_resources_to_construct_building(building_type)
+		var trees = tm.is_entityStatic_constructible(cursor_entity, tile_pos)
 		
-		if is_constructible:
-			cursor_entity.modulate = Color(Color.GREEN, 0.6)
+		var is_constructible := false
+		
+		if has_resources_to_construct_building(building_type):
+			if trees > 0:
+				cursor_entity.modulate = Color(Color.ORANGE, 0.6)
+			else:
+				cursor_entity.modulate = Color(Color.GREEN, 0.6)
+				
+			is_constructible = true
 		else:
 			cursor_entity.modulate = Color(Color.RED, 0.6)
 		

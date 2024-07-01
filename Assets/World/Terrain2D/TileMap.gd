@@ -20,28 +20,46 @@ func minimap_get_cell(vec:Vector2i) -> Minimap_Cell_Type:
 func minimap_get_pos(index:int) -> Vector2i:
 	return Vector2i(index % map_size.x, index / map_size.x)
 	
-func is_constructible(tile_pos:Vector2i) -> bool:
-	return minimap_get_cell(tile_pos) == Minimap_Cell_Type.Ground
+func is_constructible(tile_pos:Vector2i) -> int:
+	match minimap_get_cell(tile_pos):
+		Minimap_Cell_Type.Ground:
+			return 1
+		Minimap_Cell_Type.Tree:
+			return 2
+	return 0
 
 func entityStatic_get_top_left_tile(entity:EntityStatic, tile_center:Vector2i) -> Vector2i:
 	return Vector2i(tile_center.x, tile_center.y - entity.height / 2)
 
-func is_entityStatic_constructible(entity:EntityStatic, tile_center:Vector2i) -> bool:
+# 0 or >0 == OK
+# -1 == KO
+# >0 numbers of trees
+func is_entityStatic_constructible(entity:EntityStatic, tile_center:Vector2i) -> int:
 	var top_left_tile = entityStatic_get_top_left_tile(entity, tile_center)
+	
+	var trees = 0
 	
 	for x in entity.width:
 		for y in entity.height:
-			if not is_constructible(top_left_tile + Vector2i(x, y)):
-				return false
-
-	return true
+			match is_constructible(top_left_tile + Vector2i(x, y)):
+				2:
+					trees += 1
+				0:
+					return -1
+					
+	return trees
 
 func build_entityStatic(entity:EntityStatic, tile_center:Vector2i):
 	var top_left_tile = entityStatic_get_top_left_tile(entity, tile_center)
 	
 	for x in entity.width:
 		for y in entity.height:
-			minimap_set_cell(top_left_tile.x + x, top_left_tile.y + y, Minimap_Cell_Type.Building)
+			var tile_coord = top_left_tile + Vector2i(x, y)
+			
+			if minimap_get_cell(tile_coord) == Minimap_Cell_Type.Tree:
+				erase_cell(1, tile_coord)
+			
+			minimap_set_cell_vec(tile_coord, Minimap_Cell_Type.Building)
 
 func create_island(map_file:String) -> int:
 	var file = FileAccess.open(map_file, FileAccess.READ)
