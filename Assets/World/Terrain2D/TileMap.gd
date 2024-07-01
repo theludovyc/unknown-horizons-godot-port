@@ -17,6 +17,9 @@ func minimap_set_cell_vec(vec:Vector2i, type:Minimap_Cell_Type):
 func minimap_get_cell(vec:Vector2i) -> Minimap_Cell_Type:
 	return minimap[vec.y * map_size.x + vec.x]
 	
+func minimap_get_pos(index:int) -> Vector2i:
+	return Vector2i(index % map_size.x, index / map_size.x)
+	
 func is_constructible(tile_pos:Vector2i) -> bool:
 	return minimap_get_cell(tile_pos) == Minimap_Cell_Type.Ground
 	
@@ -84,59 +87,27 @@ func create_island(map_file:String) -> int:
 	set_cells_terrain_connect(0, sand_tiles, 0, 2)
 	set_cells_terrain_connect(0, shallow_tiles, 0, 1)
 	
-	var ground_tiles_constructible := ground_tiles.duplicate()
-	
 	# spawn the warehouse
 	var entity := game.instantiate_building(Buildings.Types.Warehouse)
-	entity.position = map_to_local(Vector2i(1, 20))
 	
-	# remove the constructible tiles of the warehouse
-	for pos in [Vector2i(3, 21), Vector2i(3, 22)]:
-		var find_pos := ground_tiles_constructible.find(pos)
-		
-		if find_pos != -1:
-			ground_tiles_constructible.remove_at(find_pos)
+	var entity_center_tile = Vector2i(1, 20)
+	
+	entity.position = map_to_local(entity_center_tile)
+	
+	build_entityStatic(entity, entity_center_tile)
 	
 	# spawn trees
-	# create array of index with size of constructible tiles
-	# and shuffle it
-	#var indexes = range(ground_tiles_constructible.size())
-	#indexes.shuffle()
-#
-	#var tree_pos:PackedVector2Array
-	#
-	#var surrounded_pos:PackedVector2Array = [
-		#Vector2i(-1, 0),
-		#Vector2i(-1, 1),
-		#Vector2i(0, 1),
-		#Vector2i(1, 1),
-		#Vector2i(1, 0),
-		#Vector2i(1, -1),
-		#Vector2i(0, -1),
-		#Vector2i(-1, -1)
-	#]
-	#
-	#var get_surrounded_trees = func(vec:Vector2i):
-		#var sum := 0
-		#for pos:Vector2i in surrounded_pos:
-			#if tree_pos.has(vec + pos):
-				#sum += 1
-		#return sum
-	#
-	## unstack the array of index and get ground tile pos
-	#for index in indexes:
-		#var tile_pos := ground_tiles_constructible[index]
-		#
-		## 20% chance of spawn + 10% for each tile arround if is a tree (max 100%)
-		#var spawn_chance:float = (2. + get_surrounded_trees.call(tile_pos)) / 10.
-	#
-		#if spawn_chance == 1. or randf() < spawn_chance:
-			##entity = game.instantiate_Entity(Entities.types.Spruce)
-	##
-			##entity.position = map_to_local(tile_pos)
-	##
-			##tree_pos.push_back(tile_pos)
-			#set_cell(1, tile_pos, 2, Vector2.ZERO)
+	var noise := FastNoiseLite.new()
+	noise.frequency = 0.3
+	
+	for i in range(minimap.size()):
+		if minimap[i] == Minimap_Cell_Type.Ground:
+			var pos = minimap_get_pos(i)
+			
+			if noise.get_noise_2dv(pos) > 0.1:
+				set_cell(1, pos, 2, Vector2.ZERO)
+			
+				minimap[i] = Minimap_Cell_Type.Tree
 	
 	return OK
 
