@@ -10,3 +10,5 @@ signal available_workers_updated(available_workers_amount)
 
 signal resource_updated(resource_type, resource_amount)
 signal resource_prodution_rate_updated(resource_type, production_rate)
+
+signal money_updated(money_amount)

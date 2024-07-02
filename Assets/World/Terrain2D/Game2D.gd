@@ -19,6 +19,8 @@ const Buildings_Scenes = {
 	Buildings.Types.Lumberjack:preload("res://Assets/World/Terrain2D/Building/Lumberjack.tscn")
 }
 
+const Trees_Destroy_Cost = 1
+
 # if not null follow the cursor
 var cursor_entity : Building2D
 # avoid create building on first clic
@@ -29,10 +31,17 @@ var population := 0 :
 		population = value
 		event_bus.population_updated.emit(value)
 		event_bus.available_workers_updated.emit(population - the_factory.workers)
+		
+var money := 0 :
+	set(value):
+		money = value
+		event_bus.money_updated.emit(value)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	tm.create_island("res://Assets/World/Terrain2D/singularity_40.json")
+	
+	money = 100
 	
 	the_factory.add_resource_to_storage(Resources.Types.Wood, 2)
 	the_factory.add_resource_to_storage(Resources.Types.Textile, 16)
@@ -78,21 +87,27 @@ func _process(delta):
 		
 		var building_type = cursor_entity.building_type
 		
-		var trees = tm.is_entityStatic_constructible(cursor_entity, tile_pos)
+		var trees_to_destroy = tm.is_entityStatic_constructible(cursor_entity, tile_pos)
 		
-		var is_constructible = trees >= 0
+		var trees_to_destroy_final_cost := 0
 		
-		if is_constructible and has_resources_to_construct_building(building_type):
-			if trees > 0:
+		if trees_to_destroy > 0:
+			trees_to_destroy_final_cost = trees_to_destroy * Trees_Destroy_Cost
+		
+		var is_constructible = false
+		
+		if (trees_to_destroy_final_cost == 0 or \
+		(trees_to_destroy_final_cost > 0 and trees_to_destroy_final_cost <= money)) \
+		and has_resources_to_construct_building(building_type):
+			is_constructible = true
+		
+		if is_constructible:
+			if trees_to_destroy > 0:
 				cursor_entity.modulate = Color(Color.ORANGE, 0.6)
 			else:
 				cursor_entity.modulate = Color(Color.GREEN, 0.6)
-				
-			is_constructible = true
 		else:
 			cursor_entity.modulate = Color(Color.RED, 0.6)
-			
-			is_constructible = false
 		
 		if cursor_entity_wait_release and Input.is_action_just_released("alt_command"):
 			cursor_entity_wait_release = false
@@ -106,6 +121,8 @@ func _process(delta):
 					
 				Buildings.Types.Lumberjack:
 					the_factory.add_workers(Resources.Types.Wood, 4)
+			
+			money -= trees_to_destroy_final_cost
 			
 			if Buildings.Costs.has(building_type):
 				var resources_costs = Buildings.Costs[building_type]

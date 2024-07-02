@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://b3s7eqy0blp6g"]
+[gd_scene load_steps=38 format=3 uid="uid://b3s7eqy0blp6g"]
 
 [ext_resource type="Texture2D" uid="uid://5gbvga1bqpxa" path="res://Assets/UI/Images/Background/Widgets/map_bg.png" id="1_lis5v"]
 [ext_resource type="Texture2D" uid="uid://i3jf27r6a5xg" path="res://Assets/UI/Icons/Widgets/MiniMap/build.png" id="2_4512r"]
@@ -29,7 +29,10 @@
 [ext_resource type="Texture2D" uid="uid://8immr7brv8eb" path="res://Assets/UI/Images/Background/Widgets/tooltip_bg_middle.png" id="19_28qxy"]
 [ext_resource type="Texture2D" uid="uid://bjxpcfox7403j" path="res://Assets/UI/Images/Background/Widgets/tooltip_bg_bottom.png" id="20_4xpap"]
 [ext_resource type="PackedScene" uid="uid://dm2nc5paqgg5i" path="res://Assets/World/Terrain2D/GUI/ControlResource.tscn" id="20_60o0i"]
+[ext_resource type="Script" path="res://Assets/World/Terrain2D/GUI/ControlMoney.gd" id="30_1j3f5"]
 [ext_resource type="Texture2D" uid="uid://bw4yhq42d3fsm" path="res://Assets/UI/Icons/Resources/32/003.png" id="30_x1xgm"]
+[ext_resource type="Texture2D" uid="uid://toeqa364p2tp" path="res://Assets/UI/Icons/Resources/32/001.png" id="31_nfoqr"]
+[ext_resource type="Script" path="res://Assets/World/Terrain2D/GUI/RichTextLabelInfo.gd" id="33_hbac4"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_q0br5"]
 content_margin_left = 20.0
@@ -253,20 +256,47 @@ theme_override_styles/separator = SubResource("StyleBoxEmpty_orjbh")
 layout_mode = 2
 texture = ExtResource("14_flxif")
 
-[node name="Resources" type="HBoxContainer" parent="."]
+[node name="Money+Resources" type="HBoxContainer" parent="."]
 offset_left = 20.0
 offset_top = 20.0
-offset_right = 100.0
+offset_right = 268.0
 offset_bottom = 90.0
 
-[node name="ControlResourceWood" parent="Resources" instance=ExtResource("20_60o0i")]
+[node name="ControlMoney" parent="Money+Resources" instance=ExtResource("20_60o0i")]
+layout_mode = 2
+script = ExtResource("30_1j3f5")
+
+[node name="TextureRect" parent="Money+Resources/ControlMoney/TextureButton" index="0"]
+texture = ExtResource("31_nfoqr")
+
+[node name="Resources" type="HBoxContainer" parent="Money+Resources"]
 layout_mode = 2
 
-[node name="ControlResourceTextile" parent="Resources" instance=ExtResource("20_60o0i")]
+[node name="ControlResourceWood" parent="Money+Resources/Resources" instance=ExtResource("20_60o0i")]
 layout_mode = 2
-resource_type = 1
 
-[node name="TextureRect" parent="Resources/ControlResourceTextile/TextureButton" index="0"]
+[node name="ControlResourceTextile" parent="Money+Resources/Resources" instance=ExtResource("20_60o0i")]
+layout_mode = 2
+
+[node name="TextureRect" parent="Money+Resources/Resources/ControlResourceTextile/TextureButton" index="0"]
 texture = ExtResource("30_x1xgm")
 
-[editable path="Resources/ControlResourceTextile"]
+[node name="RichTextLabelInfo" type="RichTextLabel" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -30.0
+offset_top = -9.5
+offset_right = 30.0
+offset_bottom = 9.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Blablabla"
+fit_content = true
+autowrap_mode = 0
+script = ExtResource("33_hbac4")
+
+[editable path="Money+Resources/ControlMoney"]
+[editable path="Money+Resources/Resources/ControlResourceTextile"]
