@@ -13,6 +13,8 @@ class_name Game2D
 
 @onready var the_factory := $TheFactory
 
+@onready var gui := $GUI
+
 const Buildings_Scenes = {
 	Buildings.Types.Warehouse:preload("res://Assets/World/Terrain2D/Building/Warehouse.tscn"),
 	Buildings.Types.Residential:preload("res://Assets/World/Terrain2D/Building/Residential.tscn"),
@@ -93,6 +95,12 @@ func _process(delta):
 		
 		if trees_to_destroy > 0:
 			trees_to_destroy_final_cost = trees_to_destroy * Trees_Destroy_Cost
+			
+			if trees_to_destroy_final_cost > 0:
+				gui.set_rtl_info_text_money_cost(trees_to_destroy_final_cost)
+				gui.set_rtl_visibility(true)
+		else:
+			gui.set_rtl_visibility(false)
 		
 		var is_constructible = false
 		
@@ -122,7 +130,10 @@ func _process(delta):
 				Buildings.Types.Lumberjack:
 					the_factory.add_workers(Resources.Types.Wood, 4)
 			
-			money -= trees_to_destroy_final_cost
+			if trees_to_destroy_final_cost > 0:
+				gui.set_rtl_visibility(false)
+			
+				money -= trees_to_destroy_final_cost
 			
 			if Buildings.Costs.has(building_type):
 				var resources_costs = Buildings.Costs[building_type]
@@ -138,7 +149,11 @@ func _process(delta):
 			cursor_entity = null
 		
 		if cursor_entity and Input.is_action_just_pressed("main_command"):
+			if trees_to_destroy_final_cost > 0:
+				gui.set_rtl_visibility(false)
+			
 			event_bus.building_creation_aborted.emit(building_type)
+			
 			cursor_entity.call_deferred("queue_free")
 			cursor_entity = null
 

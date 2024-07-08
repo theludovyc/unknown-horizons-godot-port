@@ -1,5 +1,6 @@
-[gd_scene load_steps=38 format=3 uid="uid://b3s7eqy0blp6g"]
+[gd_scene load_steps=40 format=3 uid="uid://b3s7eqy0blp6g"]
 
+[ext_resource type="Script" path="res://Assets/World/Terrain2D/GUI/GUI.gd" id="1_15w01"]
 [ext_resource type="Texture2D" uid="uid://5gbvga1bqpxa" path="res://Assets/UI/Images/Background/Widgets/map_bg.png" id="1_lis5v"]
 [ext_resource type="Texture2D" uid="uid://i3jf27r6a5xg" path="res://Assets/UI/Icons/Widgets/MiniMap/build.png" id="2_4512r"]
 [ext_resource type="Texture2D" uid="uid://b1uxpsysuqamr" path="res://Assets/UI/Icons/Widgets/MiniMap/build_d.png" id="3_kga8t"]
@@ -55,7 +56,19 @@ texture = ExtResource("19_28qxy")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_orjbh"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rfnxl"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.718, 0.647, 0.553, 0.75)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
 [node name="GUI" type="CanvasLayer"]
+script = ExtResource("1_15w01")
 
 [node name="Widget" type="Control" parent="."]
 layout_mode = 3
@@ -277,11 +290,13 @@ layout_mode = 2
 
 [node name="ControlResourceTextile" parent="Money+Resources/Resources" instance=ExtResource("20_60o0i")]
 layout_mode = 2
+resource_type = 1
 
 [node name="TextureRect" parent="Money+Resources/Resources/ControlResourceTextile/TextureButton" index="0"]
 texture = ExtResource("30_x1xgm")
 
 [node name="RichTextLabelInfo" type="RichTextLabel" parent="."]
+visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -293,10 +308,14 @@ offset_right = 30.0
 offset_bottom = 9.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_rfnxl")
+bbcode_enabled = true
 text = "Blablabla"
 fit_content = true
 autowrap_mode = 0
 script = ExtResource("33_hbac4")
+
+[connection signal="visibility_changed" from="RichTextLabelInfo" to="RichTextLabelInfo" method="_on_visibility_changed"]
 
 [editable path="Money+Resources/ControlMoney"]
 [editable path="Money+Resources/Resources/ControlResourceTextile"]

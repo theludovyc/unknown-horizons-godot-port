@@ -1,12 +1,13 @@
 extends RichTextLabel
 
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	position = get_global_mouse_position() - size / 2
+	position = get_global_mouse_position() - Vector2(size.x / 2, size.y * 1.25)
 	pass
+
+func _on_visibility_changed():
+	# to avoid teleport effect
+	if (visible):
+		position = get_global_mouse_position() - Vector2(size.x / 2, size.y * 1.25)
+	
+	set_process(visible)
