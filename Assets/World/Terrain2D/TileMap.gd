@@ -15,6 +15,9 @@ func minimap_set_cell_vec(vec:Vector2i, type:Minimap_Cell_Type):
 	minimap_set_cell(vec.x, vec.y, type)
 
 func minimap_get_cell(vec:Vector2i) -> Minimap_Cell_Type:
+	if vec.x < 0 or vec.y < 0 or vec.x >= map_size.x or vec.y >= map_size.y:
+		return Minimap_Cell_Type.Deep
+	
 	return minimap[vec.y * map_size.x + vec.x]
 	
 func minimap_get_pos(index:int) -> Vector2i:
