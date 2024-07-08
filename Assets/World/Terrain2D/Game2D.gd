@@ -64,22 +64,26 @@ func has_resources_to_construct_building(building_type:Buildings.Types) -> bool:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	var mousePos = get_viewport().get_mouse_position() + cam.position
+	var mouse_pos = get_viewport().get_mouse_position()
 	
 	rtl.text = ""
 	
-	rtl.text += str(mousePos) + "\n"
+	rtl.text += str(mouse_pos) + "\n"
 	
-	var tile_pos = tm.local_to_map(mousePos)
+	mouse_pos += cam.position
+	
+	rtl.text += str(mouse_pos) + "\n"
+	
+	var tile_pos = tm.local_to_map(mouse_pos)
 	
 	rtl.text += str(tile_pos) + "\n"
+	
+	rtl.text += str(tm.is_constructible(tile_pos)) + "\n"
 	
 	var tile_data = tm.get_cell_tile_data(0, tile_pos)
 	
 	if tile_data != null:
 		rtl.text += str(tile_data.terrain_set) + " / " + str(tile_data.terrain) + "\n"
-		
-		rtl.text += str(tm.is_constructible(tile_pos)) + "\n"
 		
 		rtl.text += str(tm.get_cell_atlas_coords(0, tile_pos))
 	
@@ -104,7 +108,8 @@ func _process(delta):
 		
 		var is_constructible = false
 		
-		if (trees_to_destroy_final_cost == 0 or \
+		if trees_to_destroy >= 0 and \
+		(trees_to_destroy_final_cost == 0 or \
 		(trees_to_destroy_final_cost > 0 and trees_to_destroy_final_cost <= money)) \
 		and has_resources_to_construct_building(building_type):
 			is_constructible = true

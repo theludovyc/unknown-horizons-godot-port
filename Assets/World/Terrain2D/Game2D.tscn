@@ -59,10 +59,11 @@ y_sort_enabled = true
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -128.0
-offset_right = 128.0
+offset_top = -36.0
+offset_right = 204.0
 grow_vertical = 0
 theme_override_colors/default_color = Color(1, 1, 1, 1)
+fit_content = true
 
 [node name="GUI" parent="." instance=ExtResource("6_lovin")]
 
