@@ -23,7 +23,6 @@ wait_time = 2.0
 autostart = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
-anchor_mode = 0
 position_smoothing_enabled = true
 script = ExtResource("5_7hgfn")
 

@@ -111,15 +111,6 @@ func create_island(map_file:String) -> int:
 	set_cells_terrain_connect(0, sand_tiles, 0, 2)
 	set_cells_terrain_connect(0, shallow_tiles, 0, 1)
 	
-	# spawn the warehouse
-	var entity := game.instantiate_building(Buildings.Types.Warehouse)
-	
-	var entity_center_tile = Vector2i(1, 20)
-	
-	entity.position = map_to_local(entity_center_tile)
-	
-	build_entityStatic(entity, entity_center_tile)
-	
 	# spawn trees
 	var noise := FastNoiseLite.new()
 	noise.frequency = 0.3
@@ -134,6 +125,35 @@ func create_island(map_file:String) -> int:
 				minimap[i] = Minimap_Cell_Type.Tree
 	
 	return OK
+
+func get_pos_limits() -> PackedVector2Array:
+	var used_rect = get_used_rect()
+	
+	var pre_array:PackedVector2Array = [
+		map_to_local(used_rect.position),
+		map_to_local(used_rect.position + Vector2i(used_rect.size.x, 0)),
+		map_to_local(used_rect.position + Vector2i(0, used_rect.size.y)),
+		map_to_local(used_rect.position + Vector2i(used_rect.size.x, used_rect.size.y))
+	]
+	
+	var return_array:PackedVector2Array = [
+		pre_array[0], pre_array[1]
+	]
+	
+	for vec in pre_array:
+		if vec.x < return_array[0].x:
+			return_array[0].x = vec.x
+			
+		if vec.y < return_array[0].y:
+			return_array[0].y = vec.y
+			
+		if vec.x > return_array[1].x:
+			return_array[1].x = vec.x
+			
+		if vec.y > return_array[1].y:
+			return_array[1].y = vec.y
+	
+	return return_array
 
 func local_to_map_to_local(position:Vector2) -> Vector2:
 	return map_to_local(local_to_map(position))

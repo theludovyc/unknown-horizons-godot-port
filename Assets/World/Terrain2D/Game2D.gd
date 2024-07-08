@@ -43,6 +43,26 @@ var money := 0 :
 func _ready():
 	tm.create_island("res://Assets/World/Terrain2D/singularity_40.json")
 	
+	# spawn the warehouse
+	var warehouse := instantiate_building(Buildings.Types.Warehouse)
+	
+	var warehouse_center_tile = Vector2i(1, 20)
+	
+	warehouse.position = tm.map_to_local(warehouse_center_tile)
+	
+	tm.build_entityStatic(warehouse, warehouse_center_tile)
+	
+	# set camera limits
+	var pos_limits = tm.get_pos_limits()
+	
+	cam.pos_limit_top_left = pos_limits[0]
+	cam.pos_limit_bot_right = pos_limits[1]
+	
+	# force camera initial pos on warehouse
+	cam.position = warehouse.global_position
+	cam.reset_smoothing()
+	
+	# add some initial resources
 	money = 100
 	
 	the_factory.add_resource_to_storage(Resources.Types.Wood, 2)
@@ -70,7 +90,10 @@ func _process(delta):
 	
 	rtl.text += str(mouse_pos) + "\n"
 	
-	mouse_pos += cam.position
+	rtl.text += str(cam.get_screen_center_position()) + "\n"
+	
+	# may be optimized
+	mouse_pos += cam.get_screen_center_position() - get_viewport().get_visible_rect().size / 2
 	
 	rtl.text += str(mouse_pos) + "\n"
 	
@@ -165,10 +188,9 @@ func _process(delta):
 func instantiate_building(building_type:Buildings.Types) -> Building2D:
 	var instance = Buildings_Scenes[building_type].instantiate() as Building2D
 	
-	prints(name, instance)
-	
 	node_entities.add_child(instance)
 	
+	# TODO
 	#instance.selected.connect(_on_building_selected)
 	
 	return instance

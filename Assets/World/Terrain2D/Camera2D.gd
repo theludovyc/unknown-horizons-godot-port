@@ -4,11 +4,13 @@ const SPEED = 500
 
 const Edge_Limit = 10
 
+var pos_limit_top_left:Vector2
+var pos_limit_bot_right:Vector2
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
 	pass # Replace with function body.
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -36,5 +38,9 @@ func _process(delta):
 		dir = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	
 	position += dir * SPEED * delta
+	
+	position.x = clamp(position.x, pos_limit_top_left.x, pos_limit_bot_right.x)
+	
+	position.y = clamp(position.y, pos_limit_top_left.y, pos_limit_bot_right.y)
 	
 	pass
