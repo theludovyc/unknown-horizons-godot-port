@@ -1,12 +1,14 @@
-[gd_scene load_steps=40 format=3 uid="uid://b3s7eqy0blp6g"]
+[gd_scene load_steps=46 format=3 uid="uid://b3s7eqy0blp6g"]
 
 [ext_resource type="Script" path="res://Assets/World/Terrain2D/GUI/GUI.gd" id="1_15w01"]
 [ext_resource type="Texture2D" uid="uid://5gbvga1bqpxa" path="res://Assets/UI/Images/Background/Widgets/map_bg.png" id="1_lis5v"]
-[ext_resource type="Texture2D" uid="uid://i3jf27r6a5xg" path="res://Assets/UI/Icons/Widgets/MiniMap/build.png" id="2_4512r"]
-[ext_resource type="Texture2D" uid="uid://b1uxpsysuqamr" path="res://Assets/UI/Icons/Widgets/MiniMap/build_d.png" id="3_kga8t"]
-[ext_resource type="Texture2D" uid="uid://bmvtkldjxuyqy" path="res://Assets/UI/Icons/Widgets/MiniMap/build_h.png" id="4_7ym67"]
+[ext_resource type="Script" path="res://Assets/World/Terrain2D/GUI/BotMenu.gd" id="2_qugcm"]
+[ext_resource type="Script" path="res://Assets/World/Terrain2D/GUI/Widget.gd" id="2_t3u17"]
 [ext_resource type="Script" path="res://Assets/World/Terrain2D/GUI/GridContainer.gd" id="4_v8nok"]
-[ext_resource type="Texture2D" uid="uid://bl4w2owswjhc8" path="res://Assets/UI/Images/Buttons/glass_big.png" id="5_a4xs7"]
+[ext_resource type="Texture2D" uid="uid://dof6fekq0by1d" path="res://Assets/UI/Icons/Resources/32/008.png" id="5_11xsu"]
+[ext_resource type="Texture2D" uid="uid://c354d2kmuckka" path="res://Assets/UI/Images/ResbarStats/sell.png" id="5_b6tj2"]
+[ext_resource type="Script" path="res://Assets/World/Terrain2D/GUI/TabContainer.gd" id="5_sjwej"]
+[ext_resource type="Texture2D" uid="uid://dlwi4tqas1vl0" path="res://Assets/UI/Images/ResbarStats/buy.png" id="6_fst54"]
 [ext_resource type="Texture2D" uid="uid://3203obnnsej3" path="res://Assets/UI/Images/TabWidget/main_bg_top.png" id="6_gmmb2"]
 [ext_resource type="Texture2D" uid="uid://budf74yum8w6e" path="res://Assets/UI/Images/TabWidget/main_bg_fill.png" id="7_srsy4"]
 [ext_resource type="Texture2D" uid="uid://c7f5k0k27nsh1" path="res://Assets/UI/Images/TabWidget/main_bg_bottom.png" id="8_2h6rg"]
@@ -20,8 +22,12 @@
 [ext_resource type="Texture2D" uid="uid://b0gi4vdahasx6" path="res://Assets/UI/Images/Background/Widgets/cityinfo_left.png" id="13_s75r0"]
 [ext_resource type="Texture2D" uid="uid://dja8u81e6ge3k" path="res://Assets/UI/Images/Background/Widgets/cityinfo_right.png" id="14_flxif"]
 [ext_resource type="Texture2D" uid="uid://3hepoko6w1v" path="res://Assets/UI/Icons/Widgets/CityInfo/settlement.png" id="14_h5vqk"]
+[ext_resource type="PackedScene" uid="uid://uwtq6pqqc8lm" path="res://Assets/World/Terrain2D/GUI/WidgetMenuButton.tscn" id="14_iofba"]
 [ext_resource type="StyleBox" uid="uid://c337qd1xlk4yw" path="res://Assets/World/Terrain2D/GUI/PanelCityInfo.tres" id="14_p6h2t"]
 [ext_resource type="Texture2D" uid="uid://dry1ceb3p6yk1" path="res://Assets/UI/Icons/Widgets/CityInfo/inhabitants.png" id="15_p3ujw"]
+[ext_resource type="Texture2D" uid="uid://cd61sgi3bblm7" path="res://Assets/UI/Icons/TabWidget/Warehouse/buysell_u.png" id="15_t1pbn"]
+[ext_resource type="Texture2D" uid="uid://bbl0shhv3d8f5" path="res://Assets/UI/Icons/TabWidget/Warehouse/buysell_d.png" id="16_ebb3u"]
+[ext_resource type="Texture2D" uid="uid://bmr7rme7ac5un" path="res://Assets/UI/Icons/TabWidget/Warehouse/buysell_h.png" id="17_kjgte"]
 [ext_resource type="Texture2D" uid="uid://b8ks32vn2erej" path="res://Assets/UI/Images/Background/Widgets/tooltip_bg_top.png" id="17_lxyjn"]
 [ext_resource type="Script" path="res://Assets/World/Terrain2D/GUI/LabelPopulation.gd" id="17_v0ai2"]
 [ext_resource type="Script" path="res://Assets/World/Terrain2D/GUI/Tooltip.gd" id="18_divjp"]
@@ -71,6 +77,7 @@ corner_radius_bottom_left = 10
 script = ExtResource("1_15w01")
 
 [node name="Widget" type="Control" parent="."]
+unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 1
 anchor_left = 1.0
@@ -80,6 +87,207 @@ offset_top = 126.0
 offset_right = -145.0
 offset_bottom = 126.0
 grow_horizontal = 0
+mouse_filter = 1
+script = ExtResource("2_t3u17")
+
+[node name="BotMenu" type="VBoxContainer" parent="Widget"]
+unique_name_in_owner = true
+clip_contents = true
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -125.5
+offset_top = 52.0
+offset_right = 125.5
+offset_bottom = 264.0
+grow_horizontal = 2
+theme_override_constants/separation = 0
+script = ExtResource("2_qugcm")
+
+[node name="Top" type="TextureRect" parent="Widget/BotMenu"]
+layout_mode = 2
+texture = ExtResource("6_gmmb2")
+
+[node name="PanelContainer" type="PanelContainer" parent="Widget/BotMenu"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxTexture_q0br5")
+
+[node name="TabContainer" type="TabContainer" parent="Widget/BotMenu/PanelContainer"]
+layout_mode = 2
+current_tab = 1
+clip_tabs = false
+tabs_visible = false
+script = ExtResource("5_sjwej")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Widget/BotMenu/PanelContainer/TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Title" type="HBoxContainer" parent="Widget/BotMenu/PanelContainer/TabContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect2" type="TextureRect" parent="Widget/BotMenu/PanelContainer/TabContainer/VBoxContainer/Title"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("5_b6tj2")
+stretch_mode = 5
+
+[node name="VSeparator" type="VSeparator" parent="Widget/BotMenu/PanelContainer/TabContainer/VBoxContainer/Title"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Widget/BotMenu/PanelContainer/TabContainer/VBoxContainer/Title"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("6_fst54")
+stretch_mode = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="Widget/BotMenu/PanelContainer/TabContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+
+[node name="MarketGridContainer" type="ScrollContainer" parent="Widget/BotMenu/PanelContainer/TabContainer/VBoxContainer/MarginContainer"]
+custom_minimum_size = Vector2(0, 500)
+layout_mode = 2
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Widget/BotMenu/PanelContainer/TabContainer/VBoxContainer/MarginContainer/MarketGridContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Widget/BotMenu/PanelContainer/TabContainer/VBoxContainer/MarginContainer/MarketGridContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="SpinBox" type="SpinBox" parent="Widget/BotMenu/PanelContainer/TabContainer/VBoxContainer/MarginContainer/MarketGridContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Widget/BotMenu/PanelContainer/TabContainer/VBoxContainer/MarginContainer/MarketGridContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Widget/BotMenu/PanelContainer/TabContainer/VBoxContainer/MarginContainer/MarketGridContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("5_11xsu")
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="Widget/BotMenu/PanelContainer/TabContainer/VBoxContainer/MarginContainer/MarketGridContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "000"
+horizontal_alignment = 1
+
+[node name="SpinBox2" type="SpinBox" parent="Widget/BotMenu/PanelContainer/TabContainer/VBoxContainer/MarginContainer/MarketGridContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Widget/BotMenu/PanelContainer/TabContainer/VBoxContainer/MarginContainer/MarketGridContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="SpinBox" type="SpinBox" parent="Widget/BotMenu/PanelContainer/TabContainer/VBoxContainer/MarginContainer/MarketGridContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Widget/BotMenu/PanelContainer/TabContainer/VBoxContainer/MarginContainer/MarketGridContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Widget/BotMenu/PanelContainer/TabContainer/VBoxContainer/MarginContainer/MarketGridContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("5_11xsu")
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="Widget/BotMenu/PanelContainer/TabContainer/VBoxContainer/MarginContainer/MarketGridContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+text = "000"
+horizontal_alignment = 1
+
+[node name="SpinBox2" type="SpinBox" parent="Widget/BotMenu/PanelContainer/TabContainer/VBoxContainer/MarginContainer/MarketGridContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="Widget/BotMenu/PanelContainer/TabContainer/VBoxContainer/MarginContainer/MarketGridContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="SpinBox" type="SpinBox" parent="Widget/BotMenu/PanelContainer/TabContainer/VBoxContainer/MarginContainer/MarketGridContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Widget/BotMenu/PanelContainer/TabContainer/VBoxContainer/MarginContainer/MarketGridContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Widget/BotMenu/PanelContainer/TabContainer/VBoxContainer/MarginContainer/MarketGridContainer/VBoxContainer/HBoxContainer3/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("5_11xsu")
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="Widget/BotMenu/PanelContainer/TabContainer/VBoxContainer/MarginContainer/MarketGridContainer/VBoxContainer/HBoxContainer3/VBoxContainer"]
+layout_mode = 2
+text = "000"
+horizontal_alignment = 1
+
+[node name="SpinBox2" type="SpinBox" parent="Widget/BotMenu/PanelContainer/TabContainer/VBoxContainer/MarginContainer/MarketGridContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="Widget/BotMenu/PanelContainer/TabContainer/VBoxContainer/MarginContainer/MarketGridContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="SpinBox" type="SpinBox" parent="Widget/BotMenu/PanelContainer/TabContainer/VBoxContainer/MarginContainer/MarketGridContainer/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Widget/BotMenu/PanelContainer/TabContainer/VBoxContainer/MarginContainer/MarketGridContainer/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Widget/BotMenu/PanelContainer/TabContainer/VBoxContainer/MarginContainer/MarketGridContainer/VBoxContainer/HBoxContainer4/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("5_11xsu")
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="Widget/BotMenu/PanelContainer/TabContainer/VBoxContainer/MarginContainer/MarketGridContainer/VBoxContainer/HBoxContainer4/VBoxContainer"]
+layout_mode = 2
+text = "000"
+horizontal_alignment = 1
+
+[node name="SpinBox2" type="SpinBox" parent="Widget/BotMenu/PanelContainer/TabContainer/VBoxContainer/MarginContainer/MarketGridContainer/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="BuildGridContainer" type="GridContainer" parent="Widget/BotMenu/PanelContainer/TabContainer"]
+layout_mode = 2
+mouse_filter = 2
+columns = 4
+script = ExtResource("4_v8nok")
+
+[node name="BuildResidential" type="TextureButton" parent="Widget/BotMenu/PanelContainer/TabContainer/BuildGridContainer"]
+layout_mode = 2
+texture_normal = ExtResource("8_04hx7")
+texture_pressed = ExtResource("9_7d646")
+texture_hover = ExtResource("10_na55f")
+script = ExtResource("8_i5i22")
+building_type = 1
+
+[node name="BuildLumberjack" type="TextureButton" parent="Widget/BotMenu/PanelContainer/TabContainer/BuildGridContainer"]
+layout_mode = 2
+texture_normal = ExtResource("8_8yekw")
+texture_pressed = ExtResource("9_kn7dp")
+texture_hover = ExtResource("10_jbw0d")
+script = ExtResource("8_i5i22")
+building_type = 2
+
+[node name="Bot" type="TextureRect" parent="Widget/BotMenu"]
+layout_mode = 2
+texture = ExtResource("8_2h6rg")
 
 [node name="Map" type="TextureRect" parent="Widget"]
 layout_mode = 1
@@ -96,83 +304,27 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_lis5v")
 
-[node name="BotMenu" type="VBoxContainer" parent="Widget"]
+[node name="BuildMenuButton" parent="Widget" instance=ExtResource("14_iofba")]
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -125.5
-offset_top = 50.0
-offset_right = 125.5
-offset_bottom = 248.0
-grow_horizontal = 2
-theme_override_constants/separation = 0
+offset_left = 32.0
+offset_top = 69.0
+offset_right = 64.0
+offset_bottom = 101.0
 
-[node name="Top" type="TextureRect" parent="Widget/BotMenu"]
-layout_mode = 2
-texture = ExtResource("6_gmmb2")
-
-[node name="PanelContainer" type="PanelContainer" parent="Widget/BotMenu"]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_q0br5")
-
-[node name="GridContainer" type="GridContainer" parent="Widget/BotMenu/PanelContainer"]
-layout_mode = 2
-columns = 4
-script = ExtResource("4_v8nok")
-
-[node name="BuildResidential" type="TextureButton" parent="Widget/BotMenu/PanelContainer/GridContainer"]
-layout_mode = 2
-texture_normal = ExtResource("8_04hx7")
-texture_pressed = ExtResource("9_7d646")
-texture_hover = ExtResource("10_na55f")
-script = ExtResource("8_i5i22")
-building_type = 1
-
-[node name="BuildLumberjack" type="TextureButton" parent="Widget/BotMenu/PanelContainer/GridContainer"]
-layout_mode = 2
-texture_normal = ExtResource("8_8yekw")
-texture_pressed = ExtResource("9_kn7dp")
-texture_hover = ExtResource("10_jbw0d")
-script = ExtResource("8_i5i22")
-building_type = 2
-
-[node name="Bot" type="TextureRect" parent="Widget/BotMenu"]
-layout_mode = 2
-texture = ExtResource("8_2h6rg")
-
-[node name="BuildMenuButton" type="TextureButton" parent="Widget"]
+[node name="MarketMenuButton" parent="Widget" instance=ExtResource("14_iofba")]
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -16.0
-offset_top = 82.0
-offset_right = 16.0
-offset_bottom = 114.0
-grow_horizontal = 2
-texture_normal = ExtResource("2_4512r")
-texture_pressed = ExtResource("3_kga8t")
-texture_hover = ExtResource("4_7ym67")
+offset_left = -17.5
+offset_top = 75.0
+offset_right = 17.5
+offset_bottom = 121.0
+texture_normal = ExtResource("15_t1pbn")
+texture_pressed = ExtResource("16_ebb3u")
+texture_hover = ExtResource("17_kjgte")
+ignore_texture_size = true
+stretch_mode = 5
 
-[node name="TextureRect" type="TextureRect" parent="Widget/BuildMenuButton"]
-show_behind_parent = true
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -22.0
-offset_right = 20.0
-offset_bottom = 22.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-texture = ExtResource("5_a4xs7")
-
-[node name="Tooltip" type="PanelContainer" parent="Widget"]
+[node name="WidgetTooltip" type="PanelContainer" parent="Widget"]
+unique_name_in_owner = true
 visible = false
 layout_mode = 0
 offset_left = -279.0
@@ -182,27 +334,27 @@ offset_bottom = 206.0
 theme_override_styles/panel = SubResource("StyleBoxTexture_cggc7")
 script = ExtResource("18_divjp")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Widget/Tooltip"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Widget/WidgetTooltip"]
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="TextureRect" type="TextureRect" parent="Widget/Tooltip/VBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="Widget/WidgetTooltip/VBoxContainer"]
 clip_contents = true
 custom_minimum_size = Vector2(0, 8)
 layout_mode = 2
 texture = ExtResource("17_lxyjn")
 
-[node name="PanelContainer" type="PanelContainer" parent="Widget/Tooltip/VBoxContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="Widget/WidgetTooltip/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxTexture_0aaya")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Widget/Tooltip/VBoxContainer/PanelContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="Widget/WidgetTooltip/VBoxContainer/PanelContainer"]
 layout_mode = 2
 bbcode_enabled = true
 fit_content = true
 
-[node name="TextureRect2" type="TextureRect" parent="Widget/Tooltip/VBoxContainer"]
+[node name="TextureRect2" type="TextureRect" parent="Widget/WidgetTooltip/VBoxContainer"]
 layout_mode = 2
 texture = ExtResource("20_4xpap")
 
@@ -315,6 +467,8 @@ fit_content = true
 autowrap_mode = 0
 script = ExtResource("33_hbac4")
 
+[connection signal="pressed" from="Widget/BuildMenuButton" to="Widget/BotMenu/PanelContainer/TabContainer" method="_on_BuildMenuButton_pressed"]
+[connection signal="pressed" from="Widget/MarketMenuButton" to="Widget/BotMenu/PanelContainer/TabContainer" method="_on_MarketMenuButton_pressed"]
 [connection signal="visibility_changed" from="RichTextLabelInfo" to="RichTextLabelInfo" method="_on_visibility_changed"]
 
 [editable path="Money+Resources/ControlMoney"]

@@ -5,7 +5,7 @@ class_name Game2D
 
 @onready var tm := %TileMap
 
-@onready var cam := $Camera2D
+#@onready var cam := $Camera2D
 
 @onready var node_entities := %Entities
 
@@ -55,12 +55,12 @@ func _ready():
 	# set camera limits
 	var pos_limits = tm.get_pos_limits()
 	
-	cam.pos_limit_top_left = pos_limits[0]
-	cam.pos_limit_bot_right = pos_limits[1]
-	
-	# force camera initial pos on warehouse
-	cam.position = warehouse.global_position
-	cam.reset_smoothing()
+	#cam.pos_limit_top_left = pos_limits[0]
+	#cam.pos_limit_bot_right = pos_limits[1]
+	#
+	## force camera initial pos on warehouse
+	#cam.position = warehouse.global_position
+	#cam.reset_smoothing()
 	
 	# add some initial resources
 	money = 100
@@ -90,10 +90,10 @@ func _process(delta):
 	
 	rtl.text += str(mouse_pos) + "\n"
 	
-	rtl.text += str(cam.get_screen_center_position()) + "\n"
+	#rtl.text += str(cam.get_screen_center_position()) + "\n"
 	
 	# may be optimized
-	mouse_pos += cam.get_screen_center_position() - get_viewport().get_visible_rect().size / 2
+	#mouse_pos += cam.get_screen_center_position() - get_viewport().get_visible_rect().size / 2
 	
 	rtl.text += str(mouse_pos) + "\n"
 	

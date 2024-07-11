@@ -2,9 +2,11 @@ extends GridContainer
 
 var event_bus:EventBus
 
-@onready var bot_menu := $"../.."
+@onready var widget := %Widget
 
-@onready var tooltip := $"../../../Tooltip"
+@onready var bot_menu := %BotMenu
+
+@onready var tooltip := %WidgetTooltip
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -24,14 +26,22 @@ func _ready():
 func _on_building_button_pressed(building_type:Buildings.Types):
 	if (event_bus):
 		event_bus.create_building.emit(building_type)
-	bot_menu.visible = false
+	
+	widget.disable_buttons(true)
+	
+	bot_menu.set_menu_visibility(false)
 
 func _on_building_event():
-	bot_menu.visible = true
+	widget.disable_buttons(false)
+	
+	bot_menu.set_menu_visibility(true)
 	
 func _on_building_button_mouse_entered(building_type:Buildings.Types):
+	prints(name, "hello")
+	
 	tooltip.set_building_info(building_type)
 	tooltip.visible = true
 	
 func _on_building_button_mouse_exited():
 	tooltip.visible = false
+	pass

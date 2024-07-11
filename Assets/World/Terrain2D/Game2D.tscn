@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bbbuj3ne5rupv"]
+[gd_scene load_steps=8 format=3 uid="uid://bbbuj3ne5rupv"]
 
 [ext_resource type="Script" path="res://Assets/World/Terrain2D/Game2D.gd" id="1_i3wk0"]
 [ext_resource type="Script" path="res://Assets/World/Terrain2D/EventBus.gd" id="2_jbfdl"]
@@ -6,7 +6,6 @@
 [ext_resource type="Script" path="res://Assets/World/Terrain2D/TheFactory.gd" id="3_6uk0m"]
 [ext_resource type="Script" path="res://Assets/World/Terrain2D/TileMap.gd" id="4_lfw1e"]
 [ext_resource type="TileSet" uid="uid://bhin7dsw4tvvl" path="res://Assets/World/Terrain2D/new_tile_set.tres" id="5_6up2t"]
-[ext_resource type="Script" path="res://Assets/World/Terrain2D/Camera2D.gd" id="5_7hgfn"]
 [ext_resource type="PackedScene" uid="uid://b3s7eqy0blp6g" path="res://Assets/World/Terrain2D/GUI/GUI.tscn" id="6_lovin"]
 
 [node name="Game2D" type="Node"]
@@ -21,10 +20,6 @@ script = ExtResource("3_6uk0m")
 [node name="TheTicker" type="Timer" parent="."]
 wait_time = 2.0
 autostart = true
-
-[node name="Camera2D" type="Camera2D" parent="."]
-position_smoothing_enabled = true
-script = ExtResource("5_7hgfn")
 
 [node name="Deep" type="Sprite2D" parent="."]
 visible = false
@@ -53,6 +48,7 @@ z_index = 1
 y_sort_enabled = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer"]
 anchors_preset = 2
