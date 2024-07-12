@@ -1,0 +1,33 @@
+[gd_scene load_steps=7 format=3 uid="uid://cx2k8fx6jq1j1"]
+
+[ext_resource type="Texture2D" uid="uid://csypaf1jctw3i" path="res://Assets/UI/Images/Buttons/msg_button.png" id="1_yqmdd"]
+[ext_resource type="Texture2D" uid="uid://dr8v8bg7cawsv" path="res://Assets/UI/Images/Buttons/msg_button_d.png" id="2_7k7ku"]
+[ext_resource type="Texture2D" uid="uid://dtavw6r7yd3d8" path="res://Assets/UI/Images/Buttons/msg_button_h.png" id="3_lf1jt"]
+[ext_resource type="BitMap" uid="uid://jjft0jty5esx" path="res://Assets/UI/Images/Buttons/msg_button_mask.png" id="4_sm65q"]
+[ext_resource type="Script" path="res://Assets/World/Terrain2D/GUI/ResourceButton.gd" id="5_0sn2w"]
+[ext_resource type="Texture2D" uid="uid://dt1ef2m6h6d7x" path="res://Assets/UI/Icons/Resources/32/placeholder.png" id="6_85bbl"]
+
+[node name="ResourceButton" type="TextureButton"]
+size_flags_horizontal = 4
+size_flags_vertical = 0
+texture_normal = ExtResource("1_yqmdd")
+texture_pressed = ExtResource("2_7k7ku")
+texture_hover = ExtResource("3_lf1jt")
+texture_click_mask = ExtResource("4_sm65q")
+script = ExtResource("5_0sn2w")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -14.0
+offset_top = -14.0
+offset_right = 14.0
+offset_bottom = 14.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_85bbl")
+expand_mode = 1

@@ -7,6 +7,8 @@ extends PanelContainer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$TextureButton.set_resource_icon(resource_type)
+	
 	var current_node = get_tree().current_scene
 	
 	if current_node.has_node("EventBus"):

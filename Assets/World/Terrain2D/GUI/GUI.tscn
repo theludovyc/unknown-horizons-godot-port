@@ -1,11 +1,10 @@
-[gd_scene load_steps=46 format=3 uid="uid://b3s7eqy0blp6g"]
+[gd_scene load_steps=44 format=3 uid="uid://b3s7eqy0blp6g"]
 
 [ext_resource type="Script" path="res://Assets/World/Terrain2D/GUI/GUI.gd" id="1_15w01"]
 [ext_resource type="Texture2D" uid="uid://5gbvga1bqpxa" path="res://Assets/UI/Images/Background/Widgets/map_bg.png" id="1_lis5v"]
 [ext_resource type="Script" path="res://Assets/World/Terrain2D/GUI/BotMenu.gd" id="2_qugcm"]
 [ext_resource type="Script" path="res://Assets/World/Terrain2D/GUI/Widget.gd" id="2_t3u17"]
 [ext_resource type="Script" path="res://Assets/World/Terrain2D/GUI/GridContainer.gd" id="4_v8nok"]
-[ext_resource type="Texture2D" uid="uid://dof6fekq0by1d" path="res://Assets/UI/Icons/Resources/32/008.png" id="5_11xsu"]
 [ext_resource type="Texture2D" uid="uid://c354d2kmuckka" path="res://Assets/UI/Images/ResbarStats/sell.png" id="5_b6tj2"]
 [ext_resource type="Script" path="res://Assets/World/Terrain2D/GUI/TabContainer.gd" id="5_sjwej"]
 [ext_resource type="Texture2D" uid="uid://dlwi4tqas1vl0" path="res://Assets/UI/Images/ResbarStats/buy.png" id="6_fst54"]
@@ -35,11 +34,10 @@
 [ext_resource type="Texture2D" uid="uid://dx6qmely0bq45" path="res://Assets/UI/Images/Background/Widgets/tooltip_bg.png" id="18_yoese"]
 [ext_resource type="Texture2D" uid="uid://8immr7brv8eb" path="res://Assets/UI/Images/Background/Widgets/tooltip_bg_middle.png" id="19_28qxy"]
 [ext_resource type="Texture2D" uid="uid://bjxpcfox7403j" path="res://Assets/UI/Images/Background/Widgets/tooltip_bg_bottom.png" id="20_4xpap"]
-[ext_resource type="PackedScene" uid="uid://dm2nc5paqgg5i" path="res://Assets/World/Terrain2D/GUI/ControlResource.tscn" id="20_60o0i"]
-[ext_resource type="Script" path="res://Assets/World/Terrain2D/GUI/ControlMoney.gd" id="30_1j3f5"]
-[ext_resource type="Texture2D" uid="uid://bw4yhq42d3fsm" path="res://Assets/UI/Icons/Resources/32/003.png" id="30_x1xgm"]
-[ext_resource type="Texture2D" uid="uid://toeqa364p2tp" path="res://Assets/UI/Icons/Resources/32/001.png" id="31_nfoqr"]
 [ext_resource type="Script" path="res://Assets/World/Terrain2D/GUI/RichTextLabelInfo.gd" id="33_hbac4"]
+[ext_resource type="PackedScene" uid="uid://dm2nc5paqgg5i" path="res://Assets/World/Terrain2D/GUI/ResourceControl.tscn" id="36_hya2t"]
+[ext_resource type="Script" path="res://Assets/World/Terrain2D/GUI/MoneyControl.gd" id="37_dntbd"]
+[ext_resource type="PackedScene" uid="uid://dirun2ixxn2h7" path="res://Assets/World/Terrain2D/GUI/ResourceOrder.tscn" id="45_te1ul"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_q0br5"]
 content_margin_left = 20.0
@@ -123,145 +121,54 @@ clip_tabs = false
 tabs_visible = false
 script = ExtResource("5_sjwej")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Widget/BotMenu/PanelContainer/TabContainer"]
+[node name="MarketContainer" type="VBoxContainer" parent="Widget/BotMenu/PanelContainer/TabContainer"]
 layout_mode = 2
 
-[node name="Title" type="HBoxContainer" parent="Widget/BotMenu/PanelContainer/TabContainer/VBoxContainer"]
+[node name="MoneyRTL" type="RichTextLabel" parent="Widget/BotMenu/PanelContainer/TabContainer/MarketContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "Money"
+fit_content = true
+scroll_active = false
+
+[node name="Title" type="HBoxContainer" parent="Widget/BotMenu/PanelContainer/TabContainer/MarketContainer"]
 layout_mode = 2
 
-[node name="TextureRect2" type="TextureRect" parent="Widget/BotMenu/PanelContainer/TabContainer/VBoxContainer/Title"]
+[node name="TextureRect2" type="TextureRect" parent="Widget/BotMenu/PanelContainer/TabContainer/MarketContainer/Title"]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 size_flags_horizontal = 3
 texture = ExtResource("5_b6tj2")
 stretch_mode = 5
 
-[node name="VSeparator" type="VSeparator" parent="Widget/BotMenu/PanelContainer/TabContainer/VBoxContainer/Title"]
+[node name="VSeparator" type="VSeparator" parent="Widget/BotMenu/PanelContainer/TabContainer/MarketContainer/Title"]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="Widget/BotMenu/PanelContainer/TabContainer/VBoxContainer/Title"]
+[node name="TextureRect" type="TextureRect" parent="Widget/BotMenu/PanelContainer/TabContainer/MarketContainer/Title"]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 size_flags_horizontal = 3
 texture = ExtResource("6_fst54")
 stretch_mode = 5
 
-[node name="MarginContainer" type="MarginContainer" parent="Widget/BotMenu/PanelContainer/TabContainer/VBoxContainer"]
+[node name="NewOrderButton" type="Button" parent="Widget/BotMenu/PanelContainer/TabContainer/MarketContainer"]
 layout_mode = 2
-theme_override_constants/margin_left = 10
+text = "New Order"
 
-[node name="MarketGridContainer" type="ScrollContainer" parent="Widget/BotMenu/PanelContainer/TabContainer/VBoxContainer/MarginContainer"]
-custom_minimum_size = Vector2(0, 500)
+[node name="MarketGridContainer" type="ScrollContainer" parent="Widget/BotMenu/PanelContainer/TabContainer/MarketContainer"]
+custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
-horizontal_scroll_mode = 0
 vertical_scroll_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Widget/BotMenu/PanelContainer/TabContainer/VBoxContainer/MarginContainer/MarketGridContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Widget/BotMenu/PanelContainer/TabContainer/MarketContainer/MarketGridContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+
+[node name="HBoxContainer" parent="Widget/BotMenu/PanelContainer/TabContainer/MarketContainer/MarketGridContainer/VBoxContainer" instance=ExtResource("45_te1ul")]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Widget/BotMenu/PanelContainer/TabContainer/VBoxContainer/MarginContainer/MarketGridContainer/VBoxContainer"]
+[node name="HBoxContainer2" parent="Widget/BotMenu/PanelContainer/TabContainer/MarketContainer/MarketGridContainer/VBoxContainer" instance=ExtResource("45_te1ul")]
 layout_mode = 2
-size_flags_horizontal = 3
-alignment = 1
-
-[node name="SpinBox" type="SpinBox" parent="Widget/BotMenu/PanelContainer/TabContainer/VBoxContainer/MarginContainer/MarketGridContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 4
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Widget/BotMenu/PanelContainer/TabContainer/VBoxContainer/MarginContainer/MarketGridContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="Widget/BotMenu/PanelContainer/TabContainer/VBoxContainer/MarginContainer/MarketGridContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-texture = ExtResource("5_11xsu")
-stretch_mode = 5
-
-[node name="Label" type="Label" parent="Widget/BotMenu/PanelContainer/TabContainer/VBoxContainer/MarginContainer/MarketGridContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-text = "000"
-horizontal_alignment = 1
-
-[node name="SpinBox2" type="SpinBox" parent="Widget/BotMenu/PanelContainer/TabContainer/VBoxContainer/MarginContainer/MarketGridContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 4
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="Widget/BotMenu/PanelContainer/TabContainer/VBoxContainer/MarginContainer/MarketGridContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-alignment = 1
-
-[node name="SpinBox" type="SpinBox" parent="Widget/BotMenu/PanelContainer/TabContainer/VBoxContainer/MarginContainer/MarketGridContainer/VBoxContainer/HBoxContainer2"]
-layout_mode = 2
-size_flags_vertical = 4
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Widget/BotMenu/PanelContainer/TabContainer/VBoxContainer/MarginContainer/MarketGridContainer/VBoxContainer/HBoxContainer2"]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="Widget/BotMenu/PanelContainer/TabContainer/VBoxContainer/MarginContainer/MarketGridContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
-layout_mode = 2
-texture = ExtResource("5_11xsu")
-stretch_mode = 5
-
-[node name="Label" type="Label" parent="Widget/BotMenu/PanelContainer/TabContainer/VBoxContainer/MarginContainer/MarketGridContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
-layout_mode = 2
-text = "000"
-horizontal_alignment = 1
-
-[node name="SpinBox2" type="SpinBox" parent="Widget/BotMenu/PanelContainer/TabContainer/VBoxContainer/MarginContainer/MarketGridContainer/VBoxContainer/HBoxContainer2"]
-layout_mode = 2
-size_flags_vertical = 4
-
-[node name="HBoxContainer3" type="HBoxContainer" parent="Widget/BotMenu/PanelContainer/TabContainer/VBoxContainer/MarginContainer/MarketGridContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-alignment = 1
-
-[node name="SpinBox" type="SpinBox" parent="Widget/BotMenu/PanelContainer/TabContainer/VBoxContainer/MarginContainer/MarketGridContainer/VBoxContainer/HBoxContainer3"]
-layout_mode = 2
-size_flags_vertical = 4
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Widget/BotMenu/PanelContainer/TabContainer/VBoxContainer/MarginContainer/MarketGridContainer/VBoxContainer/HBoxContainer3"]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="Widget/BotMenu/PanelContainer/TabContainer/VBoxContainer/MarginContainer/MarketGridContainer/VBoxContainer/HBoxContainer3/VBoxContainer"]
-layout_mode = 2
-texture = ExtResource("5_11xsu")
-stretch_mode = 5
-
-[node name="Label" type="Label" parent="Widget/BotMenu/PanelContainer/TabContainer/VBoxContainer/MarginContainer/MarketGridContainer/VBoxContainer/HBoxContainer3/VBoxContainer"]
-layout_mode = 2
-text = "000"
-horizontal_alignment = 1
-
-[node name="SpinBox2" type="SpinBox" parent="Widget/BotMenu/PanelContainer/TabContainer/VBoxContainer/MarginContainer/MarketGridContainer/VBoxContainer/HBoxContainer3"]
-layout_mode = 2
-size_flags_vertical = 4
-
-[node name="HBoxContainer4" type="HBoxContainer" parent="Widget/BotMenu/PanelContainer/TabContainer/VBoxContainer/MarginContainer/MarketGridContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-alignment = 1
-
-[node name="SpinBox" type="SpinBox" parent="Widget/BotMenu/PanelContainer/TabContainer/VBoxContainer/MarginContainer/MarketGridContainer/VBoxContainer/HBoxContainer4"]
-layout_mode = 2
-size_flags_vertical = 4
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Widget/BotMenu/PanelContainer/TabContainer/VBoxContainer/MarginContainer/MarketGridContainer/VBoxContainer/HBoxContainer4"]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="Widget/BotMenu/PanelContainer/TabContainer/VBoxContainer/MarginContainer/MarketGridContainer/VBoxContainer/HBoxContainer4/VBoxContainer"]
-layout_mode = 2
-texture = ExtResource("5_11xsu")
-stretch_mode = 5
-
-[node name="Label" type="Label" parent="Widget/BotMenu/PanelContainer/TabContainer/VBoxContainer/MarginContainer/MarketGridContainer/VBoxContainer/HBoxContainer4/VBoxContainer"]
-layout_mode = 2
-text = "000"
-horizontal_alignment = 1
-
-[node name="SpinBox2" type="SpinBox" parent="Widget/BotMenu/PanelContainer/TabContainer/VBoxContainer/MarginContainer/MarketGridContainer/VBoxContainer/HBoxContainer4"]
-layout_mode = 2
-size_flags_vertical = 4
 
 [node name="BuildGridContainer" type="GridContainer" parent="Widget/BotMenu/PanelContainer/TabContainer"]
 visible = false
@@ -428,25 +335,22 @@ offset_top = 20.0
 offset_right = 268.0
 offset_bottom = 90.0
 
-[node name="ControlMoney" parent="Money+Resources" instance=ExtResource("20_60o0i")]
+[node name="ControlMoney" parent="Money+Resources" instance=ExtResource("36_hya2t")]
 layout_mode = 2
-script = ExtResource("30_1j3f5")
+script = ExtResource("37_dntbd")
 
-[node name="TextureRect" parent="Money+Resources/ControlMoney/TextureButton" index="0"]
-texture = ExtResource("31_nfoqr")
+[node name="TextureButton" parent="Money+Resources/ControlMoney" index="1"]
+_type = 2
 
 [node name="Resources" type="HBoxContainer" parent="Money+Resources"]
 layout_mode = 2
 
-[node name="ControlResourceWood" parent="Money+Resources/Resources" instance=ExtResource("20_60o0i")]
+[node name="ControlResourceWood" parent="Money+Resources/Resources" instance=ExtResource("36_hya2t")]
 layout_mode = 2
 
-[node name="ControlResourceTextile" parent="Money+Resources/Resources" instance=ExtResource("20_60o0i")]
+[node name="ControlResourceTextile" parent="Money+Resources/Resources" instance=ExtResource("36_hya2t")]
 layout_mode = 2
 resource_type = 1
-
-[node name="TextureRect" parent="Money+Resources/Resources/ControlResourceTextile/TextureButton" index="0"]
-texture = ExtResource("30_x1xgm")
 
 [node name="RichTextLabelInfo" type="RichTextLabel" parent="."]
 visible = false

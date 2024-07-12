@@ -1,0 +1,46 @@
+[gd_scene load_steps=5 format=3 uid="uid://dirun2ixxn2h7"]
+
+[ext_resource type="Texture2D" uid="uid://dapd765c0bvd8" path="res://Assets/UI/Images/Buttons/delete_small.png" id="1_8qysj"]
+[ext_resource type="PackedScene" uid="uid://cx2k8fx6jq1j1" path="res://Assets/World/Terrain2D/GUI/ResourceButton.tscn" id="1_p15xc"]
+[ext_resource type="Texture2D" uid="uid://cswhnjs5r8fkk" path="res://Assets/UI/Images/Buttons/delete_small_h.png" id="2_4qexu"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_0eng7"]
+
+[node name="ResourceOrder" type="HBoxContainer"]
+offset_right = 174.0
+offset_bottom = 75.0
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="SpinBox" type="SpinBox" parent="."]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_icons/updown = SubResource("ImageTexture_0eng7")
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="DeleteButton" type="TextureButton" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+texture_normal = ExtResource("1_8qysj")
+texture_pressed = ExtResource("1_8qysj")
+texture_hover = ExtResource("2_4qexu")
+stretch_mode = 5
+
+[node name="TextureButton" parent="VBoxContainer" instance=ExtResource("1_p15xc")]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "000"
+horizontal_alignment = 1
+
+[node name="SpinBox2" type="SpinBox" parent="."]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_icons/updown = SubResource("ImageTexture_0eng7")
+alignment = 1
