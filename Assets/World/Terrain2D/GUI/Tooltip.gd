@@ -20,6 +20,12 @@ func set_building_info(building_type:Buildings.Types):
 			rtl.add_image(Resources.Icons[cost[0]], 20)
 	pass
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func set_money_production_rate_info(production_rate:int = 0):
+	rtl.clear()
+	rtl.append_text("[center]")
+	rtl.add_image(Resources.Icons[Resources.Types.Money], 20)
+	
+	var text_sign = "+" if production_rate >= 0 else "-"
+	
+	rtl.append_text("(" + text_sign + str(production_rate) + ")")
 	pass

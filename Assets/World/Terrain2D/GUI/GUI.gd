@@ -1,6 +1,15 @@
 extends CanvasLayer
+class_name GUI
 
 @onready var rtl_info := $RichTextLabelInfo
+
+enum {
+	ResourceButton
+}
+
+const scenes = {
+	ResourceButton:preload("res://Assets/World/Terrain2D/GUI/ResourceButton.tscn")
+}
 
 func set_rtl_info_text(text:String):
 	rtl_info.text = text

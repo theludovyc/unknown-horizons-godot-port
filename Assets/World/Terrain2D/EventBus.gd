@@ -12,3 +12,4 @@ signal resource_updated(resource_type, resource_amount)
 signal resource_prodution_rate_updated(resource_type, production_rate)
 
 signal money_updated(money_amount)
+signal money_production_rate_updated(money_production_rate)

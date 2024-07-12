@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://b3s7eqy0blp6g"]
+[gd_scene load_steps=47 format=3 uid="uid://b3s7eqy0blp6g"]
 
 [ext_resource type="Script" path="res://Assets/World/Terrain2D/GUI/GUI.gd" id="1_15w01"]
 [ext_resource type="Texture2D" uid="uid://5gbvga1bqpxa" path="res://Assets/UI/Images/Background/Widgets/map_bg.png" id="1_lis5v"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://dlwi4tqas1vl0" path="res://Assets/UI/Images/ResbarStats/buy.png" id="6_fst54"]
 [ext_resource type="Texture2D" uid="uid://3203obnnsej3" path="res://Assets/UI/Images/TabWidget/main_bg_top.png" id="6_gmmb2"]
 [ext_resource type="Texture2D" uid="uid://budf74yum8w6e" path="res://Assets/UI/Images/TabWidget/main_bg_fill.png" id="7_srsy4"]
+[ext_resource type="Script" path="res://Assets/World/Terrain2D/GUI/MarketContainer.gd" id="7_vhp7j"]
 [ext_resource type="Texture2D" uid="uid://c7f5k0k27nsh1" path="res://Assets/UI/Images/TabWidget/main_bg_bottom.png" id="8_2h6rg"]
 [ext_resource type="Texture2D" uid="uid://ddlgbu2x5p4tg" path="res://Assets/UI/Icons/BuildMenu/003.png" id="8_04hx7"]
 [ext_resource type="Texture2D" uid="uid://d2a22cr70qsmg" path="res://Assets/UI/Icons/BuildMenu/008.png" id="8_8yekw"]
@@ -37,7 +38,8 @@
 [ext_resource type="Script" path="res://Assets/World/Terrain2D/GUI/RichTextLabelInfo.gd" id="33_hbac4"]
 [ext_resource type="PackedScene" uid="uid://dm2nc5paqgg5i" path="res://Assets/World/Terrain2D/GUI/ResourceControl.tscn" id="36_hya2t"]
 [ext_resource type="Script" path="res://Assets/World/Terrain2D/GUI/MoneyControl.gd" id="37_dntbd"]
-[ext_resource type="PackedScene" uid="uid://dirun2ixxn2h7" path="res://Assets/World/Terrain2D/GUI/ResourceOrder.tscn" id="45_te1ul"]
+[ext_resource type="Script" path="res://Assets/World/Terrain2D/GUI/ResourcePopup.gd" id="40_c8vow"]
+[ext_resource type="Texture2D" uid="uid://cgyr73drevw2p" path="res://Assets/UI/Images/Background/square_120.png" id="44_wb08w"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_q0br5"]
 content_margin_left = 20.0
@@ -70,6 +72,13 @@ corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4s12p"]
+texture = ExtResource("44_wb08w")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
 
 [node name="GUI" type="CanvasLayer"]
 script = ExtResource("1_15w01")
@@ -123,13 +132,7 @@ script = ExtResource("5_sjwej")
 
 [node name="MarketContainer" type="VBoxContainer" parent="Widget/BotMenu/PanelContainer/TabContainer"]
 layout_mode = 2
-
-[node name="MoneyRTL" type="RichTextLabel" parent="Widget/BotMenu/PanelContainer/TabContainer/MarketContainer"]
-layout_mode = 2
-bbcode_enabled = true
-text = "Money"
-fit_content = true
-scroll_active = false
+script = ExtResource("7_vhp7j")
 
 [node name="Title" type="HBoxContainer" parent="Widget/BotMenu/PanelContainer/TabContainer/MarketContainer"]
 layout_mode = 2
@@ -155,20 +158,15 @@ stretch_mode = 5
 layout_mode = 2
 text = "New Order"
 
-[node name="MarketGridContainer" type="ScrollContainer" parent="Widget/BotMenu/PanelContainer/TabContainer/MarketContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="Widget/BotMenu/PanelContainer/TabContainer/MarketContainer"]
 custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
 vertical_scroll_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Widget/BotMenu/PanelContainer/TabContainer/MarketContainer/MarketGridContainer"]
+[node name="OrderContainer" type="VBoxContainer" parent="Widget/BotMenu/PanelContainer/TabContainer/MarketContainer/ScrollContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 6
-
-[node name="HBoxContainer" parent="Widget/BotMenu/PanelContainer/TabContainer/MarketContainer/MarketGridContainer/VBoxContainer" instance=ExtResource("45_te1ul")]
-layout_mode = 2
-
-[node name="HBoxContainer2" parent="Widget/BotMenu/PanelContainer/TabContainer/MarketContainer/MarketGridContainer/VBoxContainer" instance=ExtResource("45_te1ul")]
-layout_mode = 2
 
 [node name="BuildGridContainer" type="GridContainer" parent="Widget/BotMenu/PanelContainer/TabContainer"]
 visible = false
@@ -238,7 +236,7 @@ layout_mode = 0
 offset_left = -279.0
 offset_top = 109.0
 offset_right = -114.0
-offset_bottom = 206.0
+offset_bottom = 168.0
 theme_override_styles/panel = SubResource("StyleBoxTexture_cggc7")
 script = ExtResource("18_divjp")
 
@@ -372,6 +370,39 @@ fit_content = true
 autowrap_mode = 0
 script = ExtResource("33_hbac4")
 
+[node name="ResourcePopup" type="Window" parent="."]
+unique_name_in_owner = true
+initial_position = 4
+size = Vector2i(312, 200)
+visible = false
+exclusive = true
+borderless = true
+popup_window = true
+min_size = Vector2i(250, 0)
+script = ExtResource("40_c8vow")
+
+[node name="PanelContainer" type="PanelContainer" parent="ResourcePopup"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxTexture_4s12p")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ResourcePopup/PanelContainer"]
+layout_mode = 2
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="ResourcePopup/PanelContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+columns = 5
+
+[connection signal="pressed" from="Widget/BotMenu/PanelContainer/TabContainer/MarketContainer/NewOrderButton" to="Widget/BotMenu/PanelContainer/TabContainer/MarketContainer" method="_on_NewOrderButton_pressed"]
 [connection signal="pressed" from="Widget/BuildMenuButton" to="Widget/BotMenu/PanelContainer/TabContainer" method="_on_BuildMenuButton_pressed"]
 [connection signal="pressed" from="Widget/MarketMenuButton" to="Widget/BotMenu/PanelContainer/TabContainer" method="_on_MarketMenuButton_pressed"]
 [connection signal="visibility_changed" from="RichTextLabelInfo" to="RichTextLabelInfo" method="_on_visibility_changed"]

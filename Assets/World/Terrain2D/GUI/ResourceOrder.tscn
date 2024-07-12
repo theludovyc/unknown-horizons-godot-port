@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://dirun2ixxn2h7"]
+[gd_scene load_steps=6 format=3 uid="uid://dirun2ixxn2h7"]
 
 [ext_resource type="Texture2D" uid="uid://dapd765c0bvd8" path="res://Assets/UI/Images/Buttons/delete_small.png" id="1_8qysj"]
+[ext_resource type="Script" path="res://Assets/World/Terrain2D/GUI/ResourceOrder.gd" id="1_ghpx7"]
 [ext_resource type="PackedScene" uid="uid://cx2k8fx6jq1j1" path="res://Assets/World/Terrain2D/GUI/ResourceButton.tscn" id="1_p15xc"]
 [ext_resource type="Texture2D" uid="uid://cswhnjs5r8fkk" path="res://Assets/UI/Images/Buttons/delete_small_h.png" id="2_4qexu"]
 
@@ -11,6 +12,7 @@ offset_right = 174.0
 offset_bottom = 75.0
 size_flags_horizontal = 3
 alignment = 1
+script = ExtResource("1_ghpx7")
 
 [node name="SpinBox" type="SpinBox" parent="."]
 layout_mode = 2
