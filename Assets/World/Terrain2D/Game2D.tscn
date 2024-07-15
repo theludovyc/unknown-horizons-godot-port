@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://bbbuj3ne5rupv"]
+[gd_scene load_steps=11 format=3 uid="uid://bbbuj3ne5rupv"]
 
 [ext_resource type="Script" path="res://Assets/World/Terrain2D/Game2D.gd" id="1_i3wk0"]
 [ext_resource type="Script" path="res://Assets/World/Terrain2D/EventBus.gd" id="2_jbfdl"]
 [ext_resource type="Texture2D" uid="uid://qwmj7wmlnv8d" path="res://Assets/World/Terrain2D/deep.png" id="2_ymyts"]
+[ext_resource type="Script" path="res://Assets/World/Terrain2D/TheStorage.gd" id="3_4ey5t"]
 [ext_resource type="Script" path="res://Assets/World/Terrain2D/TheFactory.gd" id="3_6uk0m"]
 [ext_resource type="Script" path="res://Assets/World/Terrain2D/TheMarket.gd" id="4_gvgis"]
 [ext_resource type="Script" path="res://Assets/World/Terrain2D/TileMap.gd" id="4_lfw1e"]
@@ -15,6 +16,9 @@ script = ExtResource("1_i3wk0")
 
 [node name="EventBus" type="Node" parent="."]
 script = ExtResource("2_jbfdl")
+
+[node name="TheStorage" type="Node" parent="."]
+script = ExtResource("3_4ey5t")
 
 [node name="TheFactory" type="Node" parent="."]
 script = ExtResource("3_6uk0m")

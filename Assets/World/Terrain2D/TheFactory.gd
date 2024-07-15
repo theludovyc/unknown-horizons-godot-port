@@ -1,8 +1,8 @@
 extends Node
-
-var storage = {}
+class_name TheFactory
 
 @onready var game:Game2D = get_parent()
+@onready var storage = $"../TheStorage"
 @onready var event_bus = $"../EventBus"
 
 # produced type, [needed ticks, needed workers]
@@ -75,22 +75,6 @@ func _on_EventBus_population_updated(population_amount):
 		else:
 			i += 1
 
-func add_resource_to_storage(resource_type:Resources.Types, amount:int):
-	if sign(amount) < 0 and abs(amount) > storage[resource_type]:
-		push_error(name, "Error: cannot consume " + str(amount) + " of " + str(resource_type))
-		
-		storage[resource_type] = 0
-	else:
-		if storage.has(resource_type):
-			storage[resource_type] += amount
-		else:
-			storage[resource_type] = amount
-		
-	event_bus.resource_updated.emit(resource_type, storage[resource_type])
-	
-	if storage[resource_type] == 0:
-		storage.erase(resource_type)
-
 func _on_TheTicker_timeout():
 	for resource_type in production_lines:
 		var line = production_lines[resource_type]
@@ -102,6 +86,6 @@ func _on_TheTicker_timeout():
 			
 			line[Production_Line.current_ticks] = 0
 			
-			add_resource_to_storage(resource_type, line[Production_Line.production_rate])
+			storage.add_resource(resource_type, line[Production_Line.production_rate])
 		
 	pass # Replace with function body.

@@ -9,6 +9,7 @@ class_name Game2D
 
 @onready var node_entities := %Entities
 
+@onready var the_storage := $TheStorage
 @onready var event_bus := $EventBus
 
 @onready var the_factory := $TheFactory
@@ -65,8 +66,8 @@ func _ready():
 	# add some initial resources
 	money = 100
 	
-	the_factory.add_resource_to_storage(Resources.Types.Wood, 2)
-	the_factory.add_resource_to_storage(Resources.Types.Textile, 16)
+	the_storage.add_resource(Resources.Types.Wood, 2)
+	the_storage.add_resource(Resources.Types.Textile, 16)
 	
 	pass # Replace with function body.
 
@@ -77,7 +78,7 @@ func has_resources_to_construct_building(building_type:Buildings.Types) -> bool:
 	var resources_costs = Buildings.Costs[building_type]
 		
 	for cost in resources_costs:
-		if cost[1] > the_factory.storage.get(cost[0], 0):
+		if cost[1] > the_storage.storage.get(cost[0], 0):
 			return false
 			
 	return true
@@ -167,7 +168,7 @@ func _process(delta):
 				var resources_costs = Buildings.Costs[building_type]
 		
 				for cost in resources_costs:
-					the_factory.add_resource_to_storage(cost[0], - cost[1])
+					the_storage.add_resource(cost[0], - cost[1])
 			
 			event_bus.building_created.emit(building_type)
 			
