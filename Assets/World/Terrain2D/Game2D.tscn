@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://bbbuj3ne5rupv"]
+[gd_scene load_steps=10 format=3 uid="uid://bbbuj3ne5rupv"]
 
 [ext_resource type="Script" path="res://Assets/World/Terrain2D/Game2D.gd" id="1_i3wk0"]
 [ext_resource type="Script" path="res://Assets/World/Terrain2D/EventBus.gd" id="2_jbfdl"]
 [ext_resource type="Texture2D" uid="uid://qwmj7wmlnv8d" path="res://Assets/World/Terrain2D/deep.png" id="2_ymyts"]
 [ext_resource type="Script" path="res://Assets/World/Terrain2D/TheFactory.gd" id="3_6uk0m"]
+[ext_resource type="Script" path="res://Assets/World/Terrain2D/TheMarket.gd" id="4_gvgis"]
 [ext_resource type="Script" path="res://Assets/World/Terrain2D/TileMap.gd" id="4_lfw1e"]
 [ext_resource type="TileSet" uid="uid://bhin7dsw4tvvl" path="res://Assets/World/Terrain2D/new_tile_set.tres" id="5_6up2t"]
 [ext_resource type="Script" path="res://Assets/World/Terrain2D/Camera2D.gd" id="5_7hgfn"]
@@ -17,6 +18,9 @@ script = ExtResource("2_jbfdl")
 
 [node name="TheFactory" type="Node" parent="."]
 script = ExtResource("3_6uk0m")
+
+[node name="TheMarket" type="Node" parent="."]
+script = ExtResource("4_gvgis")
 
 [node name="TheTicker" type="Timer" parent="."]
 wait_time = 2.0
@@ -69,3 +73,4 @@ fit_content = true
 
 [connection signal="create_building" from="EventBus" to="." method="_on_EventBus_create_building"]
 [connection signal="timeout" from="TheTicker" to="TheFactory" method="_on_TheTicker_timeout"]
+[connection signal="timeout" from="TheTicker" to="TheMarket" method="_on_TheTicker_timeout"]

@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://dirun2ixxn2h7"]
+[gd_scene load_steps=7 format=3 uid="uid://dirun2ixxn2h7"]
 
 [ext_resource type="Texture2D" uid="uid://dapd765c0bvd8" path="res://Assets/UI/Images/Buttons/delete_small.png" id="1_8qysj"]
 [ext_resource type="Script" path="res://Assets/World/Terrain2D/GUI/ResourceOrder.gd" id="1_ghpx7"]
 [ext_resource type="Texture2D" uid="uid://cswhnjs5r8fkk" path="res://Assets/UI/Images/Buttons/delete_small_h.png" id="2_4qexu"]
+[ext_resource type="Script" path="res://Assets/World/Terrain2D/GUI/CustomSpinBox.gd" id="2_h1671"]
 [ext_resource type="Texture2D" uid="uid://dt1ef2m6h6d7x" path="res://Assets/UI/Icons/Resources/32/placeholder.png" id="4_06w2f"]
 
 [sub_resource type="ImageTexture" id="ImageTexture_0eng7"]
@@ -14,12 +15,13 @@ size_flags_horizontal = 3
 alignment = 1
 script = ExtResource("1_ghpx7")
 
-[node name="SpinBox" type="SpinBox" parent="."]
+[node name="BuySpinBox" type="SpinBox" parent="."]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_icons/updown = SubResource("ImageTexture_0eng7")
 alignment = 1
+script = ExtResource("2_h1671")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
@@ -41,9 +43,12 @@ layout_mode = 2
 text = "000"
 horizontal_alignment = 1
 
-[node name="SpinBox2" type="SpinBox" parent="."]
+[node name="SellSpinBox" type="SpinBox" parent="."]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_icons/updown = SubResource("ImageTexture_0eng7")
 alignment = 1
+
+[connection signal="gui_input" from="BuySpinBox" to="BuySpinBox" method="_on_gui_input"]
+[connection signal="value_changed" from="BuySpinBox" to="." method="_on_BuySpinBox_value_changed"]
