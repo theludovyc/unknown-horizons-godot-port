@@ -1,6 +1,7 @@
 extends Node
 
 @onready var the_storage = $"../TheStorage"
+@onready var the_bank = $"../TheBank"
 @onready var event_bus:EventBus = $"../EventBus"
 
 enum Orders{buy, sell}
@@ -41,8 +42,5 @@ func _on_TheTicker_timeout():
 		current_ticks = 0
 		
 		for order_key in orders:
-			# TODO consume money
-			var buy_amount:int = orders[order_key][Orders.buy]
-			
-			if buy_amount > 0:
+			if the_bank.try_to_buy_resource(order_key, orders[order_key][Orders.buy]):
 				the_storage.add_resource(order_key, orders[order_key][Orders.buy])

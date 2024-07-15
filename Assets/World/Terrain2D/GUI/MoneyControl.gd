@@ -10,6 +10,8 @@ func _ready():
 		var event_bus = current_node.get_node("EventBus")
 		
 		event_bus.connect("money_updated", _on_EventBus_money_updated)
+		
+	$TextureButton.get_node("TextureRect").texture = TheBank.money_icon
 
 func _on_EventBus_money_updated(amount):
 	label_amount.text = str(amount)

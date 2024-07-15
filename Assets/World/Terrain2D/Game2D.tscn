@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bbbuj3ne5rupv"]
+[gd_scene load_steps=12 format=3 uid="uid://bbbuj3ne5rupv"]
 
 [ext_resource type="Script" path="res://Assets/World/Terrain2D/Game2D.gd" id="1_i3wk0"]
 [ext_resource type="Script" path="res://Assets/World/Terrain2D/EventBus.gd" id="2_jbfdl"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://Assets/World/Terrain2D/TheFactory.gd" id="3_6uk0m"]
 [ext_resource type="Script" path="res://Assets/World/Terrain2D/TheMarket.gd" id="4_gvgis"]
 [ext_resource type="Script" path="res://Assets/World/Terrain2D/TileMap.gd" id="4_lfw1e"]
+[ext_resource type="Script" path="res://Assets/World/Terrain2D/TheBank.gd" id="4_s5v76"]
 [ext_resource type="TileSet" uid="uid://bhin7dsw4tvvl" path="res://Assets/World/Terrain2D/new_tile_set.tres" id="5_6up2t"]
 [ext_resource type="Script" path="res://Assets/World/Terrain2D/Camera2D.gd" id="5_7hgfn"]
 [ext_resource type="PackedScene" uid="uid://b3s7eqy0blp6g" path="res://Assets/World/Terrain2D/GUI/GUI.tscn" id="6_lovin"]
@@ -19,6 +20,9 @@ script = ExtResource("2_jbfdl")
 
 [node name="TheStorage" type="Node" parent="."]
 script = ExtResource("3_4ey5t")
+
+[node name="TheBank" type="Node" parent="."]
+script = ExtResource("4_s5v76")
 
 [node name="TheFactory" type="Node" parent="."]
 script = ExtResource("3_6uk0m")

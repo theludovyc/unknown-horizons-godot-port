@@ -338,7 +338,7 @@ layout_mode = 2
 script = ExtResource("37_dntbd")
 
 [node name="TextureButton" parent="Money+Resources/ControlMoney" index="1"]
-_type = 2
+script = null
 
 [node name="Resources" type="HBoxContainer" parent="Money+Resources"]
 layout_mode = 2

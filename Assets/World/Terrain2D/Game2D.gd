@@ -10,6 +10,7 @@ class_name Game2D
 @onready var node_entities := %Entities
 
 @onready var the_storage := $TheStorage
+@onready var the_bank := $TheBank
 @onready var event_bus := $EventBus
 
 @onready var the_factory := $TheFactory
@@ -34,11 +35,6 @@ var population := 0 :
 		population = value
 		event_bus.population_updated.emit(value)
 		event_bus.available_workers_updated.emit(population - the_factory.workers)
-		
-var money := 0 :
-	set(value):
-		money = value
-		event_bus.money_updated.emit(value)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -64,7 +60,7 @@ func _ready():
 	cam.reset_smoothing()
 	
 	# add some initial resources
-	money = 100
+	the_bank.money = 100
 	
 	the_storage.add_resource(Resources.Types.Wood, 2)
 	the_storage.add_resource(Resources.Types.Textile, 16)
@@ -134,7 +130,7 @@ func _process(delta):
 		
 		if trees_to_destroy >= 0 and \
 		(trees_to_destroy_final_cost == 0 or \
-		(trees_to_destroy_final_cost > 0 and trees_to_destroy_final_cost <= money)) \
+		(trees_to_destroy_final_cost > 0 and trees_to_destroy_final_cost <= the_bank.money)) \
 		and has_resources_to_construct_building(building_type):
 			is_constructible = true
 		
@@ -162,7 +158,7 @@ func _process(delta):
 			if trees_to_destroy_final_cost > 0:
 				gui.set_rtl_visibility(false)
 			
-				money -= trees_to_destroy_final_cost
+				the_bank.money -= trees_to_destroy_final_cost
 			
 			if Buildings.Costs.has(building_type):
 				var resources_costs = Buildings.Costs[building_type]

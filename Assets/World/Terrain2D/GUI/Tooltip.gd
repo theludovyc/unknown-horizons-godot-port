@@ -23,7 +23,7 @@ func set_building_info(building_type:Buildings.Types):
 func set_money_production_rate_info(production_rate:int = 0):
 	rtl.clear()
 	rtl.append_text("[center]")
-	rtl.add_image(Resources.Icons[Resources.Types.Money], 20)
+	rtl.add_image(TheBank.money_icon, 20)
 	
 	var text_sign = "+" if production_rate >= 0 else "-"
 	
