@@ -75,7 +75,7 @@ func _on_EventBus_population_updated(population_amount):
 		else:
 			i += 1
 
-func _on_TheTicker_timeout():
+func _on_TheTicker_tick():
 	for resource_type in production_lines:
 		var line = production_lines[resource_type]
 		

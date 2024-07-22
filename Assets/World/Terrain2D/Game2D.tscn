@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bbbuj3ne5rupv"]
+[gd_scene load_steps=13 format=3 uid="uid://bbbuj3ne5rupv"]
 
 [ext_resource type="Script" path="res://Assets/World/Terrain2D/Game2D.gd" id="1_i3wk0"]
 [ext_resource type="Script" path="res://Assets/World/Terrain2D/EventBus.gd" id="2_jbfdl"]
@@ -11,6 +11,7 @@
 [ext_resource type="TileSet" uid="uid://bhin7dsw4tvvl" path="res://Assets/World/Terrain2D/new_tile_set.tres" id="5_6up2t"]
 [ext_resource type="Script" path="res://Assets/World/Terrain2D/Camera2D.gd" id="5_7hgfn"]
 [ext_resource type="PackedScene" uid="uid://b3s7eqy0blp6g" path="res://Assets/World/Terrain2D/GUI/GUI.tscn" id="6_lovin"]
+[ext_resource type="Script" path="res://Assets/World/Terrain2D/TheTicker.gd" id="7_41bva"]
 
 [node name="Game2D" type="Node"]
 script = ExtResource("1_i3wk0")
@@ -33,6 +34,7 @@ script = ExtResource("4_gvgis")
 [node name="TheTicker" type="Timer" parent="."]
 wait_time = 2.0
 autostart = true
+script = ExtResource("7_41bva")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position_smoothing_enabled = true
@@ -80,5 +82,6 @@ fit_content = true
 [node name="GUI" parent="." instance=ExtResource("6_lovin")]
 
 [connection signal="create_building" from="EventBus" to="." method="_on_EventBus_create_building"]
-[connection signal="timeout" from="TheTicker" to="TheFactory" method="_on_TheTicker_timeout"]
-[connection signal="timeout" from="TheTicker" to="TheMarket" method="_on_TheTicker_timeout"]
+[connection signal="cycle" from="TheTicker" to="TheMarket" method="_on_TheTicker_cycle"]
+[connection signal="tick" from="TheTicker" to="TheFactory" method="_on_TheTicker_tick"]
+[connection signal="timeout" from="TheTicker" to="TheTicker" method="_on_timeout"]

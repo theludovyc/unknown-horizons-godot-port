@@ -10,9 +10,6 @@ class Order:
 
 var orders = {}
 
-var ticks_cooldown := 2
-var current_ticks = 0
-
 func _ready():
 	event_bus.ask_create_new_order.connect(_on_ask_create_new_order)
 	event_bus.ask_update_order_buy.connect(_on_ask_update_order_buy)
@@ -47,14 +44,9 @@ func _on_ask_update_order_buy(resource_type:Resources.Types, buy_amount:int):
 func _on_ask_update_order_sell(resource_type:Resources.Types, sell_amount:int):
 	pass
 
-func _on_TheTicker_timeout():
-	current_ticks += 1
-	
-	if current_ticks >= ticks_cooldown:
-		current_ticks = 0
-		
-		for order_key in orders:
-			var buy_amount = orders[order_key].buy_amount
-			
-			if the_bank.try_to_buy_resource(order_key, buy_amount):
-				the_storage.add_resource(order_key, buy_amount)
+func _on_TheTicker_cycle():
+	for order_key in orders:
+		var buy_amount = orders[order_key].buy_amount
+
+		if the_bank.try_to_buy_resource(order_key, buy_amount):
+			the_storage.add_resource(order_key, buy_amount)
