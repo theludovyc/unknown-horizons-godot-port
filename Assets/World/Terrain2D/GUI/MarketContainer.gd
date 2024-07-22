@@ -8,6 +8,8 @@ var resource_order_scene = preload("res://Assets/World/Terrain2D/GUI/ResourceOrd
 
 @onready var order_container = %OrderContainer
 
+@onready var tooltip := %WidgetTooltip
+
 var order_nodes = {}
 
 func _ready():
@@ -18,6 +20,8 @@ func _ready():
 		
 		event_bus.send_create_new_order.connect(_on_receive_create_new_order)
 		event_bus.send_update_order_buy.connect(_on_receive_update_order_buy)
+		event_bus.money_production_rate_updated.connect(
+			_on_receive_money_production_rate_updated)
 	
 	resource_popup.result.connect(_on_ResourcePopup_result)
 
@@ -42,3 +46,6 @@ func _on_receive_update_order_buy(resource_type:Resources.Types, buy_amount:int)
 		pass
 		
 	order_nodes[resource_type].force_buy_amount(buy_amount)
+
+func _on_receive_money_production_rate_updated(production_rate):
+	tooltip.set_money_production_rate_info(production_rate)

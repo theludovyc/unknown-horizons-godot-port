@@ -13,10 +13,11 @@ const Icons = {
 
 enum LevelTypes{
 	Gathered,
-	TransformedOnce
+	TransformedOnce,
+	TransformedTwice
 }
 
 const Levels = {
 	Types.Wood:LevelTypes.Gathered,
-	Types.Textile:LevelTypes.TransformedOnce
+	Types.Textile:LevelTypes.TransformedTwice
 }

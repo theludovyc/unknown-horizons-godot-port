@@ -25,7 +25,7 @@ func set_money_production_rate_info(production_rate:int = 0):
 	rtl.append_text("[center]")
 	rtl.add_image(TheBank.money_icon, 20)
 	
-	var text_sign = "+" if production_rate >= 0 else "-"
+	var text_sign = "+" if production_rate >= 0 else ""
 	
 	rtl.append_text("(" + text_sign + str(production_rate) + ")")
 	pass
