@@ -5,6 +5,12 @@ var storage = {}
 
 @onready var event_bus = $"../EventBus"
 
+@onready var the_factory := $"../TheFactory"
+
+@onready var the_market := $"../TheMarket"
+
+@onready var the_ticker := $"../TheTicker"
+
 func add_resource(resource_type:Resources.Types, amount:int):
 	if sign(amount) < 0 and abs(amount) > storage[resource_type]:
 		push_error(name, "Error: cannot consume " + str(amount) + " of " + str(resource_type))
@@ -20,3 +26,13 @@ func add_resource(resource_type:Resources.Types, amount:int):
 	
 	if storage[resource_type] == 0:
 		storage.erase(resource_type)
+
+func update_global_production_rate(resource_type:Resources.Types):
+	var factory_per_cycle = \
+		the_factory.get_production_rate_per_tick(resource_type) * \
+		the_ticker.cycle_cooldown
+	
+	event_bus.resource_prodution_rate_updated.emit(resource_type,
+		factory_per_cycle + \
+		the_market.get_production_rate_per_cycle(resource_type))
+	

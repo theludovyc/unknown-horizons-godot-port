@@ -18,6 +18,14 @@ func _ready():
 func get_resource_cost(resource_type:Resources.Types) -> int:
 	return (Resources.Levels[resource_type] + 1)
 
+func get_production_rate_per_cycle(resource_type:Resources.Types) -> int:
+	if not orders.has(resource_type):
+		return 0
+		
+	var order = orders[resource_type]
+	
+	return order.buy_amount - order.sell_amount
+
 func _on_ask_create_new_order(resource_type:Resources.Types):
 	if orders.has(resource_type):
 		# ERROR
@@ -40,6 +48,8 @@ func _on_ask_update_order_buy(resource_type:Resources.Types, buy_amount:int):
 	orders[resource_type].buy_amount = buy_amount
 	
 	the_bank.recalculate_orders_cost()
+	
+	the_storage.update_global_production_rate(resource_type)
 	
 func _on_ask_update_order_sell(resource_type:Resources.Types, sell_amount:int):
 	pass
