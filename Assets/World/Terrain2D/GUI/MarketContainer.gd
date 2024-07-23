@@ -19,6 +19,7 @@ func _ready():
 		event_bus = current_scene.get_node("EventBus") as EventBus
 		
 		event_bus.send_create_new_order.connect(_on_receive_create_new_order)
+		event_bus.send_remove_order.connect(_on_receive_remove_order)
 		event_bus.send_update_order_buy.connect(_on_receive_update_order_buy)
 		event_bus.money_production_rate_updated.connect(
 			_on_receive_money_production_rate_updated)
@@ -39,7 +40,12 @@ func _on_receive_create_new_order(resource_type:Resources.Types):
 	resource_order._resource_type = resource_type
 	
 	order_nodes[resource_type] = resource_order
+
+func _on_receive_remove_order(resource_type:Resources.Types):
+	order_nodes[resource_type].queue_free()
 	
+	order_nodes.erase(resource_type)
+
 func _on_receive_update_order_buy(resource_type:Resources.Types, buy_amount:int):
 	if not order_nodes.has(resource_type):
 		#ERROR

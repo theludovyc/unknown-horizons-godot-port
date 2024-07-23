@@ -6,6 +6,8 @@ var event_bus:EventBus = null
 
 @onready var buy_spin_box = $BuySpinBox
 
+@onready var delete_button = $VBoxContainer/DeleteButton
+
 var _resource_type:Resources.Types:
 	set(value):
 		_resource_type = value
@@ -30,3 +32,9 @@ func force_buy_value(buy_amount):
 func _on_SellSpinBox_value_changed(value):
 	if event_bus != null:
 		event_bus.ask_update_order_sell.emit(_resource_type, value)
+
+func _on_DeleteButton_pressed():
+	delete_button.disabled = true
+	
+	if event_bus != null:
+		event_bus.ask_remove_order.emit(_resource_type)

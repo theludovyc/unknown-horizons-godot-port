@@ -12,6 +12,7 @@ var orders = {}
 
 func _ready():
 	event_bus.ask_create_new_order.connect(_on_ask_create_new_order)
+	event_bus.ask_remove_order.connect(_on_ask_remove_order)
 	event_bus.ask_update_order_buy.connect(_on_ask_update_order_buy)
 	event_bus.ask_update_order_sell.connect(_on_ask_update_order_sell)
 
@@ -39,6 +40,15 @@ func _on_ask_create_new_order(resource_type:Resources.Types):
 	
 	if event_bus != null:
 		event_bus.send_create_new_order.emit(resource_type)
+
+func _on_ask_remove_order(resource_type:Resources.Types):
+	if event_bus != null:
+		event_bus.send_remove_order.emit(resource_type)
+		
+	if orders.erase(resource_type):
+		the_storage.update_global_production_rate(resource_type)
+	
+		the_bank.recalculate_orders_cost()
 
 func _on_ask_update_order_buy(resource_type:Resources.Types, buy_amount:int):
 	if not orders.has(resource_type):
