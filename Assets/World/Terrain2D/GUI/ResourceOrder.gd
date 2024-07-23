@@ -8,6 +8,8 @@ var event_bus:EventBus = null
 
 @onready var delete_button = $VBoxContainer/DeleteButton
 
+@onready var label = $VBoxContainer/Label
+
 var _resource_type:Resources.Types:
 	set(value):
 		_resource_type = value
@@ -21,6 +23,8 @@ func _ready():
 	
 	if current_scene.has_node("EventBus"):
 		event_bus = current_scene.get_node("EventBus") as EventBus
+		
+		event_bus.resource_prodution_rate_updated.connect(_on_resource_prodution_rate_updated)
 
 func _on_BuySpinBox_value_changed(value):
 	if event_bus != null:
@@ -38,3 +42,7 @@ func _on_DeleteButton_pressed():
 	
 	if event_bus != null:
 		event_bus.ask_remove_order.emit(_resource_type)
+
+func _on_resource_prodution_rate_updated(resource_type:Resources.Types, rate:int):
+	if resource_type == _resource_type:
+		label.text = "(" + Helper.get_string_from_signed_int(rate) + ")"

@@ -40,7 +40,7 @@ texture = ExtResource("4_06w2f")
 
 [node name="Label" type="Label" parent="VBoxContainer"]
 layout_mode = 2
-text = "000"
+text = "(+0)"
 horizontal_alignment = 1
 
 [node name="SellSpinBox" type="SpinBox" parent="."]
