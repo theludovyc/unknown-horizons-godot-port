@@ -24,6 +24,9 @@ func on_MenuButton_pressed(menu:WidgetMenus):
 
 func _on_BuildMenuButton_pressed():
 	on_MenuButton_pressed(WidgetMenus.Build)
+	
+	if tooltip.visible:
+		tooltip.visible = false
 
 func _on_MarketMenuButton_pressed():
 	on_MenuButton_pressed(WidgetMenus.Market)
