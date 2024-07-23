@@ -26,3 +26,7 @@ func _on_BuySpinBox_value_changed(value):
 	
 func force_buy_value(buy_amount):
 	buy_spin_box.set_value_no_signal(buy_amount)
+
+func _on_SellSpinBox_value_changed(value):
+	if event_bus != null:
+		event_bus.ask_update_order_sell.emit(_resource_type, value)

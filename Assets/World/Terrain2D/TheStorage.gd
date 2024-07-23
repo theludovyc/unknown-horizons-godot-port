@@ -27,6 +27,25 @@ func add_resource(resource_type:Resources.Types, amount:int):
 	if storage[resource_type] == 0:
 		storage.erase(resource_type)
 
+func get_resource_amount(resource_type:Resources.Types):
+	if not storage.has(resource_type):
+		return 0
+		
+	return storage[resource_type]
+
+func try_to_sell_resource(resource_type:Resources.Types, amount:int) -> bool:
+	if not storage.has(resource_type) or amount <= 0:
+		return false
+	
+	if storage[resource_type] >= amount:
+		storage[resource_type] -= amount
+		
+		event_bus.resource_updated.emit(resource_type, storage[resource_type])
+		
+		return true
+		
+	return false
+
 func update_global_production_rate(resource_type:Resources.Types):
 	var factory_per_cycle = \
 		the_factory.get_production_rate_per_tick(resource_type) * \

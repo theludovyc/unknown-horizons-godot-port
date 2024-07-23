@@ -10,5 +10,4 @@ func _ready():
 	pass # Replace with function body.
 
 func _on_EventBus_available_workers_updated_updated(available_workers_amount):
-	var sign = "+" if available_workers_amount >= 0 else ""
-	text = "(" + sign + str(available_workers_amount) + ")"
+	text = "(" + Helper.get_string_from_signed_int(available_workers_amount) + ")"

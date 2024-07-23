@@ -16,6 +16,10 @@ func _ready():
 	event_bus.ask_update_order_sell.connect(_on_ask_update_order_sell)
 
 func get_resource_cost(resource_type:Resources.Types) -> int:
+	if not Resources.Levels.has(resource_type):
+		# ERROR
+		return 0
+	
 	return (Resources.Levels[resource_type] + 1)
 
 func get_production_rate_per_cycle(resource_type:Resources.Types) -> int:
@@ -52,11 +56,26 @@ func _on_ask_update_order_buy(resource_type:Resources.Types, buy_amount:int):
 	the_storage.update_global_production_rate(resource_type)
 	
 func _on_ask_update_order_sell(resource_type:Resources.Types, sell_amount:int):
-	pass
+	if not orders.has(resource_type):
+		# ERROR
+		return
+	
+	if sell_amount < 0:
+		# ERROR
+		return
+		
+	orders[resource_type].sell_amount = sell_amount
+	
+	the_bank.recalculate_orders_cost()
+	
+	the_storage.update_global_production_rate(resource_type)
 
 func _on_TheTicker_cycle():
 	for order_key in orders:
-		var buy_amount = orders[order_key].buy_amount
+		var order = orders[order_key]
 
-		if the_bank.try_to_buy_resource(order_key, buy_amount):
-			the_storage.add_resource(order_key, buy_amount)
+		if the_bank.try_to_buy_resource(order_key, order.buy_amount):
+			the_storage.add_resource(order_key, order.buy_amount)
+		
+		if the_storage.try_to_sell_resource(order_key, order.sell_amount):
+			the_bank.conclude_sale(order_key, order.sell_amount)

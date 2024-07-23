@@ -20,4 +20,4 @@ func _on_EventBus_money_updated(amount):
 	label_amount.text = str(amount)
 	
 func _on_EventBus_money_production_rate_updated(production_rate):
-	label_production_rate.text = "(" + str(production_rate) + ")"
+	label_production_rate.text = "(" + Helper.get_string_from_signed_int(production_rate) + ")"

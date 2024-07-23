@@ -23,6 +23,4 @@ func _on_EventBus_resource_updated(type, amount):
 		
 func _on_EventBus_resource_production_rate_updated(type, rate):
 	if type == resource_type:
-		var text_sign = "+" if rate >= 0 else "-"
-		
-		label_production_rate.text = "(" + text_sign + str(rate) + ")"
+		label_production_rate.text = "(" + Helper.get_string_from_signed_int(rate) + ")"
