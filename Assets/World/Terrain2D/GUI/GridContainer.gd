@@ -37,8 +37,6 @@ func _on_building_event():
 	bot_menu.set_menu_visibility(true)
 	
 func _on_building_button_mouse_entered(building_type:Buildings.Types):
-	prints(name, "hello")
-	
 	tooltip.set_building_info(building_type)
 	tooltip.visible = true
 	
