@@ -81,7 +81,8 @@ fit_content = true
 
 [node name="GUI" parent="." instance=ExtResource("6_lovin")]
 
-[connection signal="create_building" from="EventBus" to="." method="_on_EventBus_create_building"]
+[connection signal="ask_create_building" from="EventBus" to="." method="_on_EventBus_ask_create_building"]
+[connection signal="send_building_selected" from="EventBus" to="." method="_on_EventBus_send_building_selected"]
 [connection signal="cycle" from="TheTicker" to="TheMarket" method="_on_TheTicker_cycle"]
 [connection signal="tick" from="TheTicker" to="TheFactory" method="_on_TheTicker_tick"]
 [connection signal="timeout" from="TheTicker" to="TheTicker" method="_on_timeout"]

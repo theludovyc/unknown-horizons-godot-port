@@ -166,7 +166,7 @@ func _process(delta):
 				for cost in resources_costs:
 					the_storage.add_resource(cost[0], - cost[1])
 			
-			event_bus.building_created.emit(building_type)
+			event_bus.send_building_created.emit(building_type)
 			
 			tm.build_entityStatic(cursor_entity, tile_pos)
 			
@@ -177,7 +177,7 @@ func _process(delta):
 			if trees_to_destroy_final_cost > 0:
 				gui.set_rtl_visibility(false)
 			
-			event_bus.building_creation_aborted.emit(building_type)
+			event_bus.send_building_creation_aborted.emit(building_type)
 			
 			cursor_entity.call_deferred("queue_free")
 			cursor_entity = null
@@ -192,12 +192,12 @@ func instantiate_building(building_type:Buildings.Types) -> Building2D:
 	
 	return instance
 
-func _on_building_selected(building_type:Buildings.Types):
-	prints(name, building_type)
-	pass
-
-func _on_EventBus_create_building(building_type:Buildings.Types):
+func _on_EventBus_ask_create_building(building_type:Buildings.Types):
 	var entity := instantiate_building(building_type)
 	cursor_entity = entity
 	cursor_entity_wait_release = true
 	cursor_entity.modulate = Color(Color.RED, 0.6)
+
+func _on_EventBus_send_building_selected(building_node):
+	prints(name, building_node.building_type)
+	pass
