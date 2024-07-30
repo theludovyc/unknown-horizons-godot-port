@@ -197,7 +197,3 @@ func _on_EventBus_ask_create_building(building_type:Buildings.Types):
 	cursor_entity = entity
 	cursor_entity_wait_release = true
 	cursor_entity.modulate = Color(Color.RED, 0.6)
-
-func _on_EventBus_send_building_selected(building_node):
-	prints(name, building_node.building_type)
-	pass

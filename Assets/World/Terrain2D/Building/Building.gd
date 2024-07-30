@@ -10,6 +10,9 @@ signal selected(type)
 var event_bus:EventBus
 
 func _ready():
+	if Engine.is_editor_hint():
+		return
+		
 	var current_scene = get_tree().current_scene
 	
 	if current_scene.has_node("EventBus"):

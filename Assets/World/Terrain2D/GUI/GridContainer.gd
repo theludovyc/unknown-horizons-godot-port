@@ -4,7 +4,7 @@ var event_bus:EventBus
 
 @onready var widget := %Widget
 
-@onready var bot_menu := %BotMenu
+@onready var bottom_container := %BottomContainer
 
 @onready var tooltip := %WidgetTooltip
 
@@ -29,12 +29,12 @@ func _on_building_button_pressed(building_type:Buildings.Types):
 	
 	widget.disable_buttons(true)
 	
-	bot_menu.set_menu_visibility(false)
+	bottom_container.set_menu_visibility(false)
 
 func _on_building_event():
 	widget.disable_buttons(false)
 	
-	bot_menu.set_menu_visibility(true)
+	bottom_container.set_menu_visibility(true)
 	
 func _on_building_button_mouse_entered(building_type:Buildings.Types):
 	tooltip.set_building_info(building_type)
