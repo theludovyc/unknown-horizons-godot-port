@@ -146,11 +146,13 @@ theme_override_styles/panel = SubResource("StyleBoxTexture_q0br5")
 
 [node name="MenuContainer" type="TabContainer" parent="Widget/BottomContainer/PanelContainer"]
 layout_mode = 2
+current_tab = 1
 clip_tabs = false
 tabs_visible = false
 script = ExtResource("5_sjwej")
 
 [node name="MarketContainer" type="VBoxContainer" parent="Widget/BottomContainer/PanelContainer/MenuContainer"]
+visible = false
 layout_mode = 2
 script = ExtResource("7_vhp7j")
 
@@ -189,7 +191,6 @@ layout_mode = 2
 size_flags_horizontal = 6
 
 [node name="BuildGridContainer" type="GridContainer" parent="Widget/BottomContainer/PanelContainer/MenuContainer"]
-visible = false
 layout_mode = 2
 mouse_filter = 2
 columns = 4
@@ -201,7 +202,7 @@ texture_normal = ExtResource("8_04hx7")
 texture_pressed = ExtResource("9_7d646")
 texture_hover = ExtResource("10_na55f")
 script = ExtResource("8_i5i22")
-building_type = 1
+building_id = 1
 
 [node name="BuildLumberjack" type="TextureButton" parent="Widget/BottomContainer/PanelContainer/MenuContainer/BuildGridContainer"]
 layout_mode = 2
@@ -209,7 +210,7 @@ texture_normal = ExtResource("8_8yekw")
 texture_pressed = ExtResource("9_kn7dp")
 texture_hover = ExtResource("10_jbw0d")
 script = ExtResource("8_i5i22")
-building_type = 2
+building_id = 2
 
 [node name="BuildingContainer" type="VBoxContainer" parent="Widget/BottomContainer/PanelContainer/MenuContainer"]
 visible = false

@@ -5,9 +5,9 @@ class_name EventBus
 # send MODEL -> UI
 
 ## BUILDING
-signal ask_create_building(building_type)
-signal send_building_created(building_type)
-signal send_building_creation_aborted(building_type)
+signal ask_create_building(building_id)
+signal send_building_created(building_id)
+signal send_building_creation_aborted(building_id)
 
 signal send_building_selected(building_node)
 

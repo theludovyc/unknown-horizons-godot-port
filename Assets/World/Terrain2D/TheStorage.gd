@@ -54,4 +54,24 @@ func update_global_production_rate(resource_type:Resources.Types):
 	event_bus.resource_prodution_rate_updated.emit(resource_type,
 		factory_per_cycle + \
 		the_market.get_production_rate_per_cycle(resource_type))
+		
+func has_resources_to_construct_building(building_id:Buildings.Ids) -> bool:
+	var building_cost = Buildings.get_building_cost(building_id)
 	
+	if building_cost.is_empty():
+		return true
+		
+	for cost in building_cost:
+		if cost[1] > storage.get(cost[0], 0):
+			return false
+			
+	return true
+	
+func conclude_building_construction(building_id:Buildings.Ids):
+	var building_cost = Buildings.get_building_cost(building_id)
+	
+	if building_cost.is_empty():
+		return
+		
+	for cost in building_cost:
+		add_resource(cost[0], - cost[1])

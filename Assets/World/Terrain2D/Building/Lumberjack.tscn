@@ -12,7 +12,7 @@ centered = false
 offset = Vector2(-64, -112)
 hframes = 4
 script = ExtResource("2_tlcd8")
-building_type = 2
+building_id = 2
 width = 2
 height = 2
 

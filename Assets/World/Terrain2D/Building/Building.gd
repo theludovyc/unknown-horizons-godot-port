@@ -5,7 +5,7 @@ class_name Building2D
 
 signal selected(type)
 
-@export var building_type:Buildings.Types
+@export var building_id:Buildings.Ids
 
 var event_bus:EventBus
 

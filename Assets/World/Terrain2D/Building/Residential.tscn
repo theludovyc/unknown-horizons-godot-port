@@ -12,7 +12,7 @@ centered = false
 offset = Vector2(-64, -112)
 hframes = 4
 script = ExtResource("2_kplai")
-building_type = 1
+building_id = 1
 width = 2
 height = 2
 
