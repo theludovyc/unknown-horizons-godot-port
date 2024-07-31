@@ -11,6 +11,9 @@ const Icons = {
 	Types.Textile:preload("res://Assets/UI/Icons/Resources/32/003.png")
 }
 
+static func get_resource_icon(resource_type:Types) -> Texture2D:
+	return Icons.get(resource_type)
+
 enum LevelTypes{
 	Gathered,
 	TransformedOnce,

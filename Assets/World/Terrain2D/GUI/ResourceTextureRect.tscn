@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://n6f00tsqpgrm"]
+
+[ext_resource type="Script" path="res://Assets/World/Terrain2D/GUI/ResourceTextureRect.gd" id="1_dd2gn"]
+
+[node name="ResourceTextureRect" type="TextureRect"]
+custom_minimum_size = Vector2(32, 0)
+stretch_mode = 3
+script = ExtResource("1_dd2gn")

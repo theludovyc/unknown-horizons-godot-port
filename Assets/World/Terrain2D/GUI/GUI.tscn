@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://b3s7eqy0blp6g"]
+[gd_scene load_steps=57 format=3 uid="uid://b3s7eqy0blp6g"]
 
 [ext_resource type="Script" path="res://Assets/World/Terrain2D/GUI/GUI.gd" id="1_15w01"]
 [ext_resource type="Texture2D" uid="uid://5gbvga1bqpxa" path="res://Assets/UI/Images/Background/Widgets/map_bg.png" id="1_lis5v"]
@@ -31,16 +31,18 @@
 [ext_resource type="Texture2D" uid="uid://b8ks32vn2erej" path="res://Assets/UI/Images/Background/Widgets/tooltip_bg_top.png" id="17_lxyjn"]
 [ext_resource type="Script" path="res://Assets/World/Terrain2D/GUI/LabelPopulation.gd" id="17_v0ai2"]
 [ext_resource type="Script" path="res://Assets/World/Terrain2D/GUI/Tooltip.gd" id="18_divjp"]
-[ext_resource type="Texture2D" uid="uid://dt1ef2m6h6d7x" path="res://Assets/UI/Icons/Resources/32/placeholder.png" id="18_dq6dv"]
 [ext_resource type="Script" path="res://Assets/World/Terrain2D/GUI/BuildingContainer.gd" id="18_nngab"]
 [ext_resource type="Texture2D" uid="uid://rqkqu27konps" path="res://Assets/UI/Icons/Templates/Production/production_arrow.png" id="18_v5i80"]
 [ext_resource type="Script" path="res://Assets/World/Terrain2D/GUI/LabelWorkers.gd" id="18_xklsp"]
 [ext_resource type="Texture2D" uid="uid://dx6qmely0bq45" path="res://Assets/UI/Images/Background/Widgets/tooltip_bg.png" id="18_yoese"]
 [ext_resource type="Texture2D" uid="uid://8immr7brv8eb" path="res://Assets/UI/Images/Background/Widgets/tooltip_bg_middle.png" id="19_28qxy"]
+[ext_resource type="Script" path="res://Assets/World/Terrain2D/GUI/BuildingInfoContainer.gd" id="19_uroop"]
 [ext_resource type="Texture2D" uid="uid://bntbwjpu7i64e" path="res://Assets/UI/Icons/Templates/Production/toggle_active.png" id="19_ykl4j"]
 [ext_resource type="Texture2D" uid="uid://bwf1wdtyfp4ll" path="res://Assets/UI/Icons/Templates/Production/toggle_active_d.png" id="20_0fwfh"]
 [ext_resource type="Texture2D" uid="uid://bjxpcfox7403j" path="res://Assets/UI/Images/Background/Widgets/tooltip_bg_bottom.png" id="20_4xpap"]
+[ext_resource type="Script" path="res://Assets/World/Terrain2D/GUI/BuildingProducingContainer.gd" id="20_6ni15"]
 [ext_resource type="Texture2D" uid="uid://toeqa364p2tp" path="res://Assets/UI/Icons/Resources/32/001.png" id="21_03oya"]
+[ext_resource type="PackedScene" uid="uid://n6f00tsqpgrm" path="res://Assets/World/Terrain2D/GUI/ResourceTextureRect.tscn" id="21_cprbo"]
 [ext_resource type="Texture2D" uid="uid://cvaw1myityac7" path="res://Assets/UI/Icons/Templates/Production/toggle_active_h.png" id="21_v44d5"]
 [ext_resource type="Script" path="res://Assets/World/Terrain2D/GUI/RichTextLabelInfo.gd" id="33_hbac4"]
 [ext_resource type="PackedScene" uid="uid://dm2nc5paqgg5i" path="res://Assets/World/Terrain2D/GUI/ResourceControl.tscn" id="36_hya2t"]
@@ -146,7 +148,7 @@ theme_override_styles/panel = SubResource("StyleBoxTexture_q0br5")
 
 [node name="MenuContainer" type="TabContainer" parent="Widget/BottomContainer/PanelContainer"]
 layout_mode = 2
-current_tab = 1
+current_tab = 2
 clip_tabs = false
 tabs_visible = false
 script = ExtResource("5_sjwej")
@@ -191,6 +193,7 @@ layout_mode = 2
 size_flags_horizontal = 6
 
 [node name="BuildGridContainer" type="GridContainer" parent="Widget/BottomContainer/PanelContainer/MenuContainer"]
+visible = false
 layout_mode = 2
 mouse_filter = 2
 columns = 4
@@ -213,7 +216,6 @@ script = ExtResource("8_i5i22")
 building_id = 2
 
 [node name="BuildingContainer" type="VBoxContainer" parent="Widget/BottomContainer/PanelContainer/MenuContainer"]
-visible = false
 layout_mode = 2
 script = ExtResource("18_nngab")
 
@@ -226,73 +228,74 @@ horizontal_alignment = 1
 layout_mode = 2
 theme_override_styles/separator = SubResource("StyleBoxFlat_or0xk")
 
-[node name="ProducingContainer" type="VBoxContainer" parent="Widget/BottomContainer/PanelContainer/MenuContainer/BuildingContainer"]
-visible = false
+[node name="BuildingInfoContainer" type="TabContainer" parent="Widget/BottomContainer/PanelContainer/MenuContainer/BuildingContainer"]
 layout_mode = 2
+clip_tabs = false
+tabs_visible = false
+script = ExtResource("19_uroop")
 
-[node name="GridContainer" type="GridContainer" parent="Widget/BottomContainer/PanelContainer/MenuContainer/BuildingContainer/ProducingContainer"]
+[node name="BuildingProducingContainer" type="VBoxContainer" parent="Widget/BottomContainer/PanelContainer/MenuContainer/BuildingContainer/BuildingInfoContainer"]
+layout_mode = 2
+script = ExtResource("20_6ni15")
+
+[node name="GridContainer" type="GridContainer" parent="Widget/BottomContainer/PanelContainer/MenuContainer/BuildingContainer/BuildingInfoContainer/BuildingProducingContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 columns = 3
 
-[node name="ResourceIn" type="TextureRect" parent="Widget/BottomContainer/PanelContainer/MenuContainer/BuildingContainer/ProducingContainer/GridContainer"]
-custom_minimum_size = Vector2(32, 0)
-layout_mode = 2
-stretch_mode = 3
-
-[node name="MarginContainer" type="MarginContainer" parent="Widget/BottomContainer/PanelContainer/MenuContainer/BuildingContainer/ProducingContainer/GridContainer"]
+[node name="ResourceIn" parent="Widget/BottomContainer/PanelContainer/MenuContainer/BuildingContainer/BuildingInfoContainer/BuildingProducingContainer/GridContainer" instance=ExtResource("21_cprbo")]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="Widget/BottomContainer/PanelContainer/MenuContainer/BuildingContainer/ProducingContainer/GridContainer/MarginContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Widget/BottomContainer/PanelContainer/MenuContainer/BuildingContainer/BuildingInfoContainer/BuildingProducingContainer/GridContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Widget/BottomContainer/PanelContainer/MenuContainer/BuildingContainer/BuildingInfoContainer/BuildingProducingContainer/GridContainer/MarginContainer"]
 layout_mode = 2
 texture = ExtResource("18_v5i80")
 stretch_mode = 3
 
-[node name="TextureButton" type="TextureButton" parent="Widget/BottomContainer/PanelContainer/MenuContainer/BuildingContainer/ProducingContainer/GridContainer/MarginContainer"]
+[node name="TextureButton" type="TextureButton" parent="Widget/BottomContainer/PanelContainer/MenuContainer/BuildingContainer/BuildingInfoContainer/BuildingProducingContainer/GridContainer/MarginContainer"]
 layout_mode = 2
 texture_normal = ExtResource("19_ykl4j")
 texture_pressed = ExtResource("20_0fwfh")
 texture_hover = ExtResource("21_v44d5")
 stretch_mode = 5
 
-[node name="ResourceOut" type="TextureRect" parent="Widget/BottomContainer/PanelContainer/MenuContainer/BuildingContainer/ProducingContainer/GridContainer"]
-custom_minimum_size = Vector2(32, 0)
+[node name="ResourceOut2" parent="Widget/BottomContainer/PanelContainer/MenuContainer/BuildingContainer/BuildingInfoContainer/BuildingProducingContainer/GridContainer" instance=ExtResource("21_cprbo")]
 layout_mode = 2
-texture = ExtResource("18_dq6dv")
-stretch_mode = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Widget/BottomContainer/PanelContainer/MenuContainer/BuildingContainer/ProducingContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Widget/BottomContainer/PanelContainer/MenuContainer/BuildingContainer/BuildingInfoContainer/BuildingProducingContainer"]
 layout_mode = 2
 theme_override_constants/separation = 50
 alignment = 1
 
-[node name="MoneyContainer" type="HBoxContainer" parent="Widget/BottomContainer/PanelContainer/MenuContainer/BuildingContainer/ProducingContainer/HBoxContainer"]
+[node name="MoneyContainer" type="HBoxContainer" parent="Widget/BottomContainer/PanelContainer/MenuContainer/BuildingContainer/BuildingInfoContainer/BuildingProducingContainer/HBoxContainer"]
 visible = false
 layout_mode = 2
 theme_override_constants/separation = 6
 alignment = 1
 
-[node name="ValueLabel" type="Label" parent="Widget/BottomContainer/PanelContainer/MenuContainer/BuildingContainer/ProducingContainer/HBoxContainer/MoneyContainer"]
+[node name="ValueLabel" type="Label" parent="Widget/BottomContainer/PanelContainer/MenuContainer/BuildingContainer/BuildingInfoContainer/BuildingProducingContainer/HBoxContainer/MoneyContainer"]
 layout_mode = 2
 text = "1"
 
-[node name="TextureRect" type="TextureRect" parent="Widget/BottomContainer/PanelContainer/MenuContainer/BuildingContainer/ProducingContainer/HBoxContainer/MoneyContainer"]
+[node name="TextureRect" type="TextureRect" parent="Widget/BottomContainer/PanelContainer/MenuContainer/BuildingContainer/BuildingInfoContainer/BuildingProducingContainer/HBoxContainer/MoneyContainer"]
 custom_minimum_size = Vector2(18, 18)
 layout_mode = 2
 texture = ExtResource("21_03oya")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="WorkerContainer" type="HBoxContainer" parent="Widget/BottomContainer/PanelContainer/MenuContainer/BuildingContainer/ProducingContainer/HBoxContainer"]
+[node name="WorkerContainer" type="HBoxContainer" parent="Widget/BottomContainer/PanelContainer/MenuContainer/BuildingContainer/BuildingInfoContainer/BuildingProducingContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 0
 alignment = 1
 
-[node name="ValueLabel" type="Label" parent="Widget/BottomContainer/PanelContainer/MenuContainer/BuildingContainer/ProducingContainer/HBoxContainer/WorkerContainer"]
+[node name="ValueLabel" type="Label" parent="Widget/BottomContainer/PanelContainer/MenuContainer/BuildingContainer/BuildingInfoContainer/BuildingProducingContainer/HBoxContainer/WorkerContainer"]
 layout_mode = 2
 text = "1"
 
-[node name="TextureRect" type="TextureRect" parent="Widget/BottomContainer/PanelContainer/MenuContainer/BuildingContainer/ProducingContainer/HBoxContainer/WorkerContainer"]
+[node name="TextureRect" type="TextureRect" parent="Widget/BottomContainer/PanelContainer/MenuContainer/BuildingContainer/BuildingInfoContainer/BuildingProducingContainer/HBoxContainer/WorkerContainer"]
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
 texture = ExtResource("15_p3ujw")
