@@ -49,6 +49,8 @@ func _ready():
 	
 	tm.build_entityStatic(warehouse, warehouse_center_tile)
 	
+	warehouse.build()
+	
 	# set camera limits
 	var pos_limits = tm.get_pos_limits()
 	
@@ -136,12 +138,14 @@ func _process(delta):
 		if not cursor_entity_wait_release \
 		and is_constructible \
 		and Input.is_action_just_pressed("alt_command"):
-			match(building_id):
-				Buildings.Ids.Tent:
-					population += 4
+			match(Buildings.get_building_type(building_id)):
+				Buildings.Types.Residential:
+					population += Buildings.get_max_workers(building_id)
 					
-				Buildings.Ids.Lumberjack:
-					the_factory.add_workers(Resources.Types.Wood, 4)
+				Buildings.Types.Producing:
+					the_factory.add_workers(
+						Buildings.get_produce_resource(building_id),
+						Buildings.get_max_workers(building_id))
 			
 			if trees_to_destroy_final_cost > 0:
 				gui.set_rtl_visibility(false)
@@ -155,6 +159,7 @@ func _process(delta):
 			tm.build_entityStatic(cursor_entity, tile_pos)
 			
 			cursor_entity.modulate = Color.WHITE
+			cursor_entity.build()
 			cursor_entity = null
 		
 		if cursor_entity and Input.is_action_just_pressed("main_command"):

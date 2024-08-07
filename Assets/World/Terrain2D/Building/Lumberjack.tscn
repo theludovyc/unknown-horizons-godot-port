@@ -21,5 +21,3 @@ height = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0, -17)
 shape = SubResource("RectangleShape2D_mo1hb")
-
-[connection signal="input_event" from="Area2D" to="." method="_on_Area2d_input_event"]
