@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://b3s7eqy0blp6g"]
+[gd_scene load_steps=59 format=3 uid="uid://b3s7eqy0blp6g"]
 
 [ext_resource type="Script" path="res://Assets/World/Terrain2D/GUI/GUI.gd" id="1_15w01"]
 [ext_resource type="Texture2D" uid="uid://5gbvga1bqpxa" path="res://Assets/UI/Images/Background/Widgets/map_bg.png" id="1_lis5v"]
@@ -39,6 +39,7 @@
 [ext_resource type="Script" path="res://Assets/World/Terrain2D/GUI/BuildingInfoContainer.gd" id="19_uroop"]
 [ext_resource type="Texture2D" uid="uid://bntbwjpu7i64e" path="res://Assets/UI/Icons/Templates/Production/toggle_active.png" id="19_ykl4j"]
 [ext_resource type="Texture2D" uid="uid://bwf1wdtyfp4ll" path="res://Assets/UI/Icons/Templates/Production/toggle_active_d.png" id="20_0fwfh"]
+[ext_resource type="Script" path="res://Assets/World/Terrain2D/GUI/BuildingResidentialContainer.gd" id="20_4inxt"]
 [ext_resource type="Texture2D" uid="uid://bjxpcfox7403j" path="res://Assets/UI/Images/Background/Widgets/tooltip_bg_bottom.png" id="20_4xpap"]
 [ext_resource type="Script" path="res://Assets/World/Terrain2D/GUI/BuildingProducingContainer.gd" id="20_6ni15"]
 [ext_resource type="Texture2D" uid="uid://toeqa364p2tp" path="res://Assets/UI/Icons/Resources/32/001.png" id="21_03oya"]
@@ -235,7 +236,25 @@ clip_tabs = false
 tabs_visible = false
 script = ExtResource("19_uroop")
 
+[node name="BuildingResidentialContainer" type="HBoxContainer" parent="Widget/BottomContainer/PanelContainer/MenuContainer/BuildingContainer/BuildingInfoContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+script = ExtResource("20_4inxt")
+
+[node name="ValueLabel" type="Label" parent="Widget/BottomContainer/PanelContainer/MenuContainer/BuildingContainer/BuildingInfoContainer/BuildingResidentialContainer"]
+layout_mode = 2
+text = "0"
+
+[node name="TextureRect" type="TextureRect" parent="Widget/BottomContainer/PanelContainer/MenuContainer/BuildingContainer/BuildingInfoContainer/BuildingResidentialContainer"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+texture = ExtResource("15_p3ujw")
+expand_mode = 1
+stretch_mode = 5
+
 [node name="BuildingProducingContainer" type="VBoxContainer" parent="Widget/BottomContainer/PanelContainer/MenuContainer/BuildingContainer/BuildingInfoContainer"]
+visible = false
 layout_mode = 2
 script = ExtResource("20_6ni15")
 

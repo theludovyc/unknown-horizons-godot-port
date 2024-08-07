@@ -53,6 +53,16 @@ func _on_MarketMenuButton_pressed():
 func _on_receive_building_selected(building:Building2D):
 	bottom_container.set_menu_visibility(true)
 	
+	if Buildings.get_building_type(building.building_id) == Buildings.Types.Warehouse:
+		if current_tab != WidgetMenus.Market:
+			current_tab = WidgetMenus.Market
+		
+		if tooltip.visible == false:
+			tooltip.visible = true
+			tooltip.set_money_production_rate_info()
+			
+		return
+	
 	if current_tab != WidgetMenus.Building:
 		current_tab = WidgetMenus.Building
 		
