@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://b3s7eqy0blp6g"]
+[gd_scene load_steps=58 format=3 uid="uid://b3s7eqy0blp6g"]
 
 [ext_resource type="Script" path="res://Assets/World/Terrain2D/GUI/GUI.gd" id="1_15w01"]
 [ext_resource type="Texture2D" uid="uid://5gbvga1bqpxa" path="res://Assets/UI/Images/Background/Widgets/map_bg.png" id="1_lis5v"]
@@ -44,6 +44,7 @@
 [ext_resource type="Texture2D" uid="uid://toeqa364p2tp" path="res://Assets/UI/Icons/Resources/32/001.png" id="21_03oya"]
 [ext_resource type="PackedScene" uid="uid://n6f00tsqpgrm" path="res://Assets/World/Terrain2D/GUI/ResourceTextureRect.tscn" id="21_cprbo"]
 [ext_resource type="Texture2D" uid="uid://cvaw1myityac7" path="res://Assets/UI/Icons/Templates/Production/toggle_active_h.png" id="21_v44d5"]
+[ext_resource type="Texture2D" uid="uid://b6nuq70hohg0w" path="res://Assets/UI/Icons/Widgets/MiniMap/speed_up.png" id="26_j0dpo"]
 [ext_resource type="Script" path="res://Assets/World/Terrain2D/GUI/RichTextLabelInfo.gd" id="33_hbac4"]
 [ext_resource type="PackedScene" uid="uid://dm2nc5paqgg5i" path="res://Assets/World/Terrain2D/GUI/ResourceControl.tscn" id="36_hya2t"]
 [ext_resource type="Script" path="res://Assets/World/Terrain2D/GUI/MoneyControl.gd" id="37_dntbd"]
@@ -261,13 +262,45 @@ texture_pressed = ExtResource("20_0fwfh")
 texture_hover = ExtResource("21_v44d5")
 stretch_mode = 5
 
-[node name="ResourceOut2" parent="Widget/BottomContainer/PanelContainer/MenuContainer/BuildingContainer/BuildingInfoContainer/BuildingProducingContainer/GridContainer" instance=ExtResource("21_cprbo")]
+[node name="ResourceOut" parent="Widget/BottomContainer/PanelContainer/MenuContainer/BuildingContainer/BuildingInfoContainer/BuildingProducingContainer/GridContainer" instance=ExtResource("21_cprbo")]
 layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Widget/BottomContainer/PanelContainer/MenuContainer/BuildingContainer/BuildingInfoContainer/BuildingProducingContainer"]
 layout_mode = 2
-theme_override_constants/separation = 50
+theme_override_constants/separation = 10
 alignment = 1
+
+[node name="TicksContainer" type="HBoxContainer" parent="Widget/BottomContainer/PanelContainer/MenuContainer/BuildingContainer/BuildingInfoContainer/BuildingProducingContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="ValueLabel" type="Label" parent="Widget/BottomContainer/PanelContainer/MenuContainer/BuildingContainer/BuildingInfoContainer/BuildingProducingContainer/HBoxContainer/TicksContainer"]
+layout_mode = 2
+text = "0"
+
+[node name="TextureRect" type="TextureRect" parent="Widget/BottomContainer/PanelContainer/MenuContainer/BuildingContainer/BuildingInfoContainer/BuildingProducingContainer/HBoxContainer/TicksContainer"]
+custom_minimum_size = Vector2(22, 22)
+layout_mode = 2
+texture = ExtResource("26_j0dpo")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="WorkerContainer" type="HBoxContainer" parent="Widget/BottomContainer/PanelContainer/MenuContainer/BuildingContainer/BuildingInfoContainer/BuildingProducingContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="ValueLabel" type="Label" parent="Widget/BottomContainer/PanelContainer/MenuContainer/BuildingContainer/BuildingInfoContainer/BuildingProducingContainer/HBoxContainer/WorkerContainer"]
+layout_mode = 2
+text = "0"
+
+[node name="TextureRect" type="TextureRect" parent="Widget/BottomContainer/PanelContainer/MenuContainer/BuildingContainer/BuildingInfoContainer/BuildingProducingContainer/HBoxContainer/WorkerContainer"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+texture = ExtResource("15_p3ujw")
+expand_mode = 1
+stretch_mode = 5
 
 [node name="MoneyContainer" type="HBoxContainer" parent="Widget/BottomContainer/PanelContainer/MenuContainer/BuildingContainer/BuildingInfoContainer/BuildingProducingContainer/HBoxContainer"]
 visible = false
@@ -283,22 +316,6 @@ text = "1"
 custom_minimum_size = Vector2(18, 18)
 layout_mode = 2
 texture = ExtResource("21_03oya")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="WorkerContainer" type="HBoxContainer" parent="Widget/BottomContainer/PanelContainer/MenuContainer/BuildingContainer/BuildingInfoContainer/BuildingProducingContainer/HBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 0
-alignment = 1
-
-[node name="ValueLabel" type="Label" parent="Widget/BottomContainer/PanelContainer/MenuContainer/BuildingContainer/BuildingInfoContainer/BuildingProducingContainer/HBoxContainer/WorkerContainer"]
-layout_mode = 2
-text = "1"
-
-[node name="TextureRect" type="TextureRect" parent="Widget/BottomContainer/PanelContainer/MenuContainer/BuildingContainer/BuildingInfoContainer/BuildingProducingContainer/HBoxContainer/WorkerContainer"]
-custom_minimum_size = Vector2(30, 30)
-layout_mode = 2
-texture = ExtResource("15_p3ujw")
 expand_mode = 1
 stretch_mode = 5
 

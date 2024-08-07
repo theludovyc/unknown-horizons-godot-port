@@ -5,12 +5,6 @@ class_name TheFactory
 @onready var storage = $"../TheStorage"
 @onready var event_bus = $"../EventBus"
 
-# produced type, [needed ticks, needed workers]
-enum Recipes{needed_ticks, needed_workers}
-var recipes = {
-	Resources.Types.Wood : [1, 4]
-}
-
 enum Production_Line{current_workers, production_rate, current_ticks}
 var production_lines = {}
 
@@ -32,17 +26,18 @@ func get_production_rate_per_tick(resource_type:Resources.Types) -> int:
 	return production_lines[resource_type][Production_Line.production_rate]
 
 func create_or_update_line(resource_type:Resources.Types, workers_amount:int):
+	var needed_workers = Recipes.get_recipe_needed_workers(resource_type)
+	
 	if production_lines.has(resource_type):
 		var line = production_lines[resource_type]
 	
 		line[Production_Line.current_workers] += workers_amount
 	
-		line[Production_Line.production_rate] = int(line[Production_Line.current_workers] / recipes[resource_type][Recipes.needed_workers])
+		line[Production_Line.production_rate] = int(
+			line[Production_Line.current_workers] / needed_workers)
 	
 		storage.update_global_production_rate(resource_type)
 	else:
-		var needed_workers = recipes[resource_type][Recipes.needed_workers]
-	
 		var production_rate:int = 0
 	
 		if (workers_amount >= needed_workers):
@@ -88,7 +83,7 @@ func _on_TheTicker_tick():
 		line[Production_Line.current_ticks] += 1
 		
 		if line[Production_Line.current_ticks] >= \
-			recipes[resource_type][Recipes.needed_ticks]:
+			Recipes.get_recipe_needed_ticks(resource_type):
 			
 			line[Production_Line.current_ticks] = 0
 			
