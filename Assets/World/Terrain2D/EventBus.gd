@@ -11,6 +11,9 @@ signal send_building_creation_aborted(building_id)
 
 signal send_building_selected(building_node)
 
+signal ask_deselect_building
+signal ask_select_warehouse
+
 ## POPULATION / WORKER
 signal population_updated(population_count)
 signal available_workers_updated(available_workers_amount)

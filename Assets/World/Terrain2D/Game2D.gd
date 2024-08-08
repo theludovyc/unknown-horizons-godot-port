@@ -36,12 +36,16 @@ var population := 0 :
 		event_bus.population_updated.emit(value)
 		event_bus.available_workers_updated.emit(population - the_factory.workers)
 
+var warehouse:Building2D
+
+var current_selected_building:Building2D = null
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	tm.create_island("res://Assets/World/Terrain2D/singularity_40.json")
 	
 	# spawn the warehouse
-	var warehouse := instantiate_building(Buildings.Ids.Warehouse)
+	warehouse = instantiate_building(Buildings.Ids.Warehouse)
 	
 	var warehouse_center_tile = Vector2i(1, 20)
 	
@@ -186,3 +190,16 @@ func _on_EventBus_ask_create_building(building_id:Buildings.Ids):
 	cursor_entity = entity
 	cursor_entity_wait_release = true
 	cursor_entity.modulate = Color(Color.RED, 0.6)
+
+func _on_EventBus_send_building_selected(building_node):
+	current_selected_building = building_node
+
+func _on_EventBus_ask_deselect_building():
+	if current_selected_building != null:
+		current_selected_building.deselect()
+		current_selected_building = null
+
+func _on_EventBus_ask_select_warehouse():
+	current_selected_building = warehouse
+	
+	warehouse.select()

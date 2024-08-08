@@ -27,6 +27,10 @@ func _ready():
 
 func on_MenuButton_pressed(menu:WidgetMenus):
 	if current_tab != menu:
+		if current_tab == WidgetMenus.Building or \
+		current_tab == WidgetMenus.Market:
+			event_bus.ask_deselect_building.emit()
+		
 		current_tab = menu
 		
 		bottom_container.set_menu_visibility(true)
@@ -44,10 +48,16 @@ func _on_MarketMenuButton_pressed():
 	on_MenuButton_pressed(WidgetMenus.Market)
 	
 	if bottom_container.visible:
+		if event_bus != null:
+			event_bus.ask_select_warehouse.emit()
+		
 		tooltip.visible = true
 		
 		tooltip.set_money_production_rate_info()
 	else:
+		if event_bus != null:
+			event_bus.ask_deselect_building.emit()
+		
 		tooltip.visible = false
 	
 func _on_receive_building_selected(building:Building2D):

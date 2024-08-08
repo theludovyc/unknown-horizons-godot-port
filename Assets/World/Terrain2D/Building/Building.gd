@@ -46,3 +46,13 @@ func _on_building_selected(building_node:Building2D):
 		is_selected = false
 		
 		modulate = Color.WHITE
+		
+func select():
+	is_selected = true
+	
+	modulate = Color.YELLOW
+
+func deselect():
+	is_selected = false
+	
+	modulate = Color.WHITE
