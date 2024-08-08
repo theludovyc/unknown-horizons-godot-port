@@ -82,6 +82,7 @@ fit_content = true
 [node name="GUI" parent="." instance=ExtResource("6_lovin")]
 
 [connection signal="ask_create_building" from="EventBus" to="." method="_on_EventBus_ask_create_building"]
+[connection signal="ask_demolish_current_building" from="EventBus" to="." method="_on_EventBus_ask_demolish_current_building"]
 [connection signal="ask_deselect_building" from="EventBus" to="." method="_on_EventBus_ask_deselect_building"]
 [connection signal="ask_select_warehouse" from="EventBus" to="." method="_on_EventBus_ask_select_warehouse"]
 [connection signal="send_building_selected" from="EventBus" to="." method="_on_EventBus_send_building_selected"]

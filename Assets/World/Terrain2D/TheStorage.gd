@@ -75,3 +75,12 @@ func conclude_building_construction(building_id:Buildings.Ids):
 		
 	for cost in building_cost:
 		add_resource(cost[0], - cost[1])
+
+func recover_building_construction(building_id:Buildings.Ids):
+	var building_cost = Buildings.get_building_cost(building_id)
+	
+	if building_cost.is_empty():
+		return
+		
+	for cost in building_cost:
+		add_resource(cost[0], cost[1])

@@ -64,6 +64,16 @@ func build_entityStatic(entity:EntityStatic, tile_center:Vector2i):
 			
 			minimap_set_cell_vec(tile_coord, Minimap_Cell_Type.Building)
 
+func demolish_building(building:Building2D):
+	var top_left_tile = entityStatic_get_top_left_tile(building,
+		local_to_map(building.position))
+
+	for x in building.width:
+		for y in building.height:
+			var tile_coord = top_left_tile + Vector2i(x, y)
+			
+			minimap_set_cell_vec(tile_coord, Minimap_Cell_Type.Ground)
+
 func create_island(map_file:String) -> int:
 	var file = FileAccess.open(map_file, FileAccess.READ)
 	

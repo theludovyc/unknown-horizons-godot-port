@@ -203,3 +203,18 @@ func _on_EventBus_ask_select_warehouse():
 	current_selected_building = warehouse
 	
 	warehouse.select()
+
+func _on_EventBus_ask_demolish_current_building():
+	tm.demolish_building(current_selected_building)
+	
+	var building_id = current_selected_building.building_id
+	
+	the_storage.recover_building_construction(building_id)
+	
+	match(Buildings.get_building_type(building_id)):
+		_:pass
+	
+	current_selected_building.queue_free()
+	current_selected_building = null
+	
+	event_bus.send_current_building_demolished.emit()

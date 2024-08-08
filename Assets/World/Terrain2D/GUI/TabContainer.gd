@@ -16,12 +16,11 @@ var event_bus:EventBus
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var current_scene = get_tree().current_scene
+	event_bus = get_tree().current_scene.get_node_or_null("EventBus")
 	
-	if current_scene.has_node("EventBus"):
-		event_bus = current_scene.get_node("EventBus")
-		
+	if event_bus != null:
 		event_bus.send_building_selected.connect(_on_receive_building_selected)
+		event_bus.send_current_building_demolished.connect(_on_receive_current_building_demolished)
 	
 	pass # Replace with function body.
 
@@ -80,3 +79,7 @@ func _on_receive_building_selected(building:Building2D):
 		tooltip.visible = false
 		
 	building_container.update_infos(building)
+
+func _on_receive_current_building_demolished():
+	if current_tab == WidgetMenus.Building:
+		bottom_container.set_menu_visibility(false)
