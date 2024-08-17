@@ -16,6 +16,7 @@ class_name Game2D
 @onready var the_factory := $TheFactory
 
 @onready var gui := $GUI
+@onready var pause_menu := %PauseMenu
 
 const Buildings_Scenes = {
 	Buildings.Ids.Warehouse:preload("res://Assets/World/Terrain2D/Building/Warehouse.tscn"),
@@ -75,6 +76,11 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if pause_menu.visible == false and Input.is_action_just_pressed("ui_cancel"):
+		pause_menu.show()
+		pause_menu.set_process(true)
+		get_tree().paused = true
+	
 	var mouse_pos = get_viewport().get_mouse_position()
 	
 	rtl.text = ""

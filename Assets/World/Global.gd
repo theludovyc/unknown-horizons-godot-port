@@ -335,5 +335,5 @@ func _input(event: InputEvent) -> void:
 		Config.window_mode = window_mode
 
 		#Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
-	elif event.is_action_pressed("quit_game"):
-		get_tree().quit()
+	#elif event.is_action_pressed("quit_game"):
+		#get_tree().quit()
