@@ -7,7 +7,7 @@ extends CanvasLayer
 enum transition_type {Swipe,Square,Circle,Diamond,Line}
 
 func screen_ratio ():
-	var x = color_rect.get_size() 
+	var x = color_rect.get_size()
 	return x[1]/x[0]
 
 func transition (transition_name:transition_type, reverse :bool = false) :
