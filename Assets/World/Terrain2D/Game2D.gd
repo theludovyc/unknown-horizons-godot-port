@@ -144,7 +144,11 @@ func _process(delta):
 		and Input.is_action_just_pressed("alt_command"):
 			match(Buildings.get_building_type(building_id)):
 				Buildings.Types.Residential:
-					population += Buildings.get_max_workers(building_id)
+					var amount := Buildings.get_max_workers(building_id)
+					
+					population += amount
+					
+					the_factory.population_increase(amount)
 					
 				Buildings.Types.Producing:
 					the_factory.add_workers(
@@ -212,6 +216,17 @@ func _on_EventBus_ask_demolish_current_building():
 	the_storage.recover_building_construction(building_id)
 	
 	match(Buildings.get_building_type(building_id)):
+		Buildings.Types.Residential:
+			var amount := Buildings.get_max_workers(building_id)
+			
+			population -= amount
+			
+			the_factory.population_decrease(amount)
+		
+		Buildings.Types.Producing:
+			the_factory.rem_workers(
+				Buildings.get_produce_resource(building_id),
+				Buildings.get_max_workers(building_id))
 		_:pass
 	
 	current_selected_building.queue_free()
