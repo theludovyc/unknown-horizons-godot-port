@@ -162,6 +162,7 @@ script = ExtResource("5_sjwej")
 visible = false
 layout_mode = 2
 script = ExtResource("7_vhp7j")
+metadata/_tab_index = 0
 
 [node name="Title" type="HBoxContainer" parent="Widget/BottomContainer/PanelContainer/MenuContainer/MarketContainer"]
 layout_mode = 2
@@ -203,6 +204,7 @@ layout_mode = 2
 mouse_filter = 2
 columns = 4
 script = ExtResource("4_v8nok")
+metadata/_tab_index = 1
 
 [node name="BuildResidential" type="TextureButton" parent="Widget/BottomContainer/PanelContainer/MenuContainer/BuildGridContainer"]
 layout_mode = 2
@@ -223,6 +225,7 @@ building_id = 2
 [node name="BuildingContainer" type="VBoxContainer" parent="Widget/BottomContainer/PanelContainer/MenuContainer"]
 layout_mode = 2
 script = ExtResource("18_nngab")
+metadata/_tab_index = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Widget/BottomContainer/PanelContainer/MenuContainer/BuildingContainer"]
 layout_mode = 2
@@ -245,6 +248,7 @@ theme_override_styles/separator = SubResource("StyleBoxFlat_or0xk")
 
 [node name="BuildingInfoContainer" type="TabContainer" parent="Widget/BottomContainer/PanelContainer/MenuContainer/BuildingContainer"]
 layout_mode = 2
+current_tab = 0
 clip_tabs = false
 tabs_visible = false
 script = ExtResource("19_uroop")
@@ -254,6 +258,7 @@ layout_mode = 2
 theme_override_constants/separation = 0
 alignment = 1
 script = ExtResource("20_4inxt")
+metadata/_tab_index = 0
 
 [node name="ValueLabel" type="Label" parent="Widget/BottomContainer/PanelContainer/MenuContainer/BuildingContainer/BuildingInfoContainer/BuildingResidentialContainer"]
 layout_mode = 2
@@ -270,6 +275,7 @@ stretch_mode = 5
 visible = false
 layout_mode = 2
 script = ExtResource("20_6ni15")
+metadata/_tab_index = 1
 
 [node name="GridContainer" type="GridContainer" parent="Widget/BottomContainer/PanelContainer/MenuContainer/BuildingContainer/BuildingInfoContainer/BuildingProducingContainer"]
 layout_mode = 2

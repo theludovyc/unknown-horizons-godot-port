@@ -59,7 +59,6 @@ layer_0/y_sort_enabled = true
 layer_1/name = "Trees"
 layer_1/y_sort_enabled = true
 layer_1/z_index = 1
-layer_1/tile_data = PackedInt32Array()
 script = ExtResource("4_lfw1e")
 
 [node name="Entities" type="Node2D" parent="ZSorter"]
