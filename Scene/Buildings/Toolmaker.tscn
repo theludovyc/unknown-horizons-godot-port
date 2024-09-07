@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Script/Buildings/Toolmaker.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://cahtqi0mpd1bh" path="res://Scene/Buildings/Building.tscn" id="2"]
 [ext_resource type="Texture2D" uid="uid://5lrnuxq5tcgl" path="res://Art/Image/Buildings/Toomaker/Toolmaker_idle.png" id="3"]
-[ext_resource type="Shape3D" uid="uid://w7dqwqb3af0c" path="res://Assets/World/Shapes/BoxShape2x2.tres" id="4"]
+[ext_resource type="Shape3D" uid="uid://w7dqwqb3af0c" path="res://Scene/World/Shapes/BoxShape2x2.tres" id="4"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p60gw"]
 transparency = 2

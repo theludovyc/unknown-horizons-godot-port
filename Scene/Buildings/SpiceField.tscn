@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://gfjfmihmduqa" path="res://Scene/Buildings/Agricultural.tscn" id="1"]
 [ext_resource type="Script" path="res://Script/Buildings/Agricultural/SpiceField.gd" id="3"]
-[ext_resource type="Texture2D" uid="uid://c2x567la6jlmh" path="res://Editor/SpiceField/SpiceField_idle.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://c2x567la6jlmh" path="res://Art/Image/Buildings/SpiceField/SpiceField_idle.png" id="4"]
 
 [sub_resource type="StandardMaterial3D" id="1"]
 transparency = 2

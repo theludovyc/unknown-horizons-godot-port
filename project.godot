@@ -23,11 +23,11 @@ addons/rakugo_game_template/first_game_scene_path="res://scenes/Game/game.tscn"
 
 [autoload]
 
-Global="*res://Assets/World/Global.gd"
-Config="*res://Assets/World/Config.gd"
-Audio="*res://Assets/World/Audio.gd"
+Global="*res://Script/World/Global.gd"
+Config="*res://Script/World/Config.gd"
+Audio="*res://Script/World/Audio.gd"
 Cursor="*res://Script/Gui/Cursor.gd"
-Entities="*res://Assets/World/Terrain2D/Entities.gd"
+Entities="*res://theLudovyc/Entities.gd"
 AppSettings="*res://addons/rakugo_game_template/Autoloads/AppSettings.gd"
 SceneLoader="*res://addons/rakugo_game_template/Autoloads/SceneLoader.gd"
 ProjectMusicController="*res://addons/rakugo_game_template/Autoloads/ProjectMusicController.tscn"

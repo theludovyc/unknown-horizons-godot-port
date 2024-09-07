@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://b5en60ie0e1l0"]
 
 [ext_resource type="PackedScene" uid="uid://cahtqi0mpd1bh" path="res://Scene/Buildings/Building.tscn" id="1"]
-[ext_resource type="Shape3D" uid="uid://w7dqwqb3af0c" path="res://Assets/World/Shapes/BoxShape2x2.tres" id="2"]
+[ext_resource type="Shape3D" uid="uid://w7dqwqb3af0c" path="res://Scene/World/Shapes/BoxShape2x2.tres" id="2"]
 [ext_resource type="Script" path="res://Script/Buildings/Fisherman.gd" id="3"]
 [ext_resource type="Texture2D" uid="uid://dmivtfsbpmydq" path="res://Art/Image/Buildings/Fisherman/Fisherman_idle.png" id="4"]
 
