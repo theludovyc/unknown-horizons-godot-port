@@ -1,6 +1,9 @@
 @tool
 extends EditorPlugin
 
+func init_setting_if_empty(setting_path:String, setting_value:Variant):
+	if ProjectSettings.get_setting(setting_path, "").is_empty():
+		ProjectSettings.set_setting(setting_path, setting_value)
 
 func _enter_tree():
 	add_autoload_singleton("AppSettings", "res://addons/rakugo_game_template/Autoloads/AppSettings.gd")
@@ -9,11 +12,9 @@ func _enter_tree():
 	add_autoload_singleton("UISoundManager", "res://addons/rakugo_game_template/Autoloads/UISoundManager/UISoundManager.tscn")
 	add_autoload_singleton("Transitions", "res://addons/rakugo_game_template/Autoloads/Transitions/transitions.tscn")
 
-	if ProjectSettings.get_setting(RGT_Globals.loading_scene_setting_path, "").is_empty():
-		ProjectSettings.set_setting(RGT_Globals.loading_scene_setting_path, "res://scenes/LoadingScreen/LoadingScreen.tscn")
-	
-	RGT_Globals.main_menu_setting = "res://scenes/MainMenu/MainMenu.tscn"
-	RGT_Globals.first_game_scene_setting = "res://scenes/Game/game.tscn"
+	init_setting_if_empty(RGT_Globals.loading_scene_setting_path, "res://scenes/LoadingScreen/LoadingScreen.tscn")
+	init_setting_if_empty(RGT_Globals.main_menu_setting_path, "res://scenes/MainMenu/MainMenu.tscn")
+	init_setting_if_empty(RGT_Globals.first_game_scene_setting_path, "res://scenes/Game/game.tscn")
 
 func _exit_tree():
 	remove_autoload_singleton("AppSettings")

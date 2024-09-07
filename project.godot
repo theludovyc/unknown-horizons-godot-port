@@ -18,8 +18,8 @@ boot_splash/image="res://boot_splash.png"
 config/icon="res://icon.png"
 boot_splash/minimum_display_time=2000
 addons/rakugo_game_template/loading_scene_path="res://Scene/Menu/LoadingScreen.tscn"
-addons/rakugo_game_template/main_menu_path="res://scenes/MainMenu/MainMenu.tscn"
-addons/rakugo_game_template/first_game_scene_path="res://scenes/Game/game.tscn"
+addons/rakugo_game_template/main_menu_path="res://Scene/Menu/MainMenu.tscn"
+addons/rakugo_game_template/first_game_scene_path="res://theLudovyc/Game2D.tscn"
 
 [autoload]
 
