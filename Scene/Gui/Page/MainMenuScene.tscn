@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://q5ucvivm8wdb" path="res://Art/Image/Gui/Background/MainMenu/bg_1.png" id="1_dsctp"]
 [ext_resource type="PackedScene" uid="uid://cyb8jqt6k3y2b" path="res://Scene/Gui/Page/MainMenuUI.tscn" id="2"]
-[ext_resource type="AudioStream" uid="uid://jajibryhiho4" path="res://Art/Sound/Music/menu/main_theme.ogg" id="3"]
+[ext_resource type="AudioStream" uid="uid://jajibryhiho4" path="res://Art/Sound/Music/Menu/main_theme.ogg" id="3"]
 
 [node name="MainMenuScene" type="Node"]
 

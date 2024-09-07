@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bamt0see7lbpb" path="res://Scene/Gui/BasicControl/CaptionBlock.tscn" id="6_o8sbb"]
 [ext_resource type="PackedScene" uid="uid://k61qwnm7ngk7" path="res://Scene/Gui/TabWidget/Switches/TradeSwitchTabWidget.tscn" id="7"]
 [ext_resource type="PackedScene" uid="uid://bfo0loxiik6kg" path="res://Scene/Gui/TabWidget/Switches/War2SwitchTabWidget.tscn" id="8"]
-[ext_resource type="Texture2D" uid="uid://bmetu4cx6tww6" path="res://Art/Image/Gui/Images/Objects/Ships/116/1000001.png" id="9"]
+[ext_resource type="Texture2D" uid="uid://bmetu4cx6tww6" path="res://Art/Image/Gui/Objects/Ships/116/1000001.png" id="9"]
 
 [node name="BoatBuilderTabWidget" instance=ExtResource("1")]
 

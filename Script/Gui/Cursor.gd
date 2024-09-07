@@ -8,11 +8,11 @@ enum CursorType {
 	CURSOR_TEAR,
 }
 
-const CURSOR_DEFAULT = preload("res://Assets/UI/Images/Cursors/cursor.png")
-const CURSOR_ATTACK = preload("res://Assets/UI/Images/Cursors/cursor_attack.png")
-const CURSOR_PIPETTE = preload("res://Assets/UI/Images/Cursors/cursor_pipette.png")
-const CURSOR_RENAME = preload("res://Assets/UI/Images/Cursors/cursor_rename.png")
-const CURSOR_TEAR = preload("res://Assets/UI/Images/Cursors/cursor_tear.png")
+const CURSOR_DEFAULT = preload("res://Art/Image/Gui/Cursors/cursor.png")
+const CURSOR_ATTACK = preload("res://Art/Image/Gui/Cursors/cursor_attack.png")
+const CURSOR_PIPETTE = preload("res://Art/Image/Gui/Cursors/cursor_pipette.png")
+const CURSOR_RENAME = preload("res://Art/Image/Gui/Cursors/cursor_rename.png")
+const CURSOR_TEAR = preload("res://Art/Image/Gui/Cursors/cursor_tear.png")
 
 var cursors = {
 	CursorType.CURSOR_DEFAULT: CURSOR_DEFAULT,

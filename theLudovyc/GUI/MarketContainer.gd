@@ -2,7 +2,7 @@ extends VBoxContainer
 
 var event_bus:EventBus = null
 
-var resource_order_scene = preload("res://Assets/World/Terrain2D/GUI/ResourceOrder.tscn")
+var resource_order_scene = preload("res://theLudovyc/GUI/ResourceOrder.tscn")
 
 @onready var resource_popup = %ResourcePopup
 

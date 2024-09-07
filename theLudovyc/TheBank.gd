@@ -1,7 +1,7 @@
 extends Node
 class_name TheBank
 
-const money_icon = preload("res://Assets/UI/Icons/Resources/32/001.png")
+const money_icon = preload("res://Art/Image/Gui/Icons/Resources/32/001.png")
 
 @onready var event_bus := $"../EventBus"
 

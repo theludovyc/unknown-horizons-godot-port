@@ -18,4 +18,3 @@ func update_infos(building_id:Buildings.Ids):
 	ticks_label.text = str(Recipes.get_recipe_needed_ticks(resource_type))
 	
 	workers_label.text = str(Buildings.get_max_workers(building_id))
-

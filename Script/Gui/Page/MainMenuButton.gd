@@ -3,7 +3,7 @@ extends TextureButton
 
 @export_enum("left", "right", "top", "bottom") var alignment := "left" : set = set_alignment
 @export var text := "" : set = set_text
-@export var texture: Texture2D = preload("res://Assets/UI/Icons/MainMenu/help_bw.png") : set = set_texture
+@export var texture: Texture2D = preload("res://Art/Image/Gui/Icons/MainMenu/help_bw.png") : set = set_texture
 
 var alignments = {
 	left = Vector2(-200, 30),

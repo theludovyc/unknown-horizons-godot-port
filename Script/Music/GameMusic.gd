@@ -22,7 +22,7 @@ func _ready() -> void:
 		_music_streams.append(load("Assets/Audio/Music/Ambient/" + i))
 
 	# Always play a specific song when the game starts.
-	stream = preload("res://Assets/Audio/Music/Ambient/newfrontier.ogg")
+	stream = preload("res://Art/Sound/Music/Ambient/newfrontier.ogg")
 	play()
 
 	randomize() # Godot will always generate the same random numbers otherwise.

@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://b25sornhxlynd" path="res://Scene/Gui/BasicControl/LabelEx.tscn" id="10"]
 [ext_resource type="PackedScene" uid="uid://bffxhmua54xql" path="res://Scene/Gui/BasicControl/TradeSlot.tscn" id="11"]
 [ext_resource type="Texture2D" uid="uid://iujmcgp5x37l" path="res://Art/Image/Gui/Icons/Thumbnails/1000001.png" id="12"]
-[ext_resource type="Texture2D" uid="uid://bhmhs27fjux2p" path="res://Art/Image/Gui/Images/ResbarStats/gold_icon.png" id="13"]
+[ext_resource type="Texture2D" uid="uid://bhmhs27fjux2p" path="res://Art/Image/Gui/ResbarStats/gold_icon.png" id="13"]
 [ext_resource type="Texture2D" uid="uid://brmfkn8sfum3n" path="res://Art/Image/Gui/Icons/Resources/32/005.png" id="14"]
 
 [node name="WarehouseTabWidget" instance=ExtResource("1")]

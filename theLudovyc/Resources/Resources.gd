@@ -7,8 +7,8 @@ enum Types{
 }
 
 const Icons = {
-	Types.Wood:preload("res://Assets/UI/Icons/Resources/32/008.png"),
-	Types.Textile:preload("res://Assets/UI/Icons/Resources/32/003.png")
+	Types.Wood:preload("res://Art/Image/Gui/Icons/Resources/32/008.png"),
+	Types.Textile:preload("res://Art/Image/Gui/Icons/Resources/32/003.png")
 }
 
 static func get_resource_icon(resource_type:Types) -> Texture2D:

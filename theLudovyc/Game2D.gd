@@ -19,9 +19,9 @@ class_name Game2D
 @onready var pause_menu := %PauseMenu
 
 const Buildings_Scenes = {
-	Buildings.Ids.Warehouse:preload("res://Assets/World/Terrain2D/Building/Warehouse.tscn"),
-	Buildings.Ids.Tent:preload("res://Assets/World/Terrain2D/Building/Residential.tscn"),
-	Buildings.Ids.Lumberjack:preload("res://Assets/World/Terrain2D/Building/Lumberjack.tscn")
+	Buildings.Ids.Warehouse:preload("res://theLudovyc/Building/Warehouse.tscn"),
+	Buildings.Ids.Tent:preload("res://theLudovyc/Building/Residential.tscn"),
+	Buildings.Ids.Lumberjack:preload("res://theLudovyc/Building/Lumberjack.tscn")
 }
 
 const Trees_Destroy_Cost = 1
@@ -43,7 +43,7 @@ var current_selected_building:Building2D = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	tm.create_island("res://Assets/World/Terrain2D/singularity_40.json")
+	tm.create_island("res://theLudovyc/singularity_40.json")
 	
 	# spawn the warehouse
 	warehouse = instantiate_building(Buildings.Ids.Warehouse)

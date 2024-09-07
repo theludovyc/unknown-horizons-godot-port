@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" path="res://Script/Gui/TabWidget/TabWidget.gd" id="2"]
 [ext_resource type="Texture2D" uid="uid://5gbvga1bqpxa" path="res://Art/Image/Gui/Background/Widgets/map_bg.png" id="3"]
-[ext_resource type="Texture2D" uid="uid://3203obnnsej3" path="res://Art/Image/Gui/Images/TabWidget/main_bg_top.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://3203obnnsej3" path="res://Art/Image/Gui/TabWidget/main_bg_top.png" id="4"]
 [ext_resource type="PackedScene" uid="uid://dcgoirmxith4s" path="res://Scene/Gui/TabWidget/MainButtons/GameSpeedUpButton.tscn" id="4_g3qxs"]
-[ext_resource type="Texture2D" uid="uid://budf74yum8w6e" path="res://Art/Image/Gui/Images/TabWidget/main_bg_fill.png" id="5"]
-[ext_resource type="Texture2D" uid="uid://c7f5k0k27nsh1" path="res://Art/Image/Gui/Images/TabWidget/main_bg_bottom.png" id="6"]
+[ext_resource type="Texture2D" uid="uid://budf74yum8w6e" path="res://Art/Image/Gui/TabWidget/main_bg_fill.png" id="5"]
+[ext_resource type="Texture2D" uid="uid://c7f5k0k27nsh1" path="res://Art/Image/Gui/TabWidget/main_bg_bottom.png" id="6"]
 [ext_resource type="FontFile" uid="uid://sdfro4oswrtf" path="res://Art/Fonts/LinLibertineI.ttf" id="6_5q6ss"]
 [ext_resource type="PackedScene" uid="uid://bepwv74qm83mh" path="res://Scene/Gui/TabWidget/MainButtons/LogbookButton.tscn" id="7"]
 [ext_resource type="PackedScene" uid="uid://b450djyry3nsh" path="res://Scene/Gui/TabWidget/MainButtons/TearButton.tscn" id="8"]

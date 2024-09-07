@@ -8,7 +8,7 @@ enum {
 }
 
 const scenes = {
-	ResourceButton:preload("res://Assets/World/Terrain2D/GUI/ResourceButton.tscn")
+	ResourceButton:preload("res://theLudovyc/GUI/ResourceButton.tscn")
 }
 
 func set_rtl_info_text(text:String):

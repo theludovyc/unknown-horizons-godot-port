@@ -9,7 +9,9 @@ func _enter_tree():
 	add_autoload_singleton("UISoundManager", "res://addons/rakugo_game_template/Autoloads/UISoundManager/UISoundManager.tscn")
 	add_autoload_singleton("Transitions", "res://addons/rakugo_game_template/Autoloads/Transitions/transitions.tscn")
 
-	RGT_Globals.loading_scene_setting = "res://scenes/LoadingScreen/LoadingScreen.tscn"
+	if ProjectSettings.get_setting(RGT_Globals.loading_scene_setting_path, "").is_empty():
+		ProjectSettings.set_setting(RGT_Globals.loading_scene_setting_path, "res://scenes/LoadingScreen/LoadingScreen.tscn")
+	
 	RGT_Globals.main_menu_setting = "res://scenes/MainMenu/MainMenu.tscn"
 	RGT_Globals.first_game_scene_setting = "res://scenes/Game/game.tscn"
 
