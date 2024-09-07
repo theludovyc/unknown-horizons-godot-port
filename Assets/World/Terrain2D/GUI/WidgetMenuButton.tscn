@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://uwtq6pqqc8lm"]
 
-[ext_resource type="Texture2D" uid="uid://i3jf27r6a5xg" path="res://Assets/UI/Icons/Widgets/MiniMap/build.png" id="1_xfwas"]
-[ext_resource type="Texture2D" uid="uid://b1uxpsysuqamr" path="res://Assets/UI/Icons/Widgets/MiniMap/build_d.png" id="2_ajxoa"]
-[ext_resource type="Texture2D" uid="uid://bmvtkldjxuyqy" path="res://Assets/UI/Icons/Widgets/MiniMap/build_h.png" id="3_gcih5"]
-[ext_resource type="Texture2D" uid="uid://bl4w2owswjhc8" path="res://Assets/UI/Images/Buttons/glass_big.png" id="4_pexcr"]
+[ext_resource type="Texture2D" uid="uid://i3jf27r6a5xg" path="res://Art/Image/Gui/Icons/Widgets/MiniMap/build.png" id="1_xfwas"]
+[ext_resource type="Texture2D" uid="uid://b1uxpsysuqamr" path="res://Art/Image/Gui/Icons/Widgets/MiniMap/build_d.png" id="2_ajxoa"]
+[ext_resource type="Texture2D" uid="uid://bmvtkldjxuyqy" path="res://Art/Image/Gui/Icons/Widgets/MiniMap/build_h.png" id="3_gcih5"]
+[ext_resource type="Texture2D" uid="uid://bl4w2owswjhc8" path="res://Art/Image/Gui/Buttons/glass_big.png" id="4_pexcr"]
 
 [node name="BuildMenuButton" type="TextureButton"]
 anchors_preset = 5

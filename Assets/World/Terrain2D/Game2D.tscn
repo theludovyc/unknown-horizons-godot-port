@@ -12,7 +12,7 @@
 [ext_resource type="Script" path="res://Assets/World/Terrain2D/Camera2D.gd" id="5_7hgfn"]
 [ext_resource type="PackedScene" uid="uid://b3s7eqy0blp6g" path="res://Assets/World/Terrain2D/GUI/GUI.tscn" id="6_lovin"]
 [ext_resource type="Script" path="res://Assets/World/Terrain2D/TheTicker.gd" id="7_41bva"]
-[ext_resource type="PackedScene" uid="uid://cdwvtbtwmrqbn" path="res://scenes/PauseMenu/PauseMenu.tscn" id="13_0dv84"]
+[ext_resource type="PackedScene" uid="uid://cdwvtbtwmrqbn" path="res://Scene/Menu/PauseMenu.tscn" id="13_0dv84"]
 
 [node name="Game2D" type="Node"]
 script = ExtResource("1_i3wk0")

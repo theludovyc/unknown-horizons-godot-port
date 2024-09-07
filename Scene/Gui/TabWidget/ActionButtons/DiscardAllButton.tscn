@@ -1,0 +1,16 @@
+[gd_scene load_steps=6 format=3 uid="uid://2u6dqy2k2v1n"]
+
+[ext_resource type="Texture2D" uid="uid://c5xh6xtdi8y2p" path="res://Art/Image/Gui/Icons/Ship/discard_all_32.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://cgyaju5ohgyde" path="res://Art/Image/Gui/Icons/Ship/discard_all_32_bw.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://cqfyxhj33gtqq" path="res://Art/Image/Gui/Icons/Ship/discard_all_32_h.png" id="3"]
+[ext_resource type="PackedScene" uid="uid://cff5va6e0sqyv" path="res://Scene/Gui/TabWidget/ActionButtons/ActionButton.tscn" id="4"]
+[ext_resource type="Texture2D" uid="uid://do5o4dqe5gkvi" path="res://Art/Image/Gui/Icons/Ship/discard_all_32_d.png" id="5"]
+
+[node name="DiscardAllButton" instance=ExtResource("4")]
+texture_normal = ExtResource("1")
+texture_pressed = ExtResource("5")
+texture_hover = ExtResource("3")
+texture_disabled = ExtResource("2")
+
+[node name="TextureRect" parent="." index="0"]
+mouse_filter = 1

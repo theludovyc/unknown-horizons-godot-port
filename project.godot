@@ -12,21 +12,21 @@ config_version=5
 
 config/name="Unknown Horizons"
 config/version="0.01"
-run/main_scene="res://scenes/Bootstrap/bootstrap.tscn"
+run/main_scene="res://Scene/Menu/bootstrap.tscn"
 config/features=PackedStringArray("4.3")
 boot_splash/image="res://boot_splash.png"
 config/icon="res://icon.png"
 boot_splash/minimum_display_time=2000
 addons/rakugo_game_template/loading_scene_path="res://scenes/LoadingScreen/LoadingScreen.tscn"
 addons/rakugo_game_template/main_menu_path="res://scenes/MainMenu/MainMenu.tscn"
-addons/rakugo_game_template/first_game_scene_path="res://Assets/World/Terrain2D/Game2D.tscn"
+addons/rakugo_game_template/first_game_scene_path="res://scenes/Game/game.tscn"
 
 [autoload]
 
 Global="*res://Assets/World/Global.gd"
 Config="*res://Assets/World/Config.gd"
 Audio="*res://Assets/World/Audio.gd"
-Cursor="*res://Assets/UI/Cursor.gd"
+Cursor="*res://Script/Gui/Cursor.gd"
 Entities="*res://Assets/World/Terrain2D/Entities.gd"
 AppSettings="*res://addons/rakugo_game_template/Autoloads/AppSettings.gd"
 SceneLoader="*res://addons/rakugo_game_template/Autoloads/SceneLoader.gd"
@@ -62,8 +62,8 @@ enabled=PackedStringArray("res://addons/rakugo_game_template/plugin.cfg")
 
 [gui]
 
-theme/custom="res://Assets/UI/Theme/Theme.tres"
-theme/custom_font="res://External/Fonts/LinLibertine.ttf"
+theme/custom="res://Art/Theme/Theme.tres"
+theme/custom_font="res://Art/Fonts/LinLibertine.ttf"
 
 [importer_defaults]
 

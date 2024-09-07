@@ -1,10 +1,10 @@
 [gd_scene load_steps=7 format=3 uid="uid://dm2nc5paqgg5i"]
 
-[ext_resource type="Texture2D" uid="uid://b0gi4vdahasx6" path="res://Assets/UI/Images/Background/Widgets/cityinfo_left.png" id="1_1s7hn"]
-[ext_resource type="StyleBox" uid="uid://do8ges2uukki2" path="res://Assets/UI/Theme/ThemeStyles/PanelEmpty.tres" id="1_w62v5"]
+[ext_resource type="Texture2D" uid="uid://b0gi4vdahasx6" path="res://Art/Image/Gui/Background/Widgets/cityinfo_left.png" id="1_1s7hn"]
+[ext_resource type="StyleBox" uid="uid://do8ges2uukki2" path="res://Art/Theme/ThemeStyles/PanelEmpty.tres" id="1_w62v5"]
 [ext_resource type="StyleBox" uid="uid://c337qd1xlk4yw" path="res://Assets/World/Terrain2D/GUI/PanelCityInfo.tres" id="2_ves37"]
 [ext_resource type="Script" path="res://Assets/World/Terrain2D/GUI/ResourceControl.gd" id="2_xwmt6"]
-[ext_resource type="Texture2D" uid="uid://dja8u81e6ge3k" path="res://Assets/UI/Images/Background/Widgets/cityinfo_right.png" id="3_8sxfq"]
+[ext_resource type="Texture2D" uid="uid://dja8u81e6ge3k" path="res://Art/Image/Gui/Background/Widgets/cityinfo_right.png" id="3_8sxfq"]
 [ext_resource type="PackedScene" uid="uid://cx2k8fx6jq1j1" path="res://Assets/World/Terrain2D/GUI/ResourceButton.tscn" id="6_578q2"]
 
 [node name="ResourceControl" type="PanelContainer"]
