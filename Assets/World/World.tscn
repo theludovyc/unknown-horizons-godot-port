@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://ctbaljo7ulect" path="res://Scene/Player/PlayerCamera.tscn" id="4"]
 [ext_resource type="Script" path="res://Assets/World/Terrain.gd" id="7"]
 [ext_resource type="Script" path="res://Assets/World/AStarMap.gd" id="8"]
-[ext_resource type="MeshLibrary" path="res://Assets/World/Buildings/Streets/TrailMeshLibrary.meshlib" id="9"]
+[ext_resource type="MeshLibrary" path="res://Scene/Buildings/Streets/TrailMeshLibrary.meshlib" id="9"]
 [ext_resource type="Script" path="res://Assets/World/Streets.gd" id="10"]
 
 [sub_resource type="BoxShape3D" id="1"]

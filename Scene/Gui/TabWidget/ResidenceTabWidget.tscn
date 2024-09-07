@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://ddx05pxr84tol" path="res://Scene/Gui/TabWidget/BuildingMenuTabWidget.tscn" id="3"]
 [ext_resource type="PackedScene" uid="uid://b25sornhxlynd" path="res://Scene/Gui/BasicControl/LabelEx.tscn" id="4"]
 [ext_resource type="FontFile" uid="uid://b132ikq6ayfyj" path="res://Art/Fonts/LinLibertineC.ttf" id="4_2ck3b"]
-[ext_resource type="Texture2D" uid="uid://dkjfwp6qyqmsu" path="res://Assets/World/Buildings/Residential/Sprites/Tent4_idle.png" id="6"]
+[ext_resource type="Texture2D" uid="uid://dkjfwp6qyqmsu" path="res://Art/Image/Buildings/Residential/Tent4_idle.png" id="6"]
 [ext_resource type="PackedScene" uid="uid://y3joqgx1438n" path="res://Scene/Gui/TabWidget/Views/TaxesControl.tscn" id="8"]
 [ext_resource type="Texture2D" uid="uid://dmowgnr3yck1o" path="res://Art/Image/Gui/Icons/Templates/Happiness/happy.png" id="9"]
 [ext_resource type="FontFile" uid="uid://sdfro4oswrtf" path="res://Art/Fonts/LinLibertineI.ttf" id="9_rt5xq"]

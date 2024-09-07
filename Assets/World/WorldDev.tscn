@@ -1,11 +1,11 @@
 [gd_scene load_steps=7 format=3 uid="uid://bbe58ymlklvat"]
 
-[ext_resource type="PackedScene" uid="uid://e47mn1m6tsms" path="res://Assets/World/Buildings/Lookout/Lookout.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://e47mn1m6tsms" path="res://Scene/Buildings/Lookout.tscn" id="2"]
 [ext_resource type="PackedScene" uid="uid://b3jx1swk07856" path="res://Assets/World/World.tscn" id="9"]
-[ext_resource type="PackedScene" uid="uid://c0lneb1rlembl" path="res://Assets/World/Buildings/Lumberjack/Lumberjack.tscn" id="45"]
-[ext_resource type="PackedScene" uid="uid://v8xjnx18y4xp" path="res://Assets/World/Buildings/Warehouse/Warehouse.tscn" id="46"]
-[ext_resource type="PackedScene" uid="uid://c8yqrkrqhfvwm" path="res://Assets/World/Buildings/MainSquare/MainSquare.tscn" id="55"]
-[ext_resource type="PackedScene" uid="uid://bcdx2nejvvs5w" path="res://Assets/World/Buildings/Residential/Residence.tscn" id="59"]
+[ext_resource type="PackedScene" uid="uid://c0lneb1rlembl" path="res://Scene/Buildings/Lumberjack.tscn" id="45"]
+[ext_resource type="PackedScene" uid="uid://v8xjnx18y4xp" path="res://Scene/Buildings/Warehouse.tscn" id="46"]
+[ext_resource type="PackedScene" uid="uid://c8yqrkrqhfvwm" path="res://Scene/Buildings/MainSquare.tscn" id="55"]
+[ext_resource type="PackedScene" uid="uid://bcdx2nejvvs5w" path="res://Scene/Buildings/Residence.tscn" id="59"]
 
 [node name="World" instance=ExtResource("9")]
 
