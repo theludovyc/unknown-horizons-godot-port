@@ -1,8 +1,3 @@
 extends Node
 
-enum types{
-	Warehouse,
-	Residential,
-	Lumberjack,
-	Spruce
-}
+enum types { Warehouse, Residential, Lumberjack, Spruce }

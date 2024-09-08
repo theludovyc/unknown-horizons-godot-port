@@ -6,7 +6,7 @@ uniform bool invert_xy = false;
 
 void fragment() {
 	float which_axis = UV.x;
-	if (invert_xy == true) {
+	if (invert_xy) {
 		which_axis = UV.y;
 	} 
 	COLOR.a = (1.0 - step(size * wipe_direction, which_axis * wipe_direction));

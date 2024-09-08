@@ -13,9 +13,7 @@ func screen_ratio ():
 func transition (transition_name:transition_type, reverse :bool = false) :
 	stop_mouse.mouse_filter = Control.MOUSE_FILTER_STOP
 	color_rect.show()
-	
 	var transition_name_str :String
-	
 	match transition_name:
 		transition_type.Swipe:
 			transition_name_str = "Swipe"
@@ -28,11 +26,9 @@ func transition (transition_name:transition_type, reverse :bool = false) :
 			transition_name_str = "Diamond"
 		transition_type.Line:
 			transition_name_str = "Line"
-
 	if reverse :
 		animation_player.play_backwards(transition_name_str)
 		return
-		
 	animation_player.play(transition_name_str)
 
 func _on_animation_finished(anim_name):

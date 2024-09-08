@@ -1,3 +1,3 @@
 extends TextureButton
 
-@export var building_id:Buildings.Ids
+@export var building_id: Buildings.Ids

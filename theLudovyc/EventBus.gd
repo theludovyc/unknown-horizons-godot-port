@@ -14,8 +14,8 @@ signal send_building_selected(building_node)
 signal ask_deselect_building
 signal ask_select_warehouse
 
-signal ask_demolish_current_building()
-signal send_current_building_demolished()
+signal ask_demolish_current_building
+signal send_current_building_demolished
 
 ## POPULATION / WORKER
 signal population_updated(population_count)
