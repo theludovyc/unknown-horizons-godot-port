@@ -1,0 +1,13 @@
+[gd_scene load_steps=6 format=3 uid="uid://d1102x0pe27ox"]
+
+[ext_resource type="PackedScene" uid="uid://77w0fa2ig1qg" path="res://Scene/Gui/TabWidget/ActionButtons/BuildButton.tscn" id="1"]
+[ext_resource type="Texture2D" uid="uid://bk6sk4bgpqvya" path="res://Art/Image/Gui/Icons/BuildMenu/002.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://ckotlmsd3us4u" path="res://Art/Image/Gui/Icons/BuildMenu/Greyscale/002.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://db2epqefty5oq" path="res://Art/Image/Gui/Icons/BuildMenu/002_h.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://c45071tebp07s" path="res://Art/Image/Gui/Icons/BuildMenu/002_d.png" id="5"]
+
+[node name="BuildStorageButton" instance=ExtResource("1")]
+texture_normal = ExtResource("2")
+texture_pressed = ExtResource("5")
+texture_hover = ExtResource("4")
+texture_disabled = ExtResource("3")

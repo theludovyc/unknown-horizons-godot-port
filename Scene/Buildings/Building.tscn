@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://cahtqi0mpd1bh"]
+
+[ext_resource type="PackedScene" uid="uid://bnhisojcm3gpm" path="res://Scene/World/WorldThing.tscn" id="1"]
+[ext_resource type="Script" path="res://Script/Buildings/Building.gd" id="2"]
+
+[node name="Building" groups=["buildings"] instance=ExtResource("1")]
+script = ExtResource("2")
+action = "idle"
+anim_speed = 0.95
+debug_animate = false
+
+[node name="Billboard" parent="." index="0"]
+region_rect = Rect2(0, 0, 640, 640)

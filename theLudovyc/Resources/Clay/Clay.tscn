@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bptwun2x2nva3"]
+
+[ext_resource type="Texture2D" uid="uid://bkc364cdybdk8" path="res://theLudovyc/Resources/Clay/clay.png" id="1_6qt0j"]
+[ext_resource type="Script" path="res://theLudovyc/Resources/Clay/Clay.gd" id="2_c5uw2"]
+
+[node name="Clay" type="Sprite2D"]
+texture = ExtResource("1_6qt0j")
+hframes = 4
+script = ExtResource("2_c5uw2")
+width = 3
+height = 3

@@ -1,0 +1,581 @@
+[gd_scene load_steps=62 format=3 uid="uid://b3s7eqy0blp6g"]
+
+[ext_resource type="Script" path="res://theLudovyc/GUI/GUI.gd" id="1_15w01"]
+[ext_resource type="Texture2D" uid="uid://5gbvga1bqpxa" path="res://Art/Image/Gui/Background/Widgets/map_bg.png" id="1_lis5v"]
+[ext_resource type="Script" path="res://theLudovyc/GUI/BotMenu.gd" id="2_qugcm"]
+[ext_resource type="Script" path="res://theLudovyc/GUI/Widget.gd" id="2_t3u17"]
+[ext_resource type="Script" path="res://theLudovyc/GUI/GridContainer.gd" id="4_v8nok"]
+[ext_resource type="Texture2D" uid="uid://c354d2kmuckka" path="res://Art/Image/Gui/ResbarStats/sell.png" id="5_b6tj2"]
+[ext_resource type="Script" path="res://theLudovyc/GUI/TabContainer.gd" id="5_sjwej"]
+[ext_resource type="Texture2D" uid="uid://dlwi4tqas1vl0" path="res://Art/Image/Gui/ResbarStats/buy.png" id="6_fst54"]
+[ext_resource type="Texture2D" uid="uid://3203obnnsej3" path="res://Art/Image/Gui/TabWidget/main_bg_top.png" id="6_gmmb2"]
+[ext_resource type="Texture2D" uid="uid://budf74yum8w6e" path="res://Art/Image/Gui/TabWidget/main_bg_fill.png" id="7_srsy4"]
+[ext_resource type="Script" path="res://theLudovyc/GUI/MarketContainer.gd" id="7_vhp7j"]
+[ext_resource type="Texture2D" uid="uid://c7f5k0k27nsh1" path="res://Art/Image/Gui/TabWidget/main_bg_bottom.png" id="8_2h6rg"]
+[ext_resource type="Texture2D" uid="uid://ddlgbu2x5p4tg" path="res://Art/Image/Gui/Icons/BuildMenu/003.png" id="8_04hx7"]
+[ext_resource type="Texture2D" uid="uid://d2a22cr70qsmg" path="res://Art/Image/Gui/Icons/BuildMenu/008.png" id="8_8yekw"]
+[ext_resource type="Script" path="res://theLudovyc/GUI/ButtonBuild.gd" id="8_i5i22"]
+[ext_resource type="Texture2D" uid="uid://cwbtvjpicrocv" path="res://Art/Image/Gui/Icons/BuildMenu/003_d.png" id="9_7d646"]
+[ext_resource type="Texture2D" uid="uid://dxx4hctv3pcww" path="res://Art/Image/Gui/Icons/BuildMenu/008_d.png" id="9_kn7dp"]
+[ext_resource type="Texture2D" uid="uid://340ntgsok673" path="res://Art/Image/Gui/Icons/BuildMenu/008_h.png" id="10_jbw0d"]
+[ext_resource type="Texture2D" uid="uid://bnrw8bxew25wd" path="res://Art/Image/Gui/Icons/BuildMenu/003_h.png" id="10_na55f"]
+[ext_resource type="Texture2D" uid="uid://b0gi4vdahasx6" path="res://Art/Image/Gui/Background/Widgets/cityinfo_left.png" id="13_s75r0"]
+[ext_resource type="Texture2D" uid="uid://dja8u81e6ge3k" path="res://Art/Image/Gui/Background/Widgets/cityinfo_right.png" id="14_flxif"]
+[ext_resource type="Texture2D" uid="uid://3hepoko6w1v" path="res://Art/Image/Gui/Icons/Widgets/CityInfo/settlement.png" id="14_h5vqk"]
+[ext_resource type="PackedScene" uid="uid://uwtq6pqqc8lm" path="res://theLudovyc/GUI/WidgetMenuButton.tscn" id="14_iofba"]
+[ext_resource type="StyleBox" uid="uid://c337qd1xlk4yw" path="res://theLudovyc/GUI/PanelCityInfo.tres" id="14_p6h2t"]
+[ext_resource type="Texture2D" uid="uid://dry1ceb3p6yk1" path="res://Art/Image/Gui/Icons/Widgets/CityInfo/inhabitants.png" id="15_p3ujw"]
+[ext_resource type="Texture2D" uid="uid://cd61sgi3bblm7" path="res://Art/Image/Gui/Icons/TabWidget/Warehouse/buysell_u.png" id="15_t1pbn"]
+[ext_resource type="Texture2D" uid="uid://bbl0shhv3d8f5" path="res://Art/Image/Gui/Icons/TabWidget/Warehouse/buysell_d.png" id="16_ebb3u"]
+[ext_resource type="Texture2D" uid="uid://bmr7rme7ac5un" path="res://Art/Image/Gui/Icons/TabWidget/Warehouse/buysell_h.png" id="17_kjgte"]
+[ext_resource type="Texture2D" uid="uid://b8ks32vn2erej" path="res://Art/Image/Gui/Background/Widgets/tooltip_bg_top.png" id="17_lxyjn"]
+[ext_resource type="Script" path="res://theLudovyc/GUI/LabelPopulation.gd" id="17_v0ai2"]
+[ext_resource type="Script" path="res://theLudovyc/GUI/Tooltip.gd" id="18_divjp"]
+[ext_resource type="Script" path="res://theLudovyc/GUI/BuildingContainer.gd" id="18_nngab"]
+[ext_resource type="Texture2D" uid="uid://rqkqu27konps" path="res://Art/Image/Gui/Icons/Templates/Production/production_arrow.png" id="18_v5i80"]
+[ext_resource type="Script" path="res://theLudovyc/GUI/LabelWorkers.gd" id="18_xklsp"]
+[ext_resource type="Texture2D" uid="uid://dx6qmely0bq45" path="res://Art/Image/Gui/Background/Widgets/tooltip_bg.png" id="18_yoese"]
+[ext_resource type="Texture2D" uid="uid://8immr7brv8eb" path="res://Art/Image/Gui/Background/Widgets/tooltip_bg_middle.png" id="19_28qxy"]
+[ext_resource type="Texture2D" uid="uid://dapd765c0bvd8" path="res://Art/Image/Gui/Buttons/delete_small.png" id="19_eef57"]
+[ext_resource type="Script" path="res://theLudovyc/GUI/BuildingInfoContainer.gd" id="19_uroop"]
+[ext_resource type="Texture2D" uid="uid://bntbwjpu7i64e" path="res://Art/Image/Gui/Icons/Templates/Production/toggle_active.png" id="19_ykl4j"]
+[ext_resource type="Texture2D" uid="uid://bwf1wdtyfp4ll" path="res://Art/Image/Gui/Icons/Templates/Production/toggle_active_d.png" id="20_0fwfh"]
+[ext_resource type="Script" path="res://theLudovyc/GUI/BuildingResidentialContainer.gd" id="20_4inxt"]
+[ext_resource type="Texture2D" uid="uid://bjxpcfox7403j" path="res://Art/Image/Gui/Background/Widgets/tooltip_bg_bottom.png" id="20_4xpap"]
+[ext_resource type="Script" path="res://theLudovyc/GUI/BuildingProducingContainer.gd" id="20_6ni15"]
+[ext_resource type="Texture2D" uid="uid://btewy0y3mrcwd" path="res://Art/Image/Gui/Buttons/delete_small_bw.png" id="20_70i8g"]
+[ext_resource type="Texture2D" uid="uid://toeqa364p2tp" path="res://Art/Image/Gui/Icons/Resources/32/001.png" id="21_03oya"]
+[ext_resource type="PackedScene" uid="uid://n6f00tsqpgrm" path="res://theLudovyc/GUI/ResourceTextureRect.tscn" id="21_cprbo"]
+[ext_resource type="Texture2D" uid="uid://cswhnjs5r8fkk" path="res://Art/Image/Gui/Buttons/delete_small_h.png" id="21_oyj7a"]
+[ext_resource type="Texture2D" uid="uid://cvaw1myityac7" path="res://Art/Image/Gui/Icons/Templates/Production/toggle_active_h.png" id="21_v44d5"]
+[ext_resource type="Texture2D" uid="uid://b6nuq70hohg0w" path="res://Art/Image/Gui/Icons/Widgets/MiniMap/speed_up.png" id="26_j0dpo"]
+[ext_resource type="Script" path="res://theLudovyc/GUI/RichTextLabelInfo.gd" id="33_hbac4"]
+[ext_resource type="PackedScene" uid="uid://dm2nc5paqgg5i" path="res://theLudovyc/GUI/ResourceControl.tscn" id="36_hya2t"]
+[ext_resource type="Script" path="res://theLudovyc/GUI/MoneyControl.gd" id="37_dntbd"]
+[ext_resource type="Script" path="res://theLudovyc/GUI/ResourcePopup.gd" id="40_c8vow"]
+[ext_resource type="Texture2D" uid="uid://cgyr73drevw2p" path="res://Art/Image/Gui/Background/square_120.png" id="44_wb08w"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_q0br5"]
+content_margin_left = 20.0
+content_margin_top = 5.0
+content_margin_right = 20.0
+texture = ExtResource("7_srsy4")
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_or0xk"]
+bg_color = Color(0.388235, 0.341176, 0.247059, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.388235, 0.345098, 0.25098, 1)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cggc7"]
+texture = ExtResource("18_yoese")
+texture_margin_left = 10.0
+texture_margin_top = 10.0
+texture_margin_right = 10.0
+texture_margin_bottom = 15.0
+axis_stretch_horizontal = 2
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0aaya"]
+content_margin_left = 15.0
+texture = ExtResource("19_28qxy")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_orjbh"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rfnxl"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.718, 0.647, 0.553, 0.75)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4s12p"]
+texture = ExtResource("44_wb08w")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
+
+[node name="GUI" type="CanvasLayer"]
+script = ExtResource("1_15w01")
+
+[node name="Widget" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -145.0
+offset_top = 126.0
+offset_right = -145.0
+offset_bottom = 126.0
+grow_horizontal = 0
+mouse_filter = 1
+script = ExtResource("2_t3u17")
+
+[node name="BottomContainer" type="VBoxContainer" parent="Widget"]
+unique_name_in_owner = true
+visible = false
+clip_contents = true
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -125.5
+offset_top = 52.0
+offset_right = 125.5
+offset_bottom = 264.0
+grow_horizontal = 2
+theme_override_constants/separation = 0
+script = ExtResource("2_qugcm")
+
+[node name="Top" type="TextureRect" parent="Widget/BottomContainer"]
+layout_mode = 2
+texture = ExtResource("6_gmmb2")
+
+[node name="PanelContainer" type="PanelContainer" parent="Widget/BottomContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxTexture_q0br5")
+
+[node name="MenuContainer" type="TabContainer" parent="Widget/BottomContainer/PanelContainer"]
+layout_mode = 2
+current_tab = 2
+clip_tabs = false
+tabs_visible = false
+script = ExtResource("5_sjwej")
+
+[node name="MarketContainer" type="VBoxContainer" parent="Widget/BottomContainer/PanelContainer/MenuContainer"]
+visible = false
+layout_mode = 2
+script = ExtResource("7_vhp7j")
+metadata/_tab_index = 0
+
+[node name="Title" type="HBoxContainer" parent="Widget/BottomContainer/PanelContainer/MenuContainer/MarketContainer"]
+layout_mode = 2
+
+[node name="TextureRect2" type="TextureRect" parent="Widget/BottomContainer/PanelContainer/MenuContainer/MarketContainer/Title"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("5_b6tj2")
+stretch_mode = 5
+
+[node name="VSeparator" type="VSeparator" parent="Widget/BottomContainer/PanelContainer/MenuContainer/MarketContainer/Title"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Widget/BottomContainer/PanelContainer/MenuContainer/MarketContainer/Title"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("6_fst54")
+stretch_mode = 5
+
+[node name="NewOrderButton" type="Button" parent="Widget/BottomContainer/PanelContainer/MenuContainer/MarketContainer"]
+layout_mode = 2
+text = "New Order"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Widget/BottomContainer/PanelContainer/MenuContainer/MarketContainer"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+vertical_scroll_mode = 2
+
+[node name="OrderContainer" type="VBoxContainer" parent="Widget/BottomContainer/PanelContainer/MenuContainer/MarketContainer/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 6
+
+[node name="BuildGridContainer" type="GridContainer" parent="Widget/BottomContainer/PanelContainer/MenuContainer"]
+visible = false
+layout_mode = 2
+mouse_filter = 2
+columns = 4
+script = ExtResource("4_v8nok")
+metadata/_tab_index = 1
+
+[node name="BuildResidential" type="TextureButton" parent="Widget/BottomContainer/PanelContainer/MenuContainer/BuildGridContainer"]
+layout_mode = 2
+texture_normal = ExtResource("8_04hx7")
+texture_pressed = ExtResource("9_7d646")
+texture_hover = ExtResource("10_na55f")
+script = ExtResource("8_i5i22")
+building_id = 1
+
+[node name="BuildLumberjack" type="TextureButton" parent="Widget/BottomContainer/PanelContainer/MenuContainer/BuildGridContainer"]
+layout_mode = 2
+texture_normal = ExtResource("8_8yekw")
+texture_pressed = ExtResource("9_kn7dp")
+texture_hover = ExtResource("10_jbw0d")
+script = ExtResource("8_i5i22")
+building_id = 2
+
+[node name="BuildingContainer" type="VBoxContainer" parent="Widget/BottomContainer/PanelContainer/MenuContainer"]
+layout_mode = 2
+script = ExtResource("18_nngab")
+metadata/_tab_index = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Widget/BottomContainer/PanelContainer/MenuContainer/BuildingContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="NameLabel" type="Label" parent="Widget/BottomContainer/PanelContainer/MenuContainer/BuildingContainer/HBoxContainer"]
+layout_mode = 2
+text = "BuildingName"
+horizontal_alignment = 1
+
+[node name="DeleteButton" type="TextureButton" parent="Widget/BottomContainer/PanelContainer/MenuContainer/BuildingContainer/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("19_eef57")
+texture_pressed = ExtResource("20_70i8g")
+texture_hover = ExtResource("21_oyj7a")
+
+[node name="HSeparator" type="HSeparator" parent="Widget/BottomContainer/PanelContainer/MenuContainer/BuildingContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxFlat_or0xk")
+
+[node name="BuildingInfoContainer" type="TabContainer" parent="Widget/BottomContainer/PanelContainer/MenuContainer/BuildingContainer"]
+layout_mode = 2
+current_tab = 0
+clip_tabs = false
+tabs_visible = false
+script = ExtResource("19_uroop")
+
+[node name="BuildingResidentialContainer" type="HBoxContainer" parent="Widget/BottomContainer/PanelContainer/MenuContainer/BuildingContainer/BuildingInfoContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+script = ExtResource("20_4inxt")
+metadata/_tab_index = 0
+
+[node name="ValueLabel" type="Label" parent="Widget/BottomContainer/PanelContainer/MenuContainer/BuildingContainer/BuildingInfoContainer/BuildingResidentialContainer"]
+layout_mode = 2
+text = "0"
+
+[node name="TextureRect" type="TextureRect" parent="Widget/BottomContainer/PanelContainer/MenuContainer/BuildingContainer/BuildingInfoContainer/BuildingResidentialContainer"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+texture = ExtResource("15_p3ujw")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="BuildingProducingContainer" type="VBoxContainer" parent="Widget/BottomContainer/PanelContainer/MenuContainer/BuildingContainer/BuildingInfoContainer"]
+visible = false
+layout_mode = 2
+script = ExtResource("20_6ni15")
+metadata/_tab_index = 1
+
+[node name="GridContainer" type="GridContainer" parent="Widget/BottomContainer/PanelContainer/MenuContainer/BuildingContainer/BuildingInfoContainer/BuildingProducingContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+columns = 3
+
+[node name="ResourceIn" parent="Widget/BottomContainer/PanelContainer/MenuContainer/BuildingContainer/BuildingInfoContainer/BuildingProducingContainer/GridContainer" instance=ExtResource("21_cprbo")]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Widget/BottomContainer/PanelContainer/MenuContainer/BuildingContainer/BuildingInfoContainer/BuildingProducingContainer/GridContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Widget/BottomContainer/PanelContainer/MenuContainer/BuildingContainer/BuildingInfoContainer/BuildingProducingContainer/GridContainer/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("18_v5i80")
+stretch_mode = 3
+
+[node name="TextureButton" type="TextureButton" parent="Widget/BottomContainer/PanelContainer/MenuContainer/BuildingContainer/BuildingInfoContainer/BuildingProducingContainer/GridContainer/MarginContainer"]
+layout_mode = 2
+texture_normal = ExtResource("19_ykl4j")
+texture_pressed = ExtResource("20_0fwfh")
+texture_hover = ExtResource("21_v44d5")
+stretch_mode = 5
+
+[node name="ResourceOut" parent="Widget/BottomContainer/PanelContainer/MenuContainer/BuildingContainer/BuildingInfoContainer/BuildingProducingContainer/GridContainer" instance=ExtResource("21_cprbo")]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Widget/BottomContainer/PanelContainer/MenuContainer/BuildingContainer/BuildingInfoContainer/BuildingProducingContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="TicksContainer" type="HBoxContainer" parent="Widget/BottomContainer/PanelContainer/MenuContainer/BuildingContainer/BuildingInfoContainer/BuildingProducingContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="ValueLabel" type="Label" parent="Widget/BottomContainer/PanelContainer/MenuContainer/BuildingContainer/BuildingInfoContainer/BuildingProducingContainer/HBoxContainer/TicksContainer"]
+layout_mode = 2
+text = "0"
+
+[node name="TextureRect" type="TextureRect" parent="Widget/BottomContainer/PanelContainer/MenuContainer/BuildingContainer/BuildingInfoContainer/BuildingProducingContainer/HBoxContainer/TicksContainer"]
+custom_minimum_size = Vector2(22, 22)
+layout_mode = 2
+texture = ExtResource("26_j0dpo")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="WorkerContainer" type="HBoxContainer" parent="Widget/BottomContainer/PanelContainer/MenuContainer/BuildingContainer/BuildingInfoContainer/BuildingProducingContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="ValueLabel" type="Label" parent="Widget/BottomContainer/PanelContainer/MenuContainer/BuildingContainer/BuildingInfoContainer/BuildingProducingContainer/HBoxContainer/WorkerContainer"]
+layout_mode = 2
+text = "0"
+
+[node name="TextureRect" type="TextureRect" parent="Widget/BottomContainer/PanelContainer/MenuContainer/BuildingContainer/BuildingInfoContainer/BuildingProducingContainer/HBoxContainer/WorkerContainer"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+texture = ExtResource("15_p3ujw")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="MoneyContainer" type="HBoxContainer" parent="Widget/BottomContainer/PanelContainer/MenuContainer/BuildingContainer/BuildingInfoContainer/BuildingProducingContainer/HBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 6
+alignment = 1
+
+[node name="ValueLabel" type="Label" parent="Widget/BottomContainer/PanelContainer/MenuContainer/BuildingContainer/BuildingInfoContainer/BuildingProducingContainer/HBoxContainer/MoneyContainer"]
+layout_mode = 2
+text = "1"
+
+[node name="TextureRect" type="TextureRect" parent="Widget/BottomContainer/PanelContainer/MenuContainer/BuildingContainer/BuildingInfoContainer/BuildingProducingContainer/HBoxContainer/MoneyContainer"]
+custom_minimum_size = Vector2(18, 18)
+layout_mode = 2
+texture = ExtResource("21_03oya")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Bot" type="TextureRect" parent="Widget/BottomContainer"]
+layout_mode = 2
+texture = ExtResource("8_2h6rg")
+
+[node name="Map" type="TextureRect" parent="Widget"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -104.0
+offset_top = -105.0
+offset_right = 104.0
+offset_bottom = 105.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_lis5v")
+
+[node name="BuildMenuButton" parent="Widget" instance=ExtResource("14_iofba")]
+layout_mode = 1
+offset_left = 32.0
+offset_top = 69.0
+offset_right = 64.0
+offset_bottom = 101.0
+
+[node name="MarketMenuButton" parent="Widget" instance=ExtResource("14_iofba")]
+layout_mode = 1
+offset_left = -17.5
+offset_top = 75.0
+offset_right = 17.5
+offset_bottom = 121.0
+texture_normal = ExtResource("15_t1pbn")
+texture_pressed = ExtResource("16_ebb3u")
+texture_hover = ExtResource("17_kjgte")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="WidgetTooltip" type="PanelContainer" parent="Widget"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+offset_left = -279.0
+offset_top = 109.0
+offset_right = -114.0
+offset_bottom = 168.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_cggc7")
+script = ExtResource("18_divjp")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Widget/WidgetTooltip"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="TextureRect" type="TextureRect" parent="Widget/WidgetTooltip/VBoxContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 2
+texture = ExtResource("17_lxyjn")
+
+[node name="PanelContainer" type="PanelContainer" parent="Widget/WidgetTooltip/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxTexture_0aaya")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Widget/WidgetTooltip/VBoxContainer/PanelContainer"]
+layout_mode = 2
+bbcode_enabled = true
+fit_content = true
+
+[node name="TextureRect2" type="TextureRect" parent="Widget/WidgetTooltip/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("20_4xpap")
+
+[node name="CityInfo" type="HBoxContainer" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -138.5
+offset_top = 20.0
+offset_right = 138.5
+offset_bottom = 60.0
+grow_horizontal = 2
+theme_override_constants/separation = 0
+
+[node name="TextureRect" type="TextureRect" parent="CityInfo"]
+layout_mode = 2
+texture = ExtResource("13_s75r0")
+
+[node name="PanelContainer" type="PanelContainer" parent="CityInfo"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("14_p6h2t")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CityInfo/PanelContainer"]
+layout_mode = 2
+
+[node name="VSeparator" type="VSeparator" parent="CityInfo/PanelContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_orjbh")
+
+[node name="TextureRect" type="TextureRect" parent="CityInfo/PanelContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("14_h5vqk")
+
+[node name="Label" type="Label" parent="CityInfo/PanelContainer/HBoxContainer"]
+layout_mode = 2
+text = "Unknow City Name
+"
+
+[node name="TextureRect2" type="TextureRect" parent="CityInfo/PanelContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("15_p3ujw")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CityInfo/PanelContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="LabelPopulation" type="Label" parent="CityInfo/PanelContainer/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "0"
+script = ExtResource("17_v0ai2")
+
+[node name="LabelWorkers" type="Label" parent="CityInfo/PanelContainer/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "(0)"
+script = ExtResource("18_xklsp")
+
+[node name="VSeparator2" type="VSeparator" parent="CityInfo/PanelContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_orjbh")
+
+[node name="TextureRect2" type="TextureRect" parent="CityInfo"]
+layout_mode = 2
+texture = ExtResource("14_flxif")
+
+[node name="Money+Resources" type="HBoxContainer" parent="."]
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 268.0
+offset_bottom = 90.0
+
+[node name="ControlMoney" parent="Money+Resources" instance=ExtResource("36_hya2t")]
+layout_mode = 2
+script = ExtResource("37_dntbd")
+
+[node name="TextureButton" parent="Money+Resources/ControlMoney" index="1"]
+script = null
+
+[node name="Resources" type="HBoxContainer" parent="Money+Resources"]
+layout_mode = 2
+
+[node name="ControlResourceWood" parent="Money+Resources/Resources" instance=ExtResource("36_hya2t")]
+layout_mode = 2
+
+[node name="ControlResourceTextile" parent="Money+Resources/Resources" instance=ExtResource("36_hya2t")]
+layout_mode = 2
+resource_type = 1
+
+[node name="RichTextLabelInfo" type="RichTextLabel" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -30.0
+offset_top = -9.5
+offset_right = 30.0
+offset_bottom = 9.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_rfnxl")
+bbcode_enabled = true
+text = "Blablabla"
+fit_content = true
+autowrap_mode = 0
+script = ExtResource("33_hbac4")
+
+[node name="ResourcePopup" type="Window" parent="."]
+unique_name_in_owner = true
+initial_position = 4
+size = Vector2i(312, 200)
+visible = false
+exclusive = true
+borderless = true
+popup_window = true
+min_size = Vector2i(250, 0)
+script = ExtResource("40_c8vow")
+
+[node name="PanelContainer" type="PanelContainer" parent="ResourcePopup"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxTexture_4s12p")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ResourcePopup/PanelContainer"]
+layout_mode = 2
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="ResourcePopup/PanelContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+columns = 5
+
+[node name="ConfirmationDialog" type="ConfirmationDialog" parent="."]
+unique_name_in_owner = true
+
+[connection signal="pressed" from="Widget/BottomContainer/PanelContainer/MenuContainer/MarketContainer/NewOrderButton" to="Widget/BottomContainer/PanelContainer/MenuContainer/MarketContainer" method="_on_NewOrderButton_pressed"]
+[connection signal="pressed" from="Widget/BottomContainer/PanelContainer/MenuContainer/BuildingContainer/HBoxContainer/DeleteButton" to="Widget/BottomContainer/PanelContainer/MenuContainer/BuildingContainer" method="_on_DeleteButton_pressed"]
+[connection signal="pressed" from="Widget/BuildMenuButton" to="Widget/BottomContainer/PanelContainer/MenuContainer" method="_on_BuildMenuButton_pressed"]
+[connection signal="pressed" from="Widget/MarketMenuButton" to="Widget/BottomContainer/PanelContainer/MenuContainer" method="_on_MarketMenuButton_pressed"]
+[connection signal="visibility_changed" from="RichTextLabelInfo" to="RichTextLabelInfo" method="_on_visibility_changed"]
+
+[editable path="Money+Resources/ControlMoney"]
+[editable path="Money+Resources/Resources/ControlResourceTextile"]
