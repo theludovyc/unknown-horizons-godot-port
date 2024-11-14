@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cdwvtbtwmrqbn"]
 
-[ext_resource type="Script" path="res://Script/Gui/Menu/PauseMenu.gd" id="2"]
-[ext_resource type="PackedScene" uid="uid://dnlyj8r7kuvas" path="res://Scene/ConfirmDialog.tscn" id="2_ovglx"]
+[ext_resource type="Script" path="res://Script/RGT/PauseMenu.gd" id="2"]
+[ext_resource type="PackedScene" uid="uid://dnlyj8r7kuvas" path="res://Scene/RGT/ConfirmDialog.tscn" id="2_ovglx"]
 
 [node name="PauseMenu" type="Control"]
 process_mode = 2
@@ -14,7 +14,16 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2")
 
-[node name="MenuContainer" type="PanelContainer" parent="."]
+[node name="Panel" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MenuContainer" type="MarginContainer" parent="."]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
@@ -28,8 +37,7 @@ layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="MenuContainer/VBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 4
-theme_override_constants/margin_top = 64
+theme_override_constants/margin_top = 16
 
 [node name="Title" type="Label" parent="MenuContainer/VBoxContainer/MarginContainer"]
 layout_mode = 2
@@ -49,6 +57,12 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(128, 40)
 layout_mode = 2
 text = "Resume"
+
+[node name="SaveButton" type="Button" parent="MenuContainer/VBoxContainer/MenuButtons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(128, 40)
+layout_mode = 2
+text = "Save"
 
 [node name="RestartButton" type="Button" parent="MenuContainer/VBoxContainer/MenuButtons"]
 custom_minimum_size = Vector2(128, 40)
@@ -77,9 +91,48 @@ text = "Exit Game"
 [node name="ConfirmDialog" parent="." instance=ExtResource("2_ovglx")]
 unique_name_in_owner = true
 
+[node name="SubMenuContainer" type="MarginContainer" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="Panel" type="Panel" parent="SubMenuContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SubMenuContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="MarginContainer2" type="MarginContainer" parent="SubMenuContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="BackButton" type="Button" parent="SubMenuContainer/VBoxContainer/MarginContainer2"]
+custom_minimum_size = Vector2(62, 40)
+layout_mode = 2
+text = "Back"
+
+[node name="AcceptDialog" type="AcceptDialog" parent="."]
+unique_name_in_owner = true
+
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="pressed" from="MenuContainer/VBoxContainer/MenuButtons/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="MenuContainer/VBoxContainer/MenuButtons/SaveButton" to="." method="_on_save_button_pressed"]
 [connection signal="pressed" from="MenuContainer/VBoxContainer/MenuButtons/RestartButton" to="." method="_on_restart_button_pressed"]
 [connection signal="pressed" from="MenuContainer/VBoxContainer/MenuButtons/OptionsButton" to="." method="_on_options_button_pressed"]
 [connection signal="pressed" from="MenuContainer/VBoxContainer/MenuButtons/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
 [connection signal="pressed" from="MenuContainer/VBoxContainer/MenuButtons/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="SubMenuContainer/VBoxContainer/MarginContainer2/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="confirmed" from="AcceptDialog" to="." method="_on_accept_dialog_confirmed"]

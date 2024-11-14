@@ -145,8 +145,6 @@ expand_mode = 1
 stretch_mode = 5
 
 [node name="Decoration" type="TextureRect" parent="."]
-visible = false
-modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 1
 anchors_preset = 8
@@ -167,7 +165,6 @@ expand_mode = 1
 stretch_mode = 3
 
 [node name="MenuItems" type="Control" parent="Decoration"]
-modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -177,7 +174,8 @@ anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="SinglePlayerButton" parent="Decoration/MenuItems" instance=ExtResource("4_6w6ep")]
+[node name="PlayButton" parent="Decoration/MenuItems" instance=ExtResource("4_6w6ep")]
+unique_name_in_owner = true
 layout_mode = 0
 anchors_preset = 0
 anchor_left = 0.0
@@ -189,10 +187,11 @@ offset_top = -205.0
 offset_right = 50.0
 offset_bottom = -105.0
 alignment = "top"
-text = "Single Player"
+text = "Play"
 texture = ExtResource("5_p8e0q")
 
-[node name="LoadGameButton" parent="Decoration/MenuItems" instance=ExtResource("4_6w6ep")]
+[node name="LoadButton" parent="Decoration/MenuItems" instance=ExtResource("4_6w6ep")]
+unique_name_in_owner = true
 layout_mode = 0
 anchors_preset = 0
 anchor_left = 0.0
@@ -208,6 +207,7 @@ text = "Load Game"
 texture = ExtResource("6_6uh4k")
 
 [node name="CreditsButton" parent="Decoration/MenuItems" instance=ExtResource("4_6w6ep")]
+unique_name_in_owner = true
 layout_mode = 0
 anchors_preset = 0
 anchor_left = 0.0
@@ -237,7 +237,8 @@ disabled = true
 text = "Editor"
 texture = ExtResource("8_2i3sb")
 
-[node name="QuitButton" parent="Decoration/MenuItems" instance=ExtResource("4_6w6ep")]
+[node name="ExitButton" parent="Decoration/MenuItems" instance=ExtResource("4_6w6ep")]
+unique_name_in_owner = true
 layout_mode = 0
 anchors_preset = 0
 anchor_left = 0.0
@@ -268,6 +269,7 @@ alignment = "right"
 text = "Help"
 
 [node name="OptionsButton" parent="Decoration/MenuItems" instance=ExtResource("4_6w6ep")]
+unique_name_in_owner = true
 layout_mode = 0
 anchors_preset = 0
 anchor_left = 0.0
@@ -312,6 +314,7 @@ offset_right = 20.0
 offset_bottom = 20.0
 
 [node name="LogoEmblem" type="TextureRect" parent="Logo"]
+modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
@@ -334,9 +337,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -296.0
-offset_top = 125.0
+offset_top = -360.0
 offset_right = 296.0
-offset_bottom = 340.0
+offset_bottom = -145.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -367,6 +370,5 @@ autoplay = "intro"
 unique_name_in_owner = true
 dialog_text = "Are you sure you want to quit ?"
 
-[connection signal="pressed" from="Decoration/MenuItems/SinglePlayerButton" to="." method="_on_SinglePlayerButton_pressed"]
-[connection signal="pressed" from="Decoration/MenuItems/QuitButton" to="." method="_on_QuitButton_pressed"]
-[connection signal="confirmed" from="ConfirmationDialog" to="." method="_on_ConfirmationDialog_confirmed"]
+[connection signal="pressed" from="Decoration/MenuItems/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="Decoration/MenuItems/ExitButton" to="." method="_on_exit_button_pressed"]

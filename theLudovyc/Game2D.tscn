@@ -12,7 +12,7 @@
 [ext_resource type="Script" path="res://theLudovyc/Camera2D.gd" id="5_7hgfn"]
 [ext_resource type="PackedScene" uid="uid://b3s7eqy0blp6g" path="res://theLudovyc/GUI/GUI.tscn" id="6_lovin"]
 [ext_resource type="Script" path="res://theLudovyc/TheTicker.gd" id="7_41bva"]
-[ext_resource type="PackedScene" uid="uid://cdwvtbtwmrqbn" path="res://Scene/Menu/PauseMenu.tscn" id="13_0dv84"]
+[ext_resource type="PackedScene" uid="uid://cdwvtbtwmrqbn" path="res://Scene/RGT/PauseMenu.tscn" id="13_xikc4"]
 
 [node name="Game2D" type="Node"]
 script = ExtResource("1_i3wk0")
@@ -81,7 +81,7 @@ fit_content = true
 
 [node name="GUI" parent="." instance=ExtResource("6_lovin")]
 
-[node name="PauseMenu" parent="GUI" instance=ExtResource("13_0dv84")]
+[node name="PauseMenu" parent="GUI" instance=ExtResource("13_xikc4")]
 unique_name_in_owner = true
 
 [connection signal="ask_create_building" from="EventBus" to="." method="_on_EventBus_ask_create_building"]

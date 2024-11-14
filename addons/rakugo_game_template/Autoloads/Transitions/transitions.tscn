@@ -354,7 +354,6 @@ shader_parameter/diamondPixelSize = 30.0
 
 [node name="Transitions" type="CanvasLayer"]
 process_mode = 3
-layer = 2
 script = ExtResource("1_8b6dk")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
