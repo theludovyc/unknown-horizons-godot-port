@@ -1,32 +1,19 @@
-<p align="center"><a href="http://unknown-horizons.org/"><img src="http://unknown-horizons.org/static/logo.svg" alt="Unknown Horizons" width="278" height="326"></a></p>
+This a fork of the unknown horizons game. Find more information about it [here](https://unknown-horizons.org/).
 
-**We are searching for developers for our [Godot Engine](https://godotengine.org/) port**.
-We want to port it because our current engine is basically dead.
-The GUI lib that we use is also dead, and has a lot of problems.
-We really love our game and the community loves it too.
+## Fork differences
 
-We are looking for:
+Unknow horizons is an open-source 2D game real time strategy simulation mainly inspired by the Anno series with an emphasis on economy and city building. You can expand your small settlement to a strong and wealthy colony, collect taxes and supply your inhabitants with valuable goods. And increase your power with a well balanced economy and with strategic trade and diplomacy.
 
-- Mainly, Godot programmers.
-- A graphics artist would be handy, because maybe we can reuse
-all previous graphic assets. We have a lot blender files.
-- Later, a sound effects and music creator would be nice too.
-- A design document writer would be really nice as well, so that
-our [wiki](https://github.com/unknown-horizons/godot-port/wiki)
-could get a lot of more information.
+This version differ by the fact it is a ticks based game, this mean events will follow a clock. You can see it like turn in a board game, but automatic. Instead of a real time strategy simulation, by example the resource production in each building and their transport in real time, each tick: all the game is updated. When you play game like anno, 4X, or other city builder, you are often inscrease time speed by 3 or 4, to avoid waiting because real time is too slow. It will not happen with this ticks system, because in 1 tick you can produce, buy or sell resources. Also, it will reduce the huge amount of work needed to create a simulation. Plus it permits to increase performances ! And yes, we will use magic (maths), to make things moving on screens like it was on real time.
 
----
+## Contributing
 
-**Unknown Horizons** is a 2D real time strategy simulation with
-an emphasis on economy and city building. Expand your small
-settlement to a strong and wealthy colony, collect taxes and
-supply your inhabitants with valuable goods. Increase your
-power with a well balanced economy and with strategic trade
-and diplomacy.
+This project is based on Godot 4. Get it from [https://godotengine.org/download/](https://godotengine.org/download/), open the executable, import the project and you are good to go for developing and playtesting. No compilation needed!
 
-Find more information about Unknown Horizons on [our website](http://unknown-horizons.org/).
+Also consulate [CONTRIBUTING.md](./CONTRIBUTING.md) for the project goals and further instructions regarding the setup and coding-related instructions.
 
 ## License
+
 This game is [free software](https://www.gnu.org/philosophy/free-sw.html).
 It uses the [GNU General Public License, version 2](https://github.com/unknown-horizons/godot-port/blob/master/LICENSE.md).
 The licenses used for music, artwork, sounds, etc. can be found

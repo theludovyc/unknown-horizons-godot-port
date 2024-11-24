@@ -1,0 +1,372 @@
+[gd_scene load_steps=18 format=3 uid="uid://dytw0n3b07ux4"]
+
+[ext_resource type="Script" path="res://Script/Gui/Menu/MainMenu.gd" id="1"]
+[ext_resource type="Theme" uid="uid://lyx8kydf373j" path="res://Art/Theme/MenuTheme.tres" id="1_i4hjr"]
+[ext_resource type="Texture2D" uid="uid://q5ucvivm8wdb" path="res://Art/Image/Gui/Background/MainMenu/bg_1.png" id="3_3khu6"]
+[ext_resource type="Texture2D" uid="uid://cpn75tf5b4csq" path="res://Art/Image/Gui/Background/MainMenu/wheel.png" id="3_ogkxw"]
+[ext_resource type="PackedScene" uid="uid://d4eobn6sah5a" path="res://Scene/Gui/Page/MainMenuButton.tscn" id="4_6w6ep"]
+[ext_resource type="Texture2D" uid="uid://dsir2lhwmdm3c" path="res://Art/Image/Gui/Icons/MainMenu/compass.png" id="5_p8e0q"]
+[ext_resource type="Texture2D" uid="uid://egnpv7a56dwn" path="res://Art/Image/Gui/Icons/MainMenu/continue.png" id="6_6uh4k"]
+[ext_resource type="Texture2D" uid="uid://k8nho4xrxmo8" path="res://Art/Image/Gui/Icons/MainMenu/log_bw.png" id="7_ccp0m"]
+[ext_resource type="Texture2D" uid="uid://3r3onf633ajr" path="res://Art/Image/Gui/Icons/MainMenu/editor_bw.png" id="8_2i3sb"]
+[ext_resource type="Texture2D" uid="uid://dec3vhl2odnlt" path="res://Art/Image/Gui/Icons/MainMenu/door.png" id="9_e4hlx"]
+[ext_resource type="Texture2D" uid="uid://woykcjlhmjov" path="res://Art/Image/Gui/Icons/MainMenu/gears_bw.png" id="10_v2sje"]
+[ext_resource type="Texture2D" uid="uid://fnwe2ccpoxu7" path="res://Art/Image/Gui/Icons/MainMenu/multiplayer_bw.png" id="11_ulff8"]
+[ext_resource type="Texture2D" uid="uid://dx3wfk7nhepo7" path="res://Art/Image/Gui/Logos/uh_no_text.svg" id="12_q4rhy"]
+[ext_resource type="Texture2D" uid="uid://lxvd4qr8d35m" path="res://Art/Image/Gui/Logos/uh_only_text.svg" id="13_yw4on"]
+
+[sub_resource type="Animation" id="Animation_ft716"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Decoration:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [722.566]
+}
+
+[sub_resource type="Animation" id="1"]
+length = 2.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Decoration:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.2, 2.3),
+"transitions": PackedFloat32Array(0.7, 1),
+"update": 0,
+"values": [0.0, 12.5664]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Decoration:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Decoration:modulate:a")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.2, 0.5, 2.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, 1.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Decoration/MenuItems:modulate:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.2, 2.3, 2.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 1.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Logo:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Logo/LogoEmblem:modulate:a")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Logo/LogoTitle:position:y")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 2.3, 2.5),
+"transitions": PackedFloat32Array(0.7, 1, 1),
+"update": 0,
+"values": [145.0, -340.0, -340.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hgqkq"]
+_data = {
+"RESET": SubResource("Animation_ft716"),
+"intro": SubResource("1")
+}
+
+[node name="MainMenuUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_i4hjr")
+script = ExtResource("1")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_3khu6")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Decoration" type="TextureRect" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = 45.0
+offset_right = 20.0
+offset_bottom = 85.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 722.566
+pivot_offset = Vector2(20, 20)
+texture = ExtResource("3_ogkxw")
+expand_mode = 1
+stretch_mode = 3
+
+[node name="MenuItems" type="Control" parent="Decoration"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SinglePlayerButton" parent="Decoration/MenuItems" instance=ExtResource("4_6w6ep")]
+layout_mode = 0
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = -50.0
+offset_top = -205.0
+offset_right = 50.0
+offset_bottom = -105.0
+alignment = "top"
+text = "Single Player"
+texture = ExtResource("5_p8e0q")
+
+[node name="LoadGameButton" parent="Decoration/MenuItems" instance=ExtResource("4_6w6ep")]
+layout_mode = 0
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = -158.0
+offset_top = -160.0
+offset_right = -58.0
+offset_bottom = -60.0
+disabled = true
+text = "Load Game"
+texture = ExtResource("6_6uh4k")
+
+[node name="CreditsButton" parent="Decoration/MenuItems" instance=ExtResource("4_6w6ep")]
+layout_mode = 0
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = -205.0
+offset_top = -51.108
+offset_right = -105.0
+offset_bottom = 48.892
+disabled = true
+text = "Credits"
+texture = ExtResource("7_ccp0m")
+
+[node name="EditorButton" parent="Decoration/MenuItems" instance=ExtResource("4_6w6ep")]
+layout_mode = 0
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = -158.0
+offset_top = 57.0
+offset_right = -58.0
+offset_bottom = 157.0
+disabled = true
+text = "Editor"
+texture = ExtResource("8_2i3sb")
+
+[node name="QuitButton" parent="Decoration/MenuItems" instance=ExtResource("4_6w6ep")]
+layout_mode = 0
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = -50.0
+offset_top = 105.0
+offset_right = 50.0
+offset_bottom = 205.0
+alignment = "bottom"
+text = "Quit"
+texture = ExtResource("9_e4hlx")
+
+[node name="HelpButton" parent="Decoration/MenuItems" instance=ExtResource("4_6w6ep")]
+layout_mode = 0
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 61.0
+offset_top = 57.0
+offset_right = 161.0
+offset_bottom = 157.0
+disabled = true
+alignment = "right"
+text = "Help"
+
+[node name="OptionsButton" parent="Decoration/MenuItems" instance=ExtResource("4_6w6ep")]
+layout_mode = 0
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 105.0
+offset_top = -50.0
+offset_right = 205.0
+offset_bottom = 50.0
+disabled = true
+alignment = "right"
+text = "Options"
+texture = ExtResource("10_v2sje")
+
+[node name="ConnectButton" parent="Decoration/MenuItems" instance=ExtResource("4_6w6ep")]
+layout_mode = 0
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 60.0
+offset_top = -160.0
+offset_right = 160.0
+offset_bottom = -60.0
+disabled = true
+alignment = "right"
+text = "Connect"
+texture = ExtResource("11_ulff8")
+
+[node name="Logo" type="Control" parent="."]
+custom_minimum_size = Vector2(40, 40)
+anchors_preset = 0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+
+[node name="LogoEmblem" type="TextureRect" parent="Logo"]
+layout_mode = 0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -299.0
+offset_top = -340.0
+offset_right = 299.0
+offset_bottom = 232.0
+mouse_filter = 2
+texture = ExtResource("12_q4rhy")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="LogoTitle" type="TextureRect" parent="Logo"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -296.0
+offset_top = 125.0
+offset_right = 296.0
+offset_bottom = 340.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("13_yw4on")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="VersionNumber" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -37.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_hgqkq")
+}
+autoplay = "intro"
+
+[node name="ConfirmationDialog" type="ConfirmationDialog" parent="."]
+unique_name_in_owner = true
+dialog_text = "Are you sure you want to quit ?"
+
+[connection signal="pressed" from="Decoration/MenuItems/SinglePlayerButton" to="." method="_on_SinglePlayerButton_pressed"]
+[connection signal="pressed" from="Decoration/MenuItems/QuitButton" to="." method="_on_QuitButton_pressed"]
+[connection signal="confirmed" from="ConfirmationDialog" to="." method="_on_ConfirmationDialog_confirmed"]

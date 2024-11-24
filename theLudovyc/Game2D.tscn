@@ -1,0 +1,94 @@
+[gd_scene load_steps=14 format=3 uid="uid://bbbuj3ne5rupv"]
+
+[ext_resource type="Script" path="res://theLudovyc/Game2D.gd" id="1_i3wk0"]
+[ext_resource type="Script" path="res://theLudovyc/EventBus.gd" id="2_jbfdl"]
+[ext_resource type="Texture2D" uid="uid://qwmj7wmlnv8d" path="res://theLudovyc/deep.png" id="2_ymyts"]
+[ext_resource type="Script" path="res://theLudovyc/TheStorage.gd" id="3_4ey5t"]
+[ext_resource type="Script" path="res://theLudovyc/TheFactory.gd" id="3_6uk0m"]
+[ext_resource type="Script" path="res://theLudovyc/TheMarket.gd" id="4_gvgis"]
+[ext_resource type="Script" path="res://theLudovyc/TileMap.gd" id="4_lfw1e"]
+[ext_resource type="Script" path="res://theLudovyc/TheBank.gd" id="4_s5v76"]
+[ext_resource type="TileSet" uid="uid://bhin7dsw4tvvl" path="res://theLudovyc/new_tile_set.tres" id="5_6up2t"]
+[ext_resource type="Script" path="res://theLudovyc/Camera2D.gd" id="5_7hgfn"]
+[ext_resource type="PackedScene" uid="uid://b3s7eqy0blp6g" path="res://theLudovyc/GUI/GUI.tscn" id="6_lovin"]
+[ext_resource type="Script" path="res://theLudovyc/TheTicker.gd" id="7_41bva"]
+[ext_resource type="PackedScene" uid="uid://cdwvtbtwmrqbn" path="res://Scene/Menu/PauseMenu.tscn" id="13_0dv84"]
+
+[node name="Game2D" type="Node"]
+script = ExtResource("1_i3wk0")
+
+[node name="EventBus" type="Node" parent="."]
+script = ExtResource("2_jbfdl")
+
+[node name="TheStorage" type="Node" parent="."]
+script = ExtResource("3_4ey5t")
+
+[node name="TheBank" type="Node" parent="."]
+script = ExtResource("4_s5v76")
+
+[node name="TheFactory" type="Node" parent="."]
+script = ExtResource("3_6uk0m")
+
+[node name="TheMarket" type="Node" parent="."]
+script = ExtResource("4_gvgis")
+
+[node name="TheTicker" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+script = ExtResource("7_41bva")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position_smoothing_enabled = true
+script = ExtResource("5_7hgfn")
+
+[node name="Deep" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(768, 448)
+texture = ExtResource("2_ymyts")
+
+[node name="ZSorter" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="TileMap" type="TileMap" parent="ZSorter"]
+unique_name_in_owner = true
+y_sort_enabled = true
+tile_set = ExtResource("5_6up2t")
+format = 2
+layer_0/name = "Ground"
+layer_0/y_sort_enabled = true
+layer_1/name = "Trees"
+layer_1/y_sort_enabled = true
+layer_1/z_index = 1
+script = ExtResource("4_lfw1e")
+
+[node name="Entities" type="Node2D" parent="ZSorter"]
+unique_name_in_owner = true
+z_index = 1
+y_sort_enabled = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -36.0
+offset_right = 204.0
+grow_vertical = 0
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+fit_content = true
+
+[node name="GUI" parent="." instance=ExtResource("6_lovin")]
+
+[node name="PauseMenu" parent="GUI" instance=ExtResource("13_0dv84")]
+unique_name_in_owner = true
+
+[connection signal="ask_create_building" from="EventBus" to="." method="_on_EventBus_ask_create_building"]
+[connection signal="ask_demolish_current_building" from="EventBus" to="." method="_on_EventBus_ask_demolish_current_building"]
+[connection signal="ask_deselect_building" from="EventBus" to="." method="_on_EventBus_ask_deselect_building"]
+[connection signal="ask_select_warehouse" from="EventBus" to="." method="_on_EventBus_ask_select_warehouse"]
+[connection signal="send_building_selected" from="EventBus" to="." method="_on_EventBus_send_building_selected"]
+[connection signal="cycle" from="TheTicker" to="TheMarket" method="_on_TheTicker_cycle"]
+[connection signal="tick" from="TheTicker" to="TheFactory" method="_on_TheTicker_tick"]
+[connection signal="timeout" from="TheTicker" to="TheTicker" method="_on_timeout"]

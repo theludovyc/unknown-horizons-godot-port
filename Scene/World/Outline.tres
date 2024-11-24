@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://7jpfndvp5lbv"]
+
+[resource]
+transparency = 1
+no_depth_test = true
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+billboard_mode = 1
