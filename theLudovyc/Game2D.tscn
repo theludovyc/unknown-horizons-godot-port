@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bbbuj3ne5rupv"]
+[gd_scene load_steps=17 format=3 uid="uid://bbbuj3ne5rupv"]
 
 [ext_resource type="Script" path="res://theLudovyc/Game2D.gd" id="1_i3wk0"]
 [ext_resource type="Script" path="res://theLudovyc/EventBus.gd" id="2_jbfdl"]
@@ -15,6 +15,7 @@
 [ext_resource type="TileSet" uid="uid://dprvpcto8mhgv" path="res://theLudovyc/tile_set_trees.tres" id="12_25naw"]
 [ext_resource type="Script" path="res://Script/World/GroundLayer.gd" id="12_dmqkb"]
 [ext_resource type="PackedScene" uid="uid://cdwvtbtwmrqbn" path="res://Scene/RGT/PauseMenu.tscn" id="13_xikc4"]
+[ext_resource type="Script" path="res://Script/World/TreesLayer.gd" id="14_wtd65"]
 
 [node name="Game2D" type="Node"]
 script = ExtResource("1_i3wk0")
@@ -67,6 +68,7 @@ script = ExtResource("12_dmqkb")
 z_index = 2
 y_sort_enabled = true
 tile_set = ExtResource("12_25naw")
+script = ExtResource("14_wtd65")
 
 [node name="Entities" type="Node2D" parent="ZSorter"]
 unique_name_in_owner = true

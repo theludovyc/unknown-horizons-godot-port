@@ -103,18 +103,7 @@ func create_island(map_file:String) -> int:
 		json.data["ground_tiles"]
 	)
 	
-	# spawn trees
-	var noise := FastNoiseLite.new()
-	noise.frequency = 0.3
-	
-	for i in range(minimap.size()):
-		if minimap[i] == Minimap_Cell_Type.Ground:
-			var pos = minimap_get_pos(i)
-			
-			if noise.get_noise_2dv(pos) > 0.1:
-				trees_layer.set_cell(pos, 1, Vector2(0, 1))
-			
-				minimap[i] = Minimap_Cell_Type.Tree
+	trees_layer.create_trees()
 	
 	return OK
 
