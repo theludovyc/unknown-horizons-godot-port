@@ -7,13 +7,14 @@ class_name Game2D
 
 @onready var cam := $Camera2D
 
-@onready var node_entities := %Entities
+@onready var node_buildings := %Buildings
+
+@onready var event_bus := $EventBus
 
 @onready var the_storage := $TheStorage
 @onready var the_bank := $TheBank
-@onready var event_bus := $EventBus
-
 @onready var the_factory := $TheFactory
+@onready var the_builder := $TheBuilder
 
 @onready var gui := $GUI
 @onready var pause_menu := %PauseMenu
@@ -49,13 +50,15 @@ func _ready():
 	# spawn the warehouse
 	warehouse = instantiate_building(Buildings.Ids.Warehouse)
 
-	var warehouse_center_tile = Vector2i(1, 20)
+	var warehouse_center_tile = tm.ground_layer.local_to_map(Vector2(704, 320))
 
 	warehouse.position = tm.ground_layer.map_to_local(warehouse_center_tile)
 
 	tm.build_entityStatic(warehouse, warehouse_center_tile)
 
 	warehouse.build()
+	
+	prints(name, warehouse.position)
 
 	# set camera limits
 	var pos_limits = tm.get_pos_limits()
@@ -203,10 +206,7 @@ func _process(delta):
 func instantiate_building(building_id: Buildings.Ids) -> Building2D:
 	var instance = Buildings_Scenes[building_id].instantiate() as Building2D
 
-	node_entities.add_child(instance)
-
-	# TODO
-	#instance.selected.connect(_on_building_selected)
+	node_buildings.add_child(instance)
 
 	return instance
 
@@ -260,3 +260,11 @@ func _on_EventBus_ask_demolish_current_building():
 	current_selected_building = null
 
 	event_bus.send_current_building_demolished.emit()
+
+func _on_PauseMenu_ask_to_save() -> void:
+	var dicoToSave := {}
+	dicoToSave.merge(the_storage.get_storage_save())
+	dicoToSave.merge(the_bank.get_bank_save())
+	dicoToSave.merge(the_builder.get_buildings_save())
+	
+	pause_menu.save_this_please(dicoToSave)

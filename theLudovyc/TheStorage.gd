@@ -1,7 +1,7 @@
 extends Node
 class_name TheStorage
 
-var storage = {}
+var storage := {}
 
 @onready var event_bus = $"../EventBus"
 
@@ -91,3 +91,6 @@ func recover_building_construction(building_id: Buildings.Ids):
 
 	for cost in building_cost:
 		add_resource(cost[0], cost[1])
+
+func get_storage_save() -> Dictionary:
+	return {"Storage":storage}

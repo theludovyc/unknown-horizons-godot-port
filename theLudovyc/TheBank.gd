@@ -81,3 +81,6 @@ func recalculate_orders_cost():
 		tmp_orders_cost += resource_cost * order.sell_amount
 
 	orders_cost = tmp_orders_cost
+
+func get_bank_save() -> Dictionary:
+	return {"Money": [money, money_production_rate]}
